@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFD3299E98670099B3DA /* InstaPetsApp.swift */; };
-		B45ABFD6299E98670099B3DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFD5299E98670099B3DA /* ContentView.swift */; };
+		B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFD5299E98670099B3DA /* HomeView.swift */; };
 		B45ABFD8299E98690099B3DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45ABFD7299E98690099B3DA /* Assets.xcassets */; };
 		B45ABFDB299E98690099B3DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45ABFDA299E98690099B3DA /* Preview Assets.xcassets */; };
+		B45ABFE5299E9AB00099B3DA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFE4299E9AB00099B3DA /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B45ABFD0299E98670099B3DA /* InstaPets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaPets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45ABFD3299E98670099B3DA /* InstaPetsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaPetsApp.swift; sourceTree = "<group>"; };
-		B45ABFD5299E98670099B3DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B45ABFD5299E98670099B3DA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B45ABFD7299E98690099B3DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B45ABFDA299E98690099B3DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B45ABFE4299E9AB00099B3DA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +53,9 @@
 		B45ABFD2299E98670099B3DA /* InstaPets */ = {
 			isa = PBXGroup;
 			children = (
-				B45ABFD3299E98670099B3DA /* InstaPetsApp.swift */,
-				B45ABFD5299E98670099B3DA /* ContentView.swift */,
+				B45ABFE1299E98D40099B3DA /* App */,
+				B45ABFE2299E998E0099B3DA /* Home */,
+				B45ABFE3299E9A9D0099B3DA /* Extensions */,
 				B45ABFD7299E98690099B3DA /* Assets.xcassets */,
 				B45ABFD9299E98690099B3DA /* Preview Content */,
 			);
@@ -65,6 +68,30 @@
 				B45ABFDA299E98690099B3DA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B45ABFE1299E98D40099B3DA /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B45ABFD3299E98670099B3DA /* InstaPetsApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B45ABFE2299E998E0099B3DA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B45ABFD5299E98670099B3DA /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B45ABFE3299E9A9D0099B3DA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B45ABFE4299E9AB00099B3DA /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +164,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B45ABFD6299E98670099B3DA /* ContentView.swift in Sources */,
+				B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */,
 				B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */,
+				B45ABFE5299E9AB00099B3DA /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
