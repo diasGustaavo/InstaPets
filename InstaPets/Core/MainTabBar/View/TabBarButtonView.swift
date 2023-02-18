@@ -11,6 +11,7 @@ enum TabBarButtonType: String {
     case home = "house"
     case search = "magnifyingglass"
     case post = "plus.app"
+    case likes = "heart"
     case profile = "pawprint"
     
     func getSelectedButton() -> String {
@@ -21,6 +22,8 @@ enum TabBarButtonType: String {
             return "magnifyingglass.circle.fill"
         case .post:
             return "plus.app.fill"
+        case .likes:
+            return "heart.fill"
         case .profile:
             return "pawprint.fill"
         }

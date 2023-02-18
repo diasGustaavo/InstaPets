@@ -1,5 +1,5 @@
 //
-//  MainTabBar.swift
+//  MainTabBarView.swift
 //  InstaPets
 //
 //  Created by Gustavo Dias on 18/02/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainTabBar: View {
+struct MainTabBarView: View {
     @EnvironmentObject var viewModel: HomeViewModel
     
     var body: some View {
@@ -27,6 +27,9 @@ struct MainTabBar: View {
                 
                 Spacer()
                 
+                TabBarButtonView(type: .likes)
+                
+                Spacer()
                 
                 TabBarButtonView(type: .profile)
             }
@@ -35,9 +38,9 @@ struct MainTabBar: View {
     }
 }
 
-struct MainTabBar_Previews: PreviewProvider {
+struct MainTabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabBar()
+        MainTabBarView()
             .environmentObject(HomeViewModel())
     }
 }
