@@ -15,6 +15,7 @@
 		B4FDB21E29A0FE0B00EEB245 /* TabBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB21D29A0FE0B00EEB245 /* TabBarButtonView.swift */; };
 		B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB22429A0FFDA00EEB245 /* HomeViewModel.swift */; };
 		B4FDB22729A1021E00EEB245 /* If.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB22629A1021E00EEB245 /* If.swift */; };
+		B4FDB22929A10B1200EEB245 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB22829A10B1200EEB245 /* MainTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		B4FDB21D29A0FE0B00EEB245 /* TabBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarButtonView.swift; sourceTree = "<group>"; };
 		B4FDB22429A0FFDA00EEB245 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B4FDB22629A1021E00EEB245 /* If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = If.swift; sourceTree = "<group>"; };
+		B4FDB22829A10B1200EEB245 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +116,8 @@
 		B45ABFE7299E9E5A0099B3DA /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B45ABFE6299E9E380099B3DA /* MainTabBar */,
 				B45ABFE2299E998E0099B3DA /* Home */,
+				B45ABFE6299E9E380099B3DA /* MainTabBar */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				B4FDB21D29A0FE0B00EEB245 /* TabBarButtonView.swift */,
+				B4FDB22829A10B1200EEB245 /* MainTabBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			files = (
 				B4FDB21E29A0FE0B00EEB245 /* TabBarButtonView.swift in Sources */,
 				B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */,
+				B4FDB22929A10B1200EEB245 /* MainTabBar.swift in Sources */,
 				B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */,
 				B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */,
 				B4FDB22729A1021E00EEB245 /* If.swift in Sources */,

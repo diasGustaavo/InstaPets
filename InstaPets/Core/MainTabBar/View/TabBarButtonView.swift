@@ -11,7 +11,7 @@ enum TabBarButtonType: String {
     case home = "house"
     case search = "magnifyingglass"
     case post = "plus.app"
-    case profile = "person.crop.circle"
+    case profile = "pawprint"
     
     func getSelectedButton() -> String {
         switch self {
@@ -22,7 +22,7 @@ enum TabBarButtonType: String {
         case .post:
             return "plus.app.fill"
         case .profile:
-            return "person.crop.circle.fill"
+            return "pawprint.fill"
         }
     }
 }
@@ -49,7 +49,7 @@ struct TabBarButtonView: View {
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(Color.theme.primaryTextColor)
         }
-        .frame(height: 32)
+        .frame(height: 28)
     }
 }
 

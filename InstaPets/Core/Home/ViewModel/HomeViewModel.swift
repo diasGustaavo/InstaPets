@@ -8,5 +8,5 @@
 import Foundation
 
 class HomeViewModel: ObservableObject {
-    @Published var selectedTab: TabBarButtonType = .profile
+    @Published var selectedTab: TabBarButtonType = .home
 }
