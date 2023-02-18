@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var viewModel: HomeViewModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            Color(UIColor(Color.theme.backgroundColor))
+            
+            VStack {
+                Spacer()
+                
+                MainTabBarView()
+            }
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(HomeViewModel())
     }
 }

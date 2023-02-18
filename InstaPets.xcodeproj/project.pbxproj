@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B449C1CA29A119D10032046A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1C929A119D10032046A /* FirebaseAuth */; };
+		B449C1CC29A119D10032046A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CB29A119D10032046A /* FirebaseFirestore */; };
+		B449C1CE29A119D10032046A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CD29A119D10032046A /* FirebaseFirestoreSwift */; };
+		B449C1D029A119D10032046A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CF29A119D10032046A /* FirebaseStorage */; };
 		B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFD3299E98670099B3DA /* InstaPetsApp.swift */; };
 		B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFD5299E98670099B3DA /* HomeView.swift */; };
 		B45ABFD8299E98690099B3DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45ABFD7299E98690099B3DA /* Assets.xcassets */; };
@@ -16,6 +20,7 @@
 		B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB22429A0FFDA00EEB245 /* HomeViewModel.swift */; };
 		B4FDB22729A1021E00EEB245 /* If.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB22629A1021E00EEB245 /* If.swift */; };
 		B4FDB22929A10B1200EEB245 /* MainTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB22829A10B1200EEB245 /* MainTabBarView.swift */; };
+		B4FDB22C29A1161B00EEB245 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4FDB22B29A1161B00EEB245 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,7 @@
 		B4FDB22429A0FFDA00EEB245 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B4FDB22629A1021E00EEB245 /* If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = If.swift; sourceTree = "<group>"; };
 		B4FDB22829A10B1200EEB245 /* MainTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarView.swift; sourceTree = "<group>"; };
+		B4FDB22B29A1161B00EEB245 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +42,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B449C1CA29A119D10032046A /* FirebaseAuth in Frameworks */,
+				B449C1D029A119D10032046A /* FirebaseStorage in Frameworks */,
+				B449C1CC29A119D10032046A /* FirebaseFirestore in Frameworks */,
+				B449C1CE29A119D10032046A /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +75,7 @@
 				B45ABFE7299E9E5A0099B3DA /* Core */,
 				B45ABFE3299E9A9D0099B3DA /* Extensions */,
 				B45ABFD7299E98690099B3DA /* Assets.xcassets */,
+				B4FDB22B29A1161B00EEB245 /* GoogleService-Info.plist */,
 				B45ABFD9299E98690099B3DA /* Preview Content */,
 			);
 			path = InstaPets;
@@ -116,6 +127,7 @@
 		B45ABFE7299E9E5A0099B3DA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B4FDB22A29A1108500EEB245 /* Common */,
 				B45ABFE2299E998E0099B3DA /* Home */,
 				B45ABFE6299E9E380099B3DA /* MainTabBar */,
 			);
@@ -154,6 +166,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		B4FDB22A29A1108500EEB245 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,6 +189,12 @@
 			dependencies = (
 			);
 			name = InstaPets;
+			packageProductDependencies = (
+				B449C1C929A119D10032046A /* FirebaseAuth */,
+				B449C1CB29A119D10032046A /* FirebaseFirestore */,
+				B449C1CD29A119D10032046A /* FirebaseFirestoreSwift */,
+				B449C1CF29A119D10032046A /* FirebaseStorage */,
+			);
 			productName = InstaPets;
 			productReference = B45ABFD0299E98670099B3DA /* InstaPets.app */;
 			productType = "com.apple.product-type.application";
@@ -198,6 +223,9 @@
 				Base,
 			);
 			mainGroup = B45ABFC7299E98670099B3DA;
+			packageReferences = (
+				B449C1C829A119D10032046A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = B45ABFD1299E98670099B3DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -214,6 +242,7 @@
 			files = (
 				B45ABFDB299E98690099B3DA /* Preview Assets.xcassets in Resources */,
 				B45ABFD8299E98690099B3DA /* Assets.xcassets in Resources */,
+				B4FDB22C29A1161B00EEB245 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +394,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -374,9 +402,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.diasGustaavo.InstaPets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -394,8 +425,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -403,9 +433,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.diasGustaavo.InstaPets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -431,6 +464,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B449C1C829A119D10032046A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B449C1C929A119D10032046A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B449C1C829A119D10032046A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		B449C1CB29A119D10032046A /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B449C1C829A119D10032046A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		B449C1CD29A119D10032046A /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B449C1C829A119D10032046A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		B449C1CF29A119D10032046A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B449C1C829A119D10032046A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B45ABFC8299E98670099B3DA /* Project object */;
 }

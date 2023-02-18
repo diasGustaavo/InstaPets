@@ -34,7 +34,11 @@ struct MainTabBarView: View {
                 TabBarButtonView(type: .profile)
             }
             .padding()
+            .padding(.horizontal)
+            .shadow(radius: 2)
+            .mask(Rectangle().padding(.top, -20))
         }
+        .frame(height: 40)
     }
 }
 
