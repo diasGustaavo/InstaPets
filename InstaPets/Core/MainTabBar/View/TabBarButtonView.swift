@@ -50,7 +50,7 @@ struct TabBarButtonView: View {
             Image(systemName: imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(Color.theme.primaryTextColor)
+                .foregroundColor(Color.theme.basicTextColor)
         }
         .frame(height: 28)
     }

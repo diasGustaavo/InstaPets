@@ -31,7 +31,7 @@ struct RegistrationView: View {
                         .font(.title)
                         .imageScale(.medium)
                         .padding(.vertical)
-                        .foregroundColor(Color.theme.primaryTextColor)
+                        .foregroundColor(Color.theme.basicTextColor)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
@@ -41,6 +41,7 @@ struct RegistrationView: View {
                 // Header
                 Group {
                     Text("InstaPets").font(Font.custom("Pacifico-Regular", size: 70))
+                        .foregroundColor(Color.theme.foregroundColor)
                     
                     Text("Sign up to see & post photos of your favorite pets 🐱")
                         .font(.headline)
@@ -56,28 +57,28 @@ struct RegistrationView: View {
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
                         .frame(height: 40)
-                        .background(Color.theme.secondaryBackgroundColor)
+//                        .background(Color.theme.secondaryBackgroundColor)
                     
                     // Pet Name
                     TextField("Your Pet's Name", text: $fullname)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
                         .frame(height: 40)
-                        .background(Color.theme.secondaryBackgroundColor)
+//                        .background(Color.theme.secondaryBackgroundColor)
                     
                     // User Name
                     TextField("Username", text: $username)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
                         .frame(height: 40)
-                        .background(Color.theme.secondaryBackgroundColor)
+//                        .background(Color.theme.secondaryBackgroundColor)
                     
                     // Password
                     SecureField("Password", text: $password)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
                         .frame(height: 40)
-                        .background(Color.theme.secondaryBackgroundColor)
+//                        .background(Color.theme.secondaryBackgroundColor)
                 }
                 .padding(.vertical, 1)
                 .cornerRadius(7)
@@ -100,7 +101,8 @@ struct RegistrationView: View {
                     .font(.system(size: 26, weight: .semibold))
                     .frame(maxWidth: Double.infinity)
                     .frame(height: 70)
-                    .background(Color.theme.secondaryBackgroundColor)
+                    .foregroundColor(Color.theme.accentTextColor)
+                    .background(Color.theme.foregroundColor)
                     .cornerRadius(7)
                 
                 Text("By signing up, you agree to our Terms, Data Policy and Cookies Policy.")

@@ -19,23 +19,12 @@ struct LoginView: View {
                 .ignoresSafeArea(.all)
             
             VStack(alignment: .center) {
-                // Back Button
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .font(.title)
-                        .imageScale(.medium)
-                        .padding(.vertical)
-                        .foregroundColor(Color.theme.primaryTextColor)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                
                 Spacer()
                     .frame(height: 150)
                 
                 // Header
                 Text("InstaPets").font(Font.custom("Pacifico-Regular", size: 50))
+                    .foregroundColor(Color.theme.foregroundColor)
                 
                 Spacer()
                     .frame(height: 50)
@@ -46,18 +35,16 @@ struct LoginView: View {
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
                         .frame(height: 40)
-                        .background(Color.theme.bwBackgroundColor)
                     
                     // Password
                     SecureField("Password", text: $password)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
                         .frame(height: 40)
-                        .background(Color.theme.bwBackgroundColor)
                     
                     Text("Forgot Password?")
                         .font(.caption)
-                        .foregroundColor(Color.theme.secondaryBackgroundColor)
+                        .foregroundColor(Color.theme.foregroundColor)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 .padding(.vertical, 1)
@@ -69,7 +56,8 @@ struct LoginView: View {
                     .font(.system(size: 26, weight: .semibold))
                     .frame(maxWidth: Double.infinity)
                     .frame(height: 50)
-                    .background(Color.theme.secondaryBackgroundColor)
+                    .foregroundColor(Color.theme.accentTextColor)
+                    .background(Color.theme.foregroundColor)
                     .cornerRadius(7)
                 
                 Divider()
@@ -83,7 +71,7 @@ struct LoginView: View {
                     Text("Sign Up.")
                         .font(.system(size: 14, weight: .bold))
                         .multilineTextAlignment(.center)
-                        .foregroundColor(Color.theme.secondaryBackgroundColor)
+                        .foregroundColor(Color.theme.foregroundColor)
                 }
             }
             .padding(.horizontal)
