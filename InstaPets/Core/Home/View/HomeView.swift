@@ -13,6 +13,7 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             Color(UIColor(Color.theme.backgroundColor))
+                .ignoresSafeArea(.all)
             
             VStack {
                 Spacer()

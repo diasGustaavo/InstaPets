@@ -16,6 +16,9 @@
 		B45ABFD8299E98690099B3DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45ABFD7299E98690099B3DA /* Assets.xcassets */; };
 		B45ABFDB299E98690099B3DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45ABFDA299E98690099B3DA /* Preview Assets.xcassets */; };
 		B45ABFE5299E9AB00099B3DA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFE4299E9AB00099B3DA /* Color.swift */; };
+		B4C5263F29A3AA1F00D1772D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5263E29A3AA1F00D1772D /* User.swift */; };
+		B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5264429A3AAC200D1772D /* RegistrationView.swift */; };
+		B4C5264829A3AEB400D1772D /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */; };
 		B4FDB21E29A0FE0B00EEB245 /* TabBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB21D29A0FE0B00EEB245 /* TabBarButtonView.swift */; };
 		B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB22429A0FFDA00EEB245 /* HomeViewModel.swift */; };
 		B4FDB22729A1021E00EEB245 /* If.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FDB22629A1021E00EEB245 /* If.swift */; };
@@ -30,6 +33,10 @@
 		B45ABFD7299E98690099B3DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B45ABFDA299E98690099B3DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B45ABFE4299E9AB00099B3DA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B4C5263E29A3AA1F00D1772D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B4C5264429A3AAC200D1772D /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
+		B4C5264929A3AEF700D1772D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B4FDB21D29A0FE0B00EEB245 /* TabBarButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarButtonView.swift; sourceTree = "<group>"; };
 		B4FDB22429A0FFDA00EEB245 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B4FDB22629A1021E00EEB245 /* If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = If.swift; sourceTree = "<group>"; };
@@ -71,9 +78,12 @@
 		B45ABFD2299E98670099B3DA /* InstaPets */ = {
 			isa = PBXGroup;
 			children = (
+				B4C5264929A3AEF700D1772D /* Info.plist */,
 				B45ABFE1299E98D40099B3DA /* App */,
 				B45ABFE7299E9E5A0099B3DA /* Core */,
+				B4C5263D29A3AA0300D1772D /* Models */,
 				B45ABFE3299E9A9D0099B3DA /* Extensions */,
+				B4C5264629A3AE6D00D1772D /* Fonts */,
 				B45ABFD7299E98690099B3DA /* Assets.xcassets */,
 				B4FDB22B29A1161B00EEB245 /* GoogleService-Info.plist */,
 				B45ABFD9299E98690099B3DA /* Preview Content */,
@@ -128,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B4FDB22A29A1108500EEB245 /* Common */,
+				B4C5263B29A3A95E00D1772D /* Authentication */,
 				B45ABFE2299E998E0099B3DA /* Home */,
 				B45ABFE6299E9E380099B3DA /* MainTabBar */,
 			);
@@ -148,6 +159,46 @@
 				B4FDB22829A10B1200EEB245 /* MainTabBarView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B4C5263B29A3A95E00D1772D /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B4C5264329A3AA7400D1772D /* ViewModels */,
+				B4C5264229A3AA6E00D1772D /* Views */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		B4C5263D29A3AA0300D1772D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4C5263E29A3AA1F00D1772D /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B4C5264229A3AA6E00D1772D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4C5264429A3AAC200D1772D /* RegistrationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B4C5264329A3AA7400D1772D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B4C5264629A3AE6D00D1772D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B4FDB21F29A0FF5800EEB245 /* View */ = {
@@ -240,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4C5264829A3AEB400D1772D /* Pacifico-Regular.ttf in Resources */,
 				B45ABFDB299E98690099B3DA /* Preview Assets.xcassets in Resources */,
 				B45ABFD8299E98690099B3DA /* Assets.xcassets in Resources */,
 				B4FDB22C29A1161B00EEB245 /* GoogleService-Info.plist in Resources */,
@@ -256,7 +308,9 @@
 				B4FDB21E29A0FE0B00EEB245 /* TabBarButtonView.swift in Sources */,
 				B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */,
 				B4FDB22929A10B1200EEB245 /* MainTabBarView.swift in Sources */,
+				B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */,
 				B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */,
+				B4C5263F29A3AA1F00D1772D /* User.swift in Sources */,
 				B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */,
 				B4FDB22729A1021E00EEB245 /* If.swift in Sources */,
 				B45ABFE5299E9AB00099B3DA /* Color.swift in Sources */,
@@ -391,6 +445,7 @@
 				DEVELOPMENT_TEAM = 9YRW6AKFZ7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InstaPets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -422,6 +477,7 @@
 				DEVELOPMENT_TEAM = 9YRW6AKFZ7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InstaPets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -19,6 +19,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct InstaPetsApp: App {
+    init(){
+        for family in UIFont.familyNames {
+             print(family)
+
+             for names in UIFont.fontNames(forFamilyName: family){
+             print("== \(names)")
+             }
+        }
+    }
+    
     @StateObject var homeViewModel = HomeViewModel()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
