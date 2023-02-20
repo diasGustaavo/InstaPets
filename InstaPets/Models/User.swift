@@ -19,16 +19,10 @@ enum PetType: String, CaseIterable, Identifiable, Codable {
     var id: Self { self }
 }
 
-enum Sex: String, CaseIterable, Identifiable, Codable {
-    case female, male, other
-    var id: Self { self }
-}
-
 struct User: Codable {
     let fullPetName: String
     let username: String
     let email: String
-    let sex: Sex
     let type: PetType
     let uid: String
 }

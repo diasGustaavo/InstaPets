@@ -12,6 +12,7 @@
 		B449C1CE29A119D10032046A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CD29A119D10032046A /* FirebaseFirestoreSwift */; };
 		B449C1D029A119D10032046A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CF29A119D10032046A /* FirebaseStorage */; };
 		B44DA41629A3EC820003FD44 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44DA41529A3EC820003FD44 /* LoginView.swift */; };
+		B44DA41829A3FD200003FD44 /* AnimalTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44DA41729A3FD200003FD44 /* AnimalTypeView.swift */; };
 		B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFD3299E98670099B3DA /* InstaPetsApp.swift */; };
 		B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFD5299E98670099B3DA /* HomeView.swift */; };
 		B45ABFD8299E98690099B3DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45ABFD7299E98690099B3DA /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		B44DA41529A3EC820003FD44 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B44DA41729A3FD200003FD44 /* AnimalTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalTypeView.swift; sourceTree = "<group>"; };
 		B45ABFD0299E98670099B3DA /* InstaPets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaPets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45ABFD3299E98670099B3DA /* InstaPetsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaPetsApp.swift; sourceTree = "<group>"; };
 		B45ABFD5299E98670099B3DA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				B4C5264429A3AAC200D1772D /* RegistrationView.swift */,
 				B44DA41529A3EC820003FD44 /* LoginView.swift */,
+				B44DA41729A3FD200003FD44 /* AnimalTypeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */,
 				B4C5263F29A3AA1F00D1772D /* User.swift in Sources */,
 				B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */,
+				B44DA41829A3FD200003FD44 /* AnimalTypeView.swift in Sources */,
 				B4FDB22729A1021E00EEB245 /* If.swift in Sources */,
 				B44DA41629A3EC820003FD44 /* LoginView.swift in Sources */,
 				B45ABFE5299E9AB00099B3DA /* Color.swift in Sources */,
