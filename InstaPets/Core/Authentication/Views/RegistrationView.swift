@@ -35,6 +35,9 @@ struct RegistrationView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
+                Spacer()
+                    .frame(height: 100)
+                
                 // Header
                 Group {
                     Text("InstaPets").font(Font.custom("Pacifico-Regular", size: 70))
@@ -52,28 +55,28 @@ struct RegistrationView: View {
                     TextField("Email", text: $email)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
-                        .frame(height: 32)
+                        .frame(height: 40)
                         .background(Color.theme.secondaryBackgroundColor)
                     
                     // Pet Name
-                    TextField("   Your Pet's Name", text: $fullname)
+                    TextField("Your Pet's Name", text: $fullname)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
-                        .frame(height: 32)
+                        .frame(height: 40)
                         .background(Color.theme.secondaryBackgroundColor)
                     
                     // User Name
-                    TextField("   Username", text: $username)
+                    TextField("Username", text: $username)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
-                        .frame(height: 32)
+                        .frame(height: 40)
                         .background(Color.theme.secondaryBackgroundColor)
                     
                     // Password
-                    SecureField("   Password", text: $password)
+                    SecureField("Password", text: $password)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .regular))
-                        .frame(height: 32)
+                        .frame(height: 40)
                         .background(Color.theme.secondaryBackgroundColor)
                 }
                 .padding(.vertical, 1)
@@ -93,10 +96,10 @@ struct RegistrationView: View {
                 
                 Spacer()
                 
-                Text("Sign Up 🐈")
+                Text("Sign Up 🐣")
                     .font(.system(size: 26, weight: .semibold))
                     .frame(maxWidth: Double.infinity)
-                    .frame(height: 50)
+                    .frame(height: 70)
                     .background(Color.theme.secondaryBackgroundColor)
                     .cornerRadius(7)
                 
