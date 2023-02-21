@@ -53,6 +53,7 @@ struct AnimalTypeView: View {
                 Spacer()
                 
                 Button {
+                    dismiss()
                     viewModel.registerUser(fullPetName: fullname, username: username, withEmail: email, type: selectedPetType, withPassword: password)
                 } label: {
                     Text("Continue 🐊")

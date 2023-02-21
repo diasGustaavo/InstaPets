@@ -40,13 +40,19 @@ class AuthViewModel: ObservableObject {
                 return
             }
             
-            guard let firebaseUser = result?.user else { return }
+            guard let firebaseUser = result?.user else {
+                print("error getting firebase user")
+                return
+            }
             self.userSession = firebaseUser
             
             let user = User(fullPetName: fullPetName, username: username, email: email, type: type, uid: firebaseUser.uid)
             self.currentUser = user
             
-            guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
+            guard let encodedUser = try? Firestore.Encoder().encode(user) else {
+                print("error getting firebase user")
+                return
+            }
             Firestore.firestore().collection("users").document(firebaseUser.uid).setData(encodedUser)
         }
     }
