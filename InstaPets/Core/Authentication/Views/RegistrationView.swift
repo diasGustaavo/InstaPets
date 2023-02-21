@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegistrationView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var viewModel: AuthViewModel
     
     @State private var email: String = ""
     @State private var fullname: String = ""
@@ -82,7 +83,7 @@ struct RegistrationView: View {
                     Spacer()
                     
                     NavigationLink {
-                        AnimalTypeView()
+                        AnimalTypeView(email: email, fullname: fullname, username: username, password: password)
                             .navigationBarBackButtonHidden(true)
                     } label: {
                         Text("Sign Up 🐣")
@@ -111,5 +112,6 @@ struct RegistrationView: View {
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationView()
+            .environmentObject(AuthViewModel())
     }
 }

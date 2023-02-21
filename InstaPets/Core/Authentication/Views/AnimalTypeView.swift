@@ -9,11 +9,12 @@ import SwiftUI
 
 struct AnimalTypeView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var viewModel: AuthViewModel
     
-    @State private var email: String = ""
-    @State private var fullname: String = ""
-    @State private var username: String = ""
-    @State private var password: String = ""
+    let email: String
+    let fullname: String
+    let username: String
+    let password: String
     @State private var selectedPetType: PetType = .cat
     
     var body: some View {
@@ -51,13 +52,17 @@ struct AnimalTypeView: View {
                 
                 Spacer()
                 
-                Text("Continue 🐊")
-                    .font(.system(size: 26, weight: .semibold))
-                    .frame(maxWidth: Double.infinity)
-                    .frame(height: 70)
-                    .foregroundColor(Color.theme.accentTextColor)
-                    .background(Color.theme.foregroundColor)
-                    .cornerRadius(7)
+                Button {
+                    viewModel.registerUser(fullPetName: fullname, username: username, withEmail: email, type: selectedPetType, withPassword: password)
+                } label: {
+                    Text("Continue 🐊")
+                        .font(.system(size: 26, weight: .semibold))
+                        .frame(maxWidth: Double.infinity)
+                        .frame(height: 70)
+                        .foregroundColor(Color.theme.accentTextColor)
+                        .background(Color.theme.foregroundColor)
+                        .cornerRadius(7)
+                }
                 
                 Text("By signing up, you agree to our Terms, Data Policy and Cookies Policy.")
                     .font(.system(size: 12, weight: .semibold))
@@ -74,6 +79,7 @@ struct AnimalTypeView: View {
 
 struct AnimalTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        AnimalTypeView()
+        AnimalTypeView(email: "test@test.com", fullname: "talking parrot da silva", username: "talkingparrot", password: "12345678")
+            .environmentObject(AuthViewModel())
     }
 }

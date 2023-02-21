@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B41AD1CE29A5007400CF40EB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */; };
+		B41AD1D329A501FA00CF40EB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1D229A501FA00CF40EB /* UserService.swift */; };
 		B449C1CA29A119D10032046A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1C929A119D10032046A /* FirebaseAuth */; };
 		B449C1CC29A119D10032046A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CB29A119D10032046A /* FirebaseFirestore */; };
 		B449C1CE29A119D10032046A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CD29A119D10032046A /* FirebaseFirestoreSwift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		B41AD1D229A501FA00CF40EB /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B44DA41529A3EC820003FD44 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B44DA41729A3FD200003FD44 /* AnimalTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalTypeView.swift; sourceTree = "<group>"; };
 		B45ABFD0299E98670099B3DA /* InstaPets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaPets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B41AD1D129A501E800CF40EB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B41AD1D229A501FA00CF40EB /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		B45ABFC7299E98670099B3DA = {
 			isa = PBXGroup;
 			children = (
@@ -82,14 +94,15 @@
 		B45ABFD2299E98670099B3DA /* InstaPets */ = {
 			isa = PBXGroup;
 			children = (
-				B4C5264929A3AEF700D1772D /* Info.plist */,
 				B45ABFE1299E98D40099B3DA /* App */,
+				B41AD1D129A501E800CF40EB /* Services */,
 				B45ABFE7299E9E5A0099B3DA /* Core */,
 				B4C5263D29A3AA0300D1772D /* Models */,
 				B45ABFE3299E9A9D0099B3DA /* Extensions */,
 				B4C5264629A3AE6D00D1772D /* Fonts */,
 				B45ABFD7299E98690099B3DA /* Assets.xcassets */,
 				B4FDB22B29A1161B00EEB245 /* GoogleService-Info.plist */,
+				B4C5264929A3AEF700D1772D /* Info.plist */,
 				B45ABFD9299E98690099B3DA /* Preview Content */,
 			);
 			path = InstaPets;
@@ -195,6 +208,7 @@
 		B4C5264329A3AA7400D1772D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -317,8 +331,10 @@
 				B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */,
 				B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */,
 				B4C5263F29A3AA1F00D1772D /* User.swift in Sources */,
+				B41AD1D329A501FA00CF40EB /* UserService.swift in Sources */,
 				B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */,
 				B44DA41829A3FD200003FD44 /* AnimalTypeView.swift in Sources */,
+				B41AD1CE29A5007400CF40EB /* AuthViewModel.swift in Sources */,
 				B4FDB22729A1021E00EEB245 /* If.swift in Sources */,
 				B44DA41629A3EC820003FD44 /* LoginView.swift in Sources */,
 				B45ABFE5299E9AB00099B3DA /* Color.swift in Sources */,

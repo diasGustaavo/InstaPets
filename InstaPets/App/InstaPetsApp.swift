@@ -19,23 +19,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct InstaPetsApp: App {
-    init(){
-        for family in UIFont.familyNames {
-             print(family)
-
-             for names in UIFont.fontNames(forFamilyName: family){
-             print("== \(names)")
-             }
-        }
-    }
-    
     @StateObject var homeViewModel = HomeViewModel()
+    @StateObject var authViewModel = AuthViewModel()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(homeViewModel)
+                .environmentObject(authViewModel)
         }
     }
 }
