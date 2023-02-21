@@ -20,6 +20,7 @@
 		B45ABFD8299E98690099B3DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45ABFD7299E98690099B3DA /* Assets.xcassets */; };
 		B45ABFDB299E98690099B3DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45ABFDA299E98690099B3DA /* Preview Assets.xcassets */; };
 		B45ABFE5299E9AB00099B3DA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABFE4299E9AB00099B3DA /* Color.swift */; };
+		B45DFD8B29A5407500D1FAB2 /* PickMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DFD8A29A5407500D1FAB2 /* PickMediaView.swift */; };
 		B4C5263F29A3AA1F00D1772D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5263E29A3AA1F00D1772D /* User.swift */; };
 		B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5264429A3AAC200D1772D /* RegistrationView.swift */; };
 		B4C5264829A3AEB400D1772D /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */; };
@@ -41,6 +42,7 @@
 		B45ABFD7299E98690099B3DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B45ABFDA299E98690099B3DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B45ABFE4299E9AB00099B3DA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B45DFD8A29A5407500D1FAB2 /* PickMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickMediaView.swift; sourceTree = "<group>"; };
 		B4C5263E29A3AA1F00D1772D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B4C5264429A3AAC200D1772D /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
@@ -155,9 +157,10 @@
 			isa = PBXGroup;
 			children = (
 				B4FDB22A29A1108500EEB245 /* Common */,
-				B4C5263B29A3A95E00D1772D /* Authentication */,
 				B45ABFE2299E998E0099B3DA /* Home */,
+				B4C5263B29A3A95E00D1772D /* Authentication */,
 				B45ABFE6299E9E380099B3DA /* MainTabBar */,
+				B45DFD8529A53EC200D1FAB2 /* Post */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -176,6 +179,30 @@
 				B4FDB22829A10B1200EEB245 /* MainTabBarView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B45DFD8529A53EC200D1FAB2 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				B45DFD8729A53F0F00D1FAB2 /* ViewModel */,
+				B45DFD8629A53F0A00D1FAB2 /* View */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		B45DFD8629A53F0A00D1FAB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B45DFD8A29A5407500D1FAB2 /* PickMediaView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B45DFD8729A53F0F00D1FAB2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B4C5263B29A3A95E00D1772D /* Authentication */ = {
@@ -325,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B45DFD8B29A5407500D1FAB2 /* PickMediaView.swift in Sources */,
 				B4FDB21E29A0FE0B00EEB245 /* TabBarButtonView.swift in Sources */,
 				B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */,
 				B4FDB22929A10B1200EEB245 /* MainTabBarView.swift in Sources */,

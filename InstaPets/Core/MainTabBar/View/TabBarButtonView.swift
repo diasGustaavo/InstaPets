@@ -46,15 +46,17 @@ struct TabBarButtonView: View {
     
     var body: some View {
         Button {
-            viewModel.selectedTab = type
-            if viewModel.selectedTab == .profile {
-                authViewModel.signout()
+            withAnimation {
+                viewModel.selectedTab = type
+                if viewModel.selectedTab == .profile {
+                    authViewModel.signout()
+                }
             }
         } label: {
             Image(systemName: imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(Color.theme.basicTextColor)
+                .foregroundColor(Color.theme.foregroundColor)
         }
         .frame(height: 28)
     }

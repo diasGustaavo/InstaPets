@@ -24,6 +24,10 @@ struct HomeView: View {
 
                     MainTabBarView()
                 }
+                
+                if viewModel.selectedTab == .post {
+                    PickMediaView()
+                }
             }
         }
     }
