@@ -31,6 +31,7 @@ enum TabBarButtonType: String {
 }
 
 struct TabBarButtonView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: HomeViewModel
     
     var type: TabBarButtonType
@@ -46,6 +47,9 @@ struct TabBarButtonView: View {
     var body: some View {
         Button {
             viewModel.selectedTab = type
+            if viewModel.selectedTab == .profile {
+                authViewModel.signout()
+            }
         } label: {
             Image(systemName: imageName)
                 .resizable()
@@ -60,5 +64,6 @@ struct TabBarButtonView_Previews: PreviewProvider {
     static var previews: some View {
         TabBarButtonView(type: .profile)
             .environmentObject(HomeViewModel())
+            .environmentObject(AuthViewModel())
     }
 }
