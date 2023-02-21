@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var username: String = ""
+    @State private var email: String = ""
     @State private var password: String = ""
     @EnvironmentObject var viewModel: AuthViewModel
     
@@ -31,7 +31,7 @@ struct LoginView: View {
                     
                     Group {
                         // Email Field
-                        TextField("Username", text: $username)
+                        TextField("Email", text: $email)
                             .multilineTextAlignment(.center)
                             .font(.system(size: 18, weight: .regular))
                             .frame(height: 40)
@@ -52,13 +52,18 @@ struct LoginView: View {
                     
                     Spacer()
                     
-                    Text("Log In 🐢")
-                        .font(.system(size: 26, weight: .semibold))
-                        .frame(maxWidth: Double.infinity)
-                        .frame(height: 50)
-                        .foregroundColor(Color.theme.accentTextColor)
-                        .background(Color.theme.foregroundColor)
-                        .cornerRadius(7)
+                    Button {
+                        viewModel.signIn(withEmail: email, password: password)
+                    } label: {
+                        Text("Log In 🐢")
+                            .font(.system(size: 26, weight: .semibold))
+                            .frame(maxWidth: Double.infinity)
+                            .frame(height: 50)
+                            .foregroundColor(Color.theme.accentTextColor)
+                            .background(Color.theme.foregroundColor)
+                            .cornerRadius(7)
+                    }
+
                     
                     Divider()
                         .padding(.vertical, 20)
