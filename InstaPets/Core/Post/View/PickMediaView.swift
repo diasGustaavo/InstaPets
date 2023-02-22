@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct PickMediaView: View {
+    @State private var image = UIImage()
+    @State private var showCamera = false
+    @State private var showPhotos = false
+    
     var body: some View {
         VStack {
             Spacer()
@@ -19,9 +24,16 @@ struct PickMediaView: View {
                     Text("Camera")
                 }
                 .padding(.top, 10)
+                .onTapGesture {
+                    showCamera = true
+                }
+                .sheet(isPresented: $showCamera) {
+                    ImagePicker(sourceType: .camera, selectedImage: self.$image)
+                }
                 
                 Divider()
                     .background(Color.theme.accentTextColor)
+                
                 
                 HStack {
                     Image(systemName: "photo.stack")
@@ -29,6 +41,13 @@ struct PickMediaView: View {
                     Text("Photos")
                 }
                 .padding(.bottom, 10)
+                .onTapGesture {
+                    showPhotos = true
+                }
+                .sheet(isPresented: $showPhotos) {
+                    ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                }
+                
             }
             .padding(.horizontal)
             .frame(maxWidth: 130)
@@ -39,6 +58,7 @@ struct PickMediaView: View {
             Spacer()
                 .frame(height: 50)
         }
+        .transition(.move(edge: .bottom))
     }
 }
 
