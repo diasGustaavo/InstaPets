@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  PostImage.swift
 //  InstaPets
 //
 //  Created by Gustavo Dias on 22/02/23.

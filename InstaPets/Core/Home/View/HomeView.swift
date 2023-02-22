@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: HomeViewModel
+    @ObservedObject var postModel: PostModelView
     
     var body: some View {
         if authViewModel.userSession == nil {
@@ -26,7 +27,7 @@ struct HomeView: View {
                 }
                 
                 if viewModel.selectedTab == .post {
-                    PickMediaView()
+                    PickMediaView(viewModel: postModel)
                 }
             }
         }
@@ -35,7 +36,7 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        PickMediaView(viewModel: PostModelView())
             .environmentObject(HomeViewModel())
             .environmentObject(AuthViewModel())
     }

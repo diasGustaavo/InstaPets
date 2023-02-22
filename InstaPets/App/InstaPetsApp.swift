@@ -21,11 +21,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct InstaPetsApp: App {
     @StateObject var homeViewModel = HomeViewModel()
     @StateObject var authViewModel = AuthViewModel()
+    @ObservedObject var postModel: PostModelView
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(postModel: PostModelView())
                 .environmentObject(homeViewModel)
                 .environmentObject(authViewModel)
         }

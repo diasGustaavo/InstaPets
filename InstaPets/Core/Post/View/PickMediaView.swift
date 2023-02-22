@@ -9,9 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct PickMediaView: View {
-    @State private var image = UIImage()
+    @ObservedObject var viewModel: PostModelView
+    
     @State private var showCamera = false
-    @State private var showPhotos = false
     
     var body: some View {
         VStack {
@@ -28,28 +28,24 @@ struct PickMediaView: View {
                     showCamera = true
                 }
                 .sheet(isPresented: $showCamera) {
-                    ImagePicker(sourceType: .camera, selectedImage: self.$image)
+                    ImagePicker(sourceType: .camera, selectedImages: $viewModel.selectedImages)
                 }
                 
                 Divider()
                     .background(Color.theme.accentTextColor)
                 
-                
-                HStack {
-                    Image(systemName: "photo.stack")
-                    
-                    Text("Photos")
+                PhotosPicker(selection: $viewModel.selectedItems, matching: .images) {
+                    HStack {
+                        Image(systemName: "photo.stack")
+                        
+                        Text("Photos")
+                    }
                 }
                 .padding(.bottom, 10)
-                .onTapGesture {
-                    showPhotos = true
-                }
-                .sheet(isPresented: $showPhotos) {
-                    ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
-                }
-                .onChange(of: image) { image in
-                    let post = PostModelView(images: [PostImage(content: image)])
-                    post.uploadImages()
+                .onChange(of: viewModel.selectedItems) { _ in
+                    Task {
+                        await viewModel.uploadImagesFromPhotoPicker()
+                    }
                 }
                 
             }
@@ -68,6 +64,6 @@ struct PickMediaView: View {
 
 struct PickMediaView_Previews: PreviewProvider {
     static var previews: some View {
-        PickMediaView()
+        PickMediaView(viewModel: PostModelView())
     }
 }
