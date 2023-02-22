@@ -47,6 +47,10 @@ struct PickMediaView: View {
                 .sheet(isPresented: $showPhotos) {
                     ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
                 }
+                .onChange(of: image) { image in
+                    let post = PostModelView(images: [PostImage(content: image)])
+                    post.uploadImages()
+                }
                 
             }
             .padding(.horizontal)

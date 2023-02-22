@@ -10,6 +10,8 @@
 		B41AD1CE29A5007400CF40EB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */; };
 		B41AD1D329A501FA00CF40EB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1D229A501FA00CF40EB /* UserService.swift */; };
 		B42BA4A729A650260072AEB7 /* ImagePickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */; };
+		B42BA4A929A657A90072AEB7 /* PostModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BA4A829A657A90072AEB7 /* PostModelView.swift */; };
+		B42BA4AC29A6598C0072AEB7 /* PostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BA4AB29A6598C0072AEB7 /* PostImage.swift */; };
 		B449C1CA29A119D10032046A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1C929A119D10032046A /* FirebaseAuth */; };
 		B449C1CC29A119D10032046A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CB29A119D10032046A /* FirebaseFirestore */; };
 		B449C1CE29A119D10032046A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CD29A119D10032046A /* FirebaseFirestoreSwift */; };
@@ -36,6 +38,8 @@
 		B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B41AD1D229A501FA00CF40EB /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerRepresentable.swift; sourceTree = "<group>"; };
+		B42BA4A829A657A90072AEB7 /* PostModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModelView.swift; sourceTree = "<group>"; };
+		B42BA4AB29A6598C0072AEB7 /* PostImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImage.swift; sourceTree = "<group>"; };
 		B44DA41529A3EC820003FD44 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B44DA41729A3FD200003FD44 /* AnimalTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalTypeView.swift; sourceTree = "<group>"; };
 		B45ABFD0299E98670099B3DA /* InstaPets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaPets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,7 +207,7 @@
 		B45DFD8729A53F0F00D1FAB2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */,
+				B42BA4A829A657A90072AEB7 /* PostModelView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -221,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				B4C5263E29A3AA1F00D1772D /* User.swift */,
+				B42BA4AB29A6598C0072AEB7 /* PostImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 		B4FDB22A29A1108500EEB245 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B42BA4A929A657A90072AEB7 /* PostModelView.swift in Sources */,
 				B45DFD8B29A5407500D1FAB2 /* PickMediaView.swift in Sources */,
 				B4FDB21E29A0FE0B00EEB245 /* TabBarButtonView.swift in Sources */,
 				B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */,
@@ -365,6 +372,7 @@
 				B4C5263F29A3AA1F00D1772D /* User.swift in Sources */,
 				B41AD1D329A501FA00CF40EB /* UserService.swift in Sources */,
 				B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */,
+				B42BA4AC29A6598C0072AEB7 /* PostImage.swift in Sources */,
 				B44DA41829A3FD200003FD44 /* AnimalTypeView.swift in Sources */,
 				B41AD1CE29A5007400CF40EB /* AuthViewModel.swift in Sources */,
 				B4FDB22729A1021E00EEB245 /* If.swift in Sources */,
