@@ -10,7 +10,7 @@ import Firebase
 import FirebaseStorage
 import PhotosUI
 
-class PostModelView: ObservableObject {
+@MainActor class PostModelView: ObservableObject {
     let storage = Storage.storage()
     
     @Published var selectedItems = [PhotosPickerItem]()
@@ -42,9 +42,7 @@ class PostModelView: ObservableObject {
         }
     }
     
-    func uploadImagesFromPhotoPicker() async {
-        selectedItems.removeAll()
-        selectedImages.removeAll()
+    func uploadImagesFromPhotoPicker() async {selectedImages.removeAll()
         
         for item in selectedItems {
             if let data = try? await item.loadTransferable(type: Data.self) {
@@ -55,5 +53,6 @@ class PostModelView: ObservableObject {
         }
         
         uploadImages()
+        selectedItems.removeAll()
     }
 }
