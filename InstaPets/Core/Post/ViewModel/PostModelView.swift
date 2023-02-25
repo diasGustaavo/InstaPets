@@ -13,9 +13,18 @@ import PhotosUI
 @MainActor class PostModelView: ObservableObject {
     let storage = Storage.storage()
     var post = Post()
+    var images: [UIImage]? {
+        guard let postImages = post.postImages else { return nil }
+        let imgs = postImages.map { $0.img }
+        return imgs
+    }
     
     @Published var selectedItems = [PhotosPickerItem]()
     @Published var selectedImages = [UIImage]()
+    
+    init(post: Post = Post()) {
+        self.post = post
+    }
     
 //    func listItem() {
 //        // Create a reference with an initial file path and name
