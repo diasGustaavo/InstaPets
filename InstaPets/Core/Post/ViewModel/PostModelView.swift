@@ -33,14 +33,21 @@ import PhotosUI
 //
 //    }
     
+    func deletePostLocally() {
+        post.postImages = nil
+        post.description = ""
+    }
+    
     func uploadImages() {
         for selectedImage in selectedImages {
             let image = PostImage(img: selectedImage)
             
             if var postImages = post.postImages {
+//                print("ENTROU AQUI")
                 postImages.append(image)
                 post.postImages = postImages
             } else {
+//                print("ENTROU AQUI NO SEGUNDO")
                 post.postImages = [ image ]
             }
             

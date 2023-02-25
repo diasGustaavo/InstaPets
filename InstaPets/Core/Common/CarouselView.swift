@@ -32,7 +32,7 @@ struct CarouselView: View {
             Image(uiImage: img)
                 .resizable()
                 .scaledToFill()
-                .frame(height: 300)
+                .frame(width: UIScreen.screenWidth * 0.9, height: 300)
                 .if((cornerRadius != nil), transform: {
                     $0.cornerRadius(cornerRadius!)
                 })

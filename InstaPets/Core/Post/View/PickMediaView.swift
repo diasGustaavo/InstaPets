@@ -14,6 +14,7 @@ struct PickMediaView: View {
     
     @State private var showCamera = false
     @State private var mediaChose = false
+    @State private var showPostView = false
     
     var body: some View {
         VStack {
@@ -32,10 +33,15 @@ struct PickMediaView: View {
                 .sheet(isPresented: $showCamera) {
                     ImagePicker(sourceType: .camera, selectedImages: $viewModel.selectedImages)
                 }
-                .onChange(of: viewModel.selectedImages) { _ in
+                .onChange(of: viewModel.selectedImages, perform: { _ in
+                    if !viewModel.selectedImages.isEmpty {
+                        mediaChose = true
+                    }
+                })
+                .onChange(of: mediaChose) { _ in
                     Task {
                         viewModel.uploadImages()
-                        mediaChose = true
+                        showPostView = true
                     }
                 }
                 
@@ -50,13 +56,15 @@ struct PickMediaView: View {
                     }
                 }
                 .padding(.bottom, 10)
-                .onChange(of: viewModel.selectedItems) { _ in
-                    Task {
-                        print("DEBUG: Photos previously: \(viewModel.images)")
-                        await viewModel.uploadImagesFromPhotoPicker()
+                .onChange(of: viewModel.selectedItems, perform: { _ in
+                    if !viewModel.selectedItems.isEmpty {
                         mediaChose = true
-                        print("DEBUG: Photos after: \(viewModel.images)")
-                        //                        viewModel.listItem()
+                    }
+                })
+                .onChange(of: mediaChose) { _ in
+                    Task {
+                        await viewModel.uploadImagesFromPhotoPicker()
+                        showPostView = true
                     }
                 }
                 
@@ -66,7 +74,9 @@ struct PickMediaView: View {
             .background(Color.theme.foregroundColor)
             .foregroundColor(Color.theme.accentTextColor)
             .cornerRadius(16)
-            .sheet(isPresented: $mediaChose) {
+            .sheet(isPresented: $mediaChose, onDismiss: {
+                viewModel.deletePostLocally()
+            }) {
                 PostView(viewModel: viewModel)
             }
             
