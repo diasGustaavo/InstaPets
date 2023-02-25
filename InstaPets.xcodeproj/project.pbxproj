@@ -11,7 +11,6 @@
 		B41AD1D329A501FA00CF40EB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1D229A501FA00CF40EB /* UserService.swift */; };
 		B42BA4A729A650260072AEB7 /* ImagePickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */; };
 		B42BA4A929A657A90072AEB7 /* PostModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BA4A829A657A90072AEB7 /* PostModelView.swift */; };
-		B42BA4AC29A6598C0072AEB7 /* PostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BA4AB29A6598C0072AEB7 /* PostImage.swift */; };
 		B449C1CA29A119D10032046A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1C929A119D10032046A /* FirebaseAuth */; };
 		B449C1CC29A119D10032046A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CB29A119D10032046A /* FirebaseFirestore */; };
 		B449C1CE29A119D10032046A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B449C1CD29A119D10032046A /* FirebaseFirestoreSwift */; };
@@ -27,6 +26,7 @@
 		B4C5263F29A3AA1F00D1772D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5263E29A3AA1F00D1772D /* User.swift */; };
 		B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5264429A3AAC200D1772D /* RegistrationView.swift */; };
 		B4C5264829A3AEB400D1772D /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */; };
+		B4CFC09C29AA3F8E009E375F /* PostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CFC09B29AA3F8E009E375F /* PostImage.swift */; };
 		B4EDC5A629A6888B008174AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4EDC5A529A6888B008174AF /* GoogleService-Info.plist */; };
 		B4F61F8B29A7F0BA007467FB /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F61F8A29A7F0BA007467FB /* CarouselView.swift */; };
 		B4F61F8E29A7F109007467FB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B4F61F8D29A7F109007467FB /* Kingfisher */; };
@@ -43,7 +43,6 @@
 		B41AD1D229A501FA00CF40EB /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerRepresentable.swift; sourceTree = "<group>"; };
 		B42BA4A829A657A90072AEB7 /* PostModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModelView.swift; sourceTree = "<group>"; };
-		B42BA4AB29A6598C0072AEB7 /* PostImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImage.swift; sourceTree = "<group>"; };
 		B44DA41529A3EC820003FD44 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B44DA41729A3FD200003FD44 /* AnimalTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalTypeView.swift; sourceTree = "<group>"; };
 		B45ABFD0299E98670099B3DA /* InstaPets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaPets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +56,7 @@
 		B4C5264429A3AAC200D1772D /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		B4C5264929A3AEF700D1772D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B4CFC09B29AA3F8E009E375F /* PostImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostImage.swift; sourceTree = "<group>"; };
 		B4EDC5A529A6888B008174AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4F61F8A29A7F0BA007467FB /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		B4F61F8F29A7F33C007467FB /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				B4C5263E29A3AA1F00D1772D /* User.swift */,
-				B42BA4AB29A6598C0072AEB7 /* PostImage.swift */,
+				B4CFC09B29AA3F8E009E375F /* PostImage.swift */,
 				B4F61F8F29A7F33C007467FB /* Post.swift */,
 			);
 			path = Models;
@@ -373,13 +373,13 @@
 				B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */,
 				B4F61F8B29A7F0BA007467FB /* CarouselView.swift in Sources */,
 				B4FDB22929A10B1200EEB245 /* MainTabBarView.swift in Sources */,
+				B4CFC09C29AA3F8E009E375F /* PostImage.swift in Sources */,
 				B42BA4A729A650260072AEB7 /* ImagePickerRepresentable.swift in Sources */,
 				B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */,
 				B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */,
 				B4C5263F29A3AA1F00D1772D /* User.swift in Sources */,
 				B41AD1D329A501FA00CF40EB /* UserService.swift in Sources */,
 				B4FDB22529A0FFDA00EEB245 /* HomeViewModel.swift in Sources */,
-				B42BA4AC29A6598C0072AEB7 /* PostImage.swift in Sources */,
 				B44DA41829A3FD200003FD44 /* AnimalTypeView.swift in Sources */,
 				B41AD1CE29A5007400CF40EB /* AuthViewModel.swift in Sources */,
 				B4FDB22729A1021E00EEB245 /* If.swift in Sources */,

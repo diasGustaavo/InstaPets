@@ -5,23 +5,22 @@
 //  Created by Gustavo Dias on 23/02/23.
 //
 
-import Foundation
+import UIKit
 
 struct Post {
     var id = UUID().uuidString
     
-    var description: String
-    var imageURLS: [URL]
+    var description: String?
+    var postImages: [PostImage]?
 }
 
 extension Post {
     static let example = Post(
-        description: "Just had lunch together with my friends from Oregon, it was so nice seeing them again :)",
-        imageURLS: [
-            URL(string: "https://picsum.photos/1080/1080")!,
-            URL(string: "https://picsum.photos/1080/1081")!,
-            URL(string: "https://picsum.photos/1080/1082")!,
-            URL(string: "https://picsum.photos/1080/1083")!,
+        description: "Miau miau miau miau miau miauuuuuuuuuuuuuuu",
+        postImages: [
+            PostImage(img: UIImage(named: "clebinho1.jpg")!),
+            PostImage(img: UIImage(named: "clebinho2.jpg")!),
+            PostImage(img: UIImage(named: "charlottinha.jpg")!),
         ]
     )
 }

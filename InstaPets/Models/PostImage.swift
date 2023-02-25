@@ -8,6 +8,6 @@
 import UIKit
 
 struct PostImage: Identifiable {
-    let content: UIImage
+    let img: UIImage
     let id = NSUUID().uuidString
 }

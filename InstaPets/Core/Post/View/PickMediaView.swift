@@ -30,6 +30,11 @@ struct PickMediaView: View {
                 .sheet(isPresented: $showCamera) {
                     ImagePicker(sourceType: .camera, selectedImages: $viewModel.selectedImages)
                 }
+                .onChange(of: viewModel.selectedImages) { _ in
+                    Task {
+                        viewModel.uploadImages()
+                    }
+                }
                 
                 Divider()
                     .background(Color.theme.accentTextColor)
@@ -45,6 +50,7 @@ struct PickMediaView: View {
                 .onChange(of: viewModel.selectedItems) { _ in
                     Task {
                         await viewModel.uploadImagesFromPhotoPicker()
+//                        viewModel.listItem()
                     }
                 }
                 

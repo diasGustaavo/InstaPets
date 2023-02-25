@@ -12,19 +12,25 @@ import PhotosUI
 
 @MainActor class PostModelView: ObservableObject {
     let storage = Storage.storage()
+    var post = Post()
     
     @Published var selectedItems = [PhotosPickerItem]()
     @Published var selectedImages = [UIImage]()
     
-    var images: [PostImage]?
+//    func listItem() {
+//        // Create a reference with an initial file path and name
+//        let pathReference = storage.reference(withPath: "images/stars.jpg")
+//
+//
+//    }
     
     func uploadImages() {
         for selectedImage in selectedImages {
-            let image = PostImage(content: selectedImage)
-            images?.append(image)
+            let image = PostImage(img: selectedImage)
+            post.postImages?.append(image)
             
-            let storageRef = self.storage.reference().child("\(image.id)/\(image.id).jpg")
-            let data = image.content.jpegData(compressionQuality: 0.9)
+            let storageRef = self.storage.reference().child("\(post.id)/\(image.id).jpg")
+            let data = image.img.jpegData(compressionQuality: 0.9)
             let metadata = StorageMetadata()
             metadata.contentType = "\(image.id)/jpg"
             
@@ -42,7 +48,8 @@ import PhotosUI
         }
     }
     
-    func uploadImagesFromPhotoPicker() async {selectedImages.removeAll()
+    func uploadImagesFromPhotoPicker() async {
+        selectedImages.removeAll()
         
         for item in selectedItems {
             if let data = try? await item.loadTransferable(type: Data.self) {

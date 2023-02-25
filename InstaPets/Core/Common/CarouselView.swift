@@ -6,16 +6,12 @@
 //
 
 import SwiftUI
-import Kingfisher
 import ACarousel
 
 struct CarouselView: View {
-    var imgs: [URL]
-    var index = 0
+    var imgs: [UIImage]
     
     var body: some View {
-//        KFImage(URL(string: "https://picsum.photos/400/300")!)
-        
         GeometryReader { geo in
             ACarousel(imgs,
                       id: \.self,
@@ -24,7 +20,7 @@ struct CarouselView: View {
                       sidesScaling: 0.9,
                       isWrap: true
             ) { img in
-                KFImage(img)
+                Image(uiImage: img)
                     .resizable()
                     .scaledToFill()
                     .frame(width: geo.size.width, height: 300)
@@ -36,6 +32,6 @@ struct CarouselView: View {
 
 struct CarouselView_Previews: PreviewProvider {
     static var previews: some View {
-        CarouselView(imgs: Post.example.imageURLS)
+        CarouselView(imgs: Post.example.postImages!.map { $0.img })
     }
 }
