@@ -36,7 +36,13 @@ import PhotosUI
     func uploadImages() {
         for selectedImage in selectedImages {
             let image = PostImage(img: selectedImage)
-            post.postImages?.append(image)
+            
+            if var postImages = post.postImages {
+                postImages.append(image)
+                post.postImages = postImages
+            } else {
+                post.postImages = [ image ]
+            }
             
             let storageRef = self.storage.reference().child("\(post.id)/\(image.id).jpg")
             let data = image.img.jpegData(compressionQuality: 0.9)
@@ -49,9 +55,9 @@ import PhotosUI
                         print("Error while uploading file: ", error)
                     }
                     
-                    if let metadata = metadata {
-                        print("Metadata: ", metadata)
-                    }
+//                    if let metadata = metadata {
+//                        print("Metadata: ", metadata)
+//                    }
                 }
             }
         }

@@ -25,4 +25,25 @@ struct User: Codable {
     let email: String
     let type: PetType
     let uid: String
+    
+    var petEmoji: String {
+        switch type {
+        case .cat:
+            return "🐱"
+        case .wildcat:
+            return "🐱"
+        case .dog:
+            return "🐶"
+        case .rabbit:
+            return "🐰"
+        case .aligator:
+            return "🐊"
+        case .rat:
+            return "🐀"
+        case .snake:
+            return "🐍"
+        case .hamster:
+            return "🐹"
+        }
+    }
 }
