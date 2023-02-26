@@ -21,27 +21,29 @@ struct PickMediaView: View {
             Spacer()
             
             VStack(alignment: .leading) {
-                HStack {
-                    Image(systemName: "camera")
-                    
-                    Text("Camera")
-                }
-                .padding(.top, 10)
-                .onTapGesture {
+                Button(action: {
                     showCamera = true
-                }
+                }, label: {
+                    HStack {
+                        Image(systemName: "camera")
+                        
+                        Text("Camera")
+                    }
+                    .padding(.top, 10)
+                })
                 
                 Divider()
                     .background(Color.theme.accentTextColor)
                 
-                HStack {
-                    Image(systemName: "photo.stack")
-                    
-                    Text("Photos")
-                }
-                .padding(.bottom, 10)
-                .onTapGesture {
+                Button {
                     showPhotos = true
+                } label: {
+                    HStack {
+                        Image(systemName: "photo.stack")
+                        
+                        Text("Photos")
+                    }
+                    .padding(.bottom, 10)
                 }
                 
             }
