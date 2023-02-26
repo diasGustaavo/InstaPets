@@ -19,7 +19,6 @@ import PhotosUI
         return imgs
     }
     
-    @Published var selectedItems = [PhotosPickerItem]()
     @Published var selectedImages = [UIImage]()
     
     init(post: Post = Post()) {
@@ -38,50 +37,39 @@ import PhotosUI
         post.description = ""
     }
     
-    func uploadImages() {
+    func saveImagesLocally() {
         for selectedImage in selectedImages {
             let image = PostImage(img: selectedImage)
             
             if var postImages = post.postImages {
-//                print("ENTROU AQUI")
                 postImages.append(image)
                 post.postImages = postImages
             } else {
-//                print("ENTROU AQUI NO SEGUNDO")
                 post.postImages = [ image ]
             }
-            
-            let storageRef = self.storage.reference().child("\(post.id)/\(image.id).jpg")
-            let data = image.img.jpegData(compressionQuality: 0.9)
-            let metadata = StorageMetadata()
-            metadata.contentType = "\(image.id)/jpg"
-            
-            if let data = data {
-                storageRef.putData(data, metadata: metadata) { (metadata, error) in
-                    if let error = error {
-                        print("Error while uploading file: ", error)
-                    }
-                    
-//                    if let metadata = metadata {
-//                        print("Metadata: ", metadata)
-//                    }
-                }
-            }
         }
+        
+        selectedImages.removeAll()
     }
     
-    func uploadImagesFromPhotoPicker() async {
-        selectedImages.removeAll()
-        
-        for item in selectedItems {
-            if let data = try? await item.loadTransferable(type: Data.self) {
-                if let uiImage = UIImage(data: data) {
-                    selectedImages.append(uiImage)
+    func uploadImagesToFirebase() {
+        if let postImages = post.postImages {
+            for postImage in postImages {
+                let storageRef = self.storage.reference().child("\(post.id)/\(postImage.id).jpg")
+                let data = postImage.img.jpegData(compressionQuality: 0.9)
+                let metadata = StorageMetadata()
+                metadata.contentType = "\(postImage.id)/jpg"
+                
+                if let data = data {
+                    storageRef.putData(data, metadata: metadata) { (metadata, error) in
+                        if let error = error {
+                            print("Error while uploading file: ", error)
+                        }
+                    }
                 }
             }
+        } else {
+            print("DEBUG: Could not upload images to Firebase: post.postImages is nil")
         }
-        
-        uploadImages()
-        selectedItems.removeAll()
     }
 }

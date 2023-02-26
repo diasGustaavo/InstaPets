@@ -13,7 +13,7 @@ struct PickMediaView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
     @State private var showCamera = false
-    @State private var mediaChose = false
+    @State private var showPhotos = false
     @State private var showPostView = false
     
     var body: some View {
@@ -30,42 +30,18 @@ struct PickMediaView: View {
                 .onTapGesture {
                     showCamera = true
                 }
-                .sheet(isPresented: $showCamera) {
-                    ImagePicker(sourceType: .camera, selectedImages: $viewModel.selectedImages)
-                }
-                .onChange(of: viewModel.selectedImages, perform: { _ in
-                    if !viewModel.selectedImages.isEmpty {
-                        mediaChose = true
-                    }
-                })
-                .onChange(of: mediaChose) { _ in
-                    Task {
-                        viewModel.uploadImages()
-                        showPostView = true
-                    }
-                }
                 
                 Divider()
                     .background(Color.theme.accentTextColor)
                 
-                PhotosPicker(selection: $viewModel.selectedItems, matching: .images) {
-                    HStack {
-                        Image(systemName: "photo.stack")
-                        
-                        Text("Photos")
-                    }
+                HStack {
+                    Image(systemName: "photo.stack")
+                    
+                    Text("Photos")
                 }
                 .padding(.bottom, 10)
-                .onChange(of: viewModel.selectedItems, perform: { _ in
-                    if !viewModel.selectedItems.isEmpty {
-                        mediaChose = true
-                    }
-                })
-                .onChange(of: mediaChose) { _ in
-                    Task {
-                        await viewModel.uploadImagesFromPhotoPicker()
-                        showPostView = true
-                    }
+                .onTapGesture {
+                    showPhotos = true
                 }
                 
             }
@@ -74,7 +50,20 @@ struct PickMediaView: View {
             .background(Color.theme.foregroundColor)
             .foregroundColor(Color.theme.accentTextColor)
             .cornerRadius(16)
-            .sheet(isPresented: $mediaChose, onDismiss: {
+            // CAMERA VIEW
+            .sheet(isPresented: $showCamera, onDismiss: {
+                processPhotoDismiss()
+            }) {
+                ImagePicker(sourceType: .camera, selectedImages: $viewModel.selectedImages)
+            }
+            // PHOTOS VIEW
+            .sheet(isPresented: $showPhotos, onDismiss: {
+                processPhotoDismiss()
+            }) {
+                PhotoPicker(images: $viewModel.selectedImages)
+            }
+            // POST VIEW
+            .sheet(isPresented: $showPostView, onDismiss: {
                 viewModel.deletePostLocally()
             }) {
                 PostView(viewModel: viewModel)
@@ -84,6 +73,13 @@ struct PickMediaView: View {
                 .frame(height: 50)
         }
         .transition(.move(edge: .bottom))
+    }
+    
+    func processPhotoDismiss() {
+        if !viewModel.selectedImages.isEmpty {
+            viewModel.saveImagesLocally()
+            showPostView = true
+        }
     }
 }
 
