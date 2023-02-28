@@ -33,7 +33,7 @@ struct CustomTextfield: View {
                         .padding(10)
                         .background(
                             Color.theme.foregroundColor
-                                .cornerRadius(20)
+                                .cornerRadius(15)
                         )
                         .lineLimit( minRows...maxRows )
                 } else {
@@ -42,7 +42,7 @@ struct CustomTextfield: View {
                         .modifier(PlaceholderStyle(showPlaceHolder: text.isEmpty, placeholder: placeholder))
                         .padding(10)
                         .background(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            RoundedRectangle(cornerRadius: 15, style: .continuous)
                                 .stroke(Color.theme.foregroundColor, lineWidth: 2)
                         )
                         .lineLimit( minRows...maxRows )
