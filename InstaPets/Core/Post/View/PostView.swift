@@ -27,6 +27,8 @@ struct PostView: View {
                         
                         if let imgs = viewModel.images {
                             CarouselView(imgs: imgs, spacing: 10.0, headspace: 10, cornerRadius: 15)
+                                .frame(maxWidth: .infinity)
+                                .frame(alignment: .center)
                         }
                         
                         Text("\(viewModel.post.postImages?.count ?? 0) images selected.")

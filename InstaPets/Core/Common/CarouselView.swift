@@ -22,22 +22,32 @@ struct CarouselView: View {
     }
     
     var body: some View {
-        ACarousel(imgs,
-                  id: \.self,
-                  spacing: spacing ?? 0.0,
-                  headspace: 10,
-                  sidesScaling: 0.9,
-                  isWrap: true
-        ) { img in
-            Image(uiImage: img)
+        if imgs.count <= 1 {
+            Image(uiImage: imgs[0])
                 .resizable()
                 .scaledToFill()
                 .frame(width: UIScreen.screenWidth * 0.9, height: 300)
                 .if((cornerRadius != nil), transform: {
                     $0.cornerRadius(cornerRadius!)
                 })
+        } else {
+            ACarousel(imgs,
+                      id: \.self,
+                      spacing: spacing ?? 0.0,
+                      headspace: 10,
+                      sidesScaling: 0.9,
+                      isWrap: true
+            ) { img in
+                Image(uiImage: img)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: UIScreen.screenWidth * 0.9, height: 300)
+                    .if((cornerRadius != nil), transform: {
+                        $0.cornerRadius(cornerRadius!)
+                    })
+            }
+            .frame(width: UIScreen.screenWidth, height: 300)
         }
-        .frame(width: UIScreen.screenWidth, height: 300)
     }
 }
 
