@@ -47,7 +47,11 @@ struct TabBarButtonView: View {
     var body: some View {
         Button {
             withAnimation {
+                viewModel.formerSelectedTab = viewModel.selectedTab
+                print("former: \(viewModel.formerSelectedTab)")
                 viewModel.selectedTab = type
+                print("current: \(viewModel.selectedTab)")
+                
                 if viewModel.selectedTab == .profile {
                     authViewModel.signout()
                 }

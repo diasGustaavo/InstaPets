@@ -14,7 +14,6 @@ struct PickMediaView: View {
     
     @State private var showCamera = false
     @State private var showPhotos = false
-    @State private var showPostView = false
     
     var body: some View {
         VStack {
@@ -64,12 +63,6 @@ struct PickMediaView: View {
             }) {
                 PhotoPicker(images: $viewModel.selectedImages)
             }
-            // POST VIEW
-            .sheet(isPresented: $showPostView, onDismiss: {
-                viewModel.deletePostLocally()
-            }) {
-                PostView(viewModel: viewModel)
-            }
             
             Spacer()
                 .frame(height: 50)
@@ -80,7 +73,7 @@ struct PickMediaView: View {
     func processPhotoDismiss() {
         if !viewModel.selectedImages.isEmpty {
             viewModel.saveImagesLocally()
-            showPostView = true
+            viewModel.postReady = true
         }
     }
 }

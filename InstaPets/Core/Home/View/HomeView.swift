@@ -21,12 +21,18 @@ struct HomeView: View {
                     .ignoresSafeArea(.all)
 
                 VStack {
-                    Spacer()
+                    if viewModel.selectedTab == .post && postModel.postReady {
+                        PostView(viewModel: postModel)
+                            .environmentObject(authViewModel)
+                            .environmentObject(viewModel)
+                    } else {
+                        Spacer()
+                    }
 
                     MainTabBarView()
                 }
                 
-                if viewModel.selectedTab == .post {
+                if viewModel.selectedTab == .post && !postModel.postReady {
                     PickMediaView(viewModel: postModel)
                 }
             }

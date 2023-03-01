@@ -9,4 +9,5 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var selectedTab: TabBarButtonType = .home
+    @Published var formerSelectedTab: TabBarButtonType = .home
 }
