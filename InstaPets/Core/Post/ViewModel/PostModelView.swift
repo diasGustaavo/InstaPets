@@ -65,6 +65,11 @@ import PhotosUI
         description = ""
     }
     
+    func clearSelectedItems() {
+        selectedDescription = ""
+        selectedImages.removeAll()
+    }
+    
     func savePostLocally() {
         for selectedImage in selectedImages {
             images.append(selectedImage)
@@ -86,6 +91,9 @@ import PhotosUI
         Firestore.firestore().collection("posts").document(post.id).setData(encodedPost) { _ in
             print("DEBUG: Did upload post to firestore")
         }
+        
+        deletePostLocally()
+        clearSelectedItems()
     }
     
     func uploadImagesToFirebase() {

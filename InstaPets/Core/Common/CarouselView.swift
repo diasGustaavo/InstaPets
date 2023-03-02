@@ -22,7 +22,10 @@ struct CarouselView: View {
     }
     
     var body: some View {
-        if imgs.count <= 1 {
+        if imgs.count <= 0 {
+            Text("No input images")
+        }
+        else if imgs.count == 1 {
             Image(uiImage: imgs[0])
                 .resizable()
                 .scaledToFill()

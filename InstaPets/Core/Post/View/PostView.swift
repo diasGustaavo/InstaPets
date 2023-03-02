@@ -104,12 +104,8 @@ struct PostView: View {
                 }
             }
         }
-        .if(homeViewModel.formerSelectedTab == .search && homeViewModel.selectedTab == .post, transform: {
-            $0.transition(.move(edge: .trailing))
-        })
-            .if(homeViewModel.formerSelectedTab == .likes && homeViewModel.selectedTab == .post, transform: {
-                $0.transition(.move(edge: .leading))
-            })
+        .transition(.move(edge: .bottom))
+            
     }
 }
 
