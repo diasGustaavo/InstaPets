@@ -14,6 +14,10 @@ class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     
+    public var currentUserUID: String? {
+        return currentUser?.uid
+    }
+    
     private let service = UserService.shared
     private var cancellables = Set<AnyCancellable>()
     

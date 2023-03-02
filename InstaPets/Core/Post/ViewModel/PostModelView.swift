@@ -11,21 +11,46 @@ import FirebaseStorage
 import PhotosUI
 
 @MainActor class PostModelView: ObservableObject {
-    
-    @Published var postReady: Bool = false
-    @Published var selectedImages = [UIImage]()
-    
     let storage = Storage.storage()
     
-    var post = Post()
-    var images: [UIImage]? {
-        guard let postImages = post.postImages else { return nil }
-        let imgs = postImages.map { $0.img }
-        return imgs
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
+    @Published var selectedImages = [UIImage]()
+    @Published var selectedDescription: String = ""
+    
+    @Published var description: String = ""
+    @Published var images = [UIImage]()
+    
+    let id = UUID().uuidString
+    
+    var postImages: [PostImage] {
+        get {
+            var content = [PostImage]()
+            for image in images {
+                content.append(PostImage(img: image))
+            }
+            
+            return content
+        }
     }
     
-    init(post: Post = Post()) {
-        self.post = post
+    var postImagesID: [String] {
+        get {
+            var content = [String]()
+            for image in postImages {
+                content.append(image.id)
+            }
+            
+            return content
+        }
+    }
+    
+    var postReady: Bool {
+        if images.count >= 1 {
+            return true
+        }
+        
+        return false
     }
     
 //    func listItem() {
@@ -36,43 +61,46 @@ import PhotosUI
 //    }
     
     func deletePostLocally() {
-        post.postImages = nil
-        post.description = ""
+        images.removeAll()
+        description = ""
     }
     
-    func saveImagesLocally() {
+    func savePostLocally() {
         for selectedImage in selectedImages {
-            let image = PostImage(img: selectedImage)
-            
-            if var postImages = post.postImages {
-                postImages.append(image)
-                post.postImages = postImages
-            } else {
-                post.postImages = [ image ]
-            }
+            images.append(selectedImage)
         }
         
+        description = selectedDescription
+        
+        selectedDescription = ""
         selectedImages.removeAll()
     }
     
+    func uploadPost(userUID: String) {
+        uploadImagesToFirebase()
+        
+        let post = Post(description: description, postImages: postImagesID, authorUID: userUID, dateEvent: Date())
+        
+        guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
+        Firestore.firestore().collection("posts").document().setData(encodedPost) { _ in
+            print("DEBUG: Did upload post to firestore")
+        }
+    }
+    
     func uploadImagesToFirebase() {
-        if let postImages = post.postImages {
-            for postImage in postImages {
-                let storageRef = self.storage.reference().child("\(post.id)/\(postImage.id).jpg")
-                let data = postImage.img.jpegData(compressionQuality: 0.9)
-                let metadata = StorageMetadata()
-                metadata.contentType = "\(postImage.id)/jpg"
-                
-                if let data = data {
-                    storageRef.putData(data, metadata: metadata) { (metadata, error) in
-                        if let error = error {
-                            print("Error while uploading file: ", error)
-                        }
+        for postImage in postImages {
+            let storageRef = self.storage.reference().child("\(id)/\(postImage.id).jpg")
+            let data = postImage.img.jpegData(compressionQuality: 0.9)
+            let metadata = StorageMetadata()
+            metadata.contentType = "\(postImage.id)/jpg"
+            
+            if let data = data {
+                storageRef.putData(data, metadata: metadata) { (metadata, error) in
+                    if let error = error {
+                        print("Error while uploading file: ", error)
                     }
                 }
             }
-        } else {
-            print("DEBUG: Could not upload images to Firebase: post.postImages is nil")
         }
     }
 }

@@ -53,6 +53,14 @@ struct CarouselView: View {
 
 struct CarouselView_Previews: PreviewProvider {
     static var previews: some View {
-        CarouselView(imgs: Post.example.postImages!.map { $0.img }, spacing: 10.0, headspace: 10, cornerRadius: 20)
+        CarouselView(imgs: CarouselView.mockImages, spacing: 10.0, headspace: 10, cornerRadius: 20)
     }
+}
+
+extension CarouselView {
+    static let mockImages = [
+        UIImage(named: "clebinho1")!,
+        UIImage(named: "clebinho2")!,
+        UIImage(named: "charlottinha")!
+    ]
 }

@@ -7,20 +7,22 @@
 
 import UIKit
 
-struct Post {
+struct Post: Codable {
     var id = UUID().uuidString
     
-    var description: String?
-    var postImages: [PostImage]?
+    var description: String
+    var postImages: [String]
+    var authorUID: String
+    var dateEvent: Date
 }
 
 extension Post {
     static let example = Post(
         description: "Miau miau miau miau miau miauuuuuuuuuuuuuuu",
         postImages: [
-            PostImage(img: UIImage(named: "clebinho1.jpg")!),
-            PostImage(img: UIImage(named: "clebinho2.jpg")!),
-            PostImage(img: UIImage(named: "charlottinha.jpg")!),
-        ]
+            "teste1",
+            "teste2",
+            "teste3",
+        ], authorUID: "12345678", dateEvent: Date()
     )
 }

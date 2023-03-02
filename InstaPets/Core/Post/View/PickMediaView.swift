@@ -72,8 +72,8 @@ struct PickMediaView: View {
     
     func processPhotoDismiss() {
         if !viewModel.selectedImages.isEmpty {
-            viewModel.saveImagesLocally()
-            viewModel.postReady = true
+            print("photo picker dismissed!")
+            viewModel.savePostLocally()
         }
     }
 }

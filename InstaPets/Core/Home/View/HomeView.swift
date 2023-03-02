@@ -30,6 +30,7 @@ struct HomeView: View {
                     }
 
                     MainTabBarView()
+                        .ignoresSafeArea(.keyboard)
                 }
                 
                 if viewModel.selectedTab == .post && !postModel.postReady {

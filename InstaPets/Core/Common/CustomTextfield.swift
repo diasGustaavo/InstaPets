@@ -8,20 +8,12 @@
 import SwiftUI
 
 struct CustomTextfield: View {
-    let width: CGFloat?
-    let minRows: Int
-    let maxRows: Int
-    let placeholder: String
-    let filled: Bool
-    @State private var text: String = ""
-    
-    init(placeholder: String = "", width: CGFloat? = nil, minRows: Int = 1, maxRows: Int = 1, filled: Bool = false) {
-        self.width = width
-        self.minRows = minRows
-        self.maxRows = maxRows
-        self.placeholder = placeholder
-        self.filled = filled
-    }
+    var width: CGFloat? = nil
+    var minRows: Int = 1
+    var maxRows: Int = 1
+    var placeholder: String = ""
+    var filled: Bool = false
+    @Binding var text: String
     
     var body: some View {
         GeometryReader { geo in
@@ -55,7 +47,9 @@ struct CustomTextfield: View {
 }
 
 struct CustomTextfield_Previews: PreviewProvider {
+    static var text: String = "teste"
+    
     static var previews: some View {
-        CustomTextfield(placeholder: "Enter your text right here ;)", width: UIScreen.screenWidth - 20, minRows: 5, maxRows: 5, filled: true)
+        CustomTextfield(width: UIScreen.screenWidth - 20, minRows: 5, maxRows: 5, placeholder: "Enter your text right here ;)", filled: true, text: .constant("10"))
     }
 }
