@@ -79,10 +79,11 @@ import PhotosUI
     func uploadPost(userUID: String) {
         uploadImagesToFirebase()
         
-        let post = Post(description: description, postImages: postImagesID, authorUID: userUID, dateEvent: Date())
+        var post = Post(description: description, postImages: postImagesID, authorUID: userUID, dateEvent: Date())
+        post.id = self.id
         
         guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
-        Firestore.firestore().collection("posts").document().setData(encodedPost) { _ in
+        Firestore.firestore().collection("posts").document(post.id).setData(encodedPost) { _ in
             print("DEBUG: Did upload post to firestore")
         }
     }
