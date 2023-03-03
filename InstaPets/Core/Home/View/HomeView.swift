@@ -25,6 +25,8 @@ struct HomeView: View {
                         PostView(viewModel: postModel)
                             .environmentObject(authViewModel)
                             .environmentObject(viewModel)
+                    } else if viewModel.selectedTab == .search {
+                        SearchView()
                     } else {
                         Spacer()
                     }
