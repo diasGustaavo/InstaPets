@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var text: String = ""
- 
     @State private var isEditing = false
     
     var body: some View {
@@ -20,13 +19,13 @@ struct SearchView: View {
             
             ScrollView {
                 HStack {
-                    TextField("Search ...", text: $text)
+                    TextField("", text: $text)
                         .padding(7)
                         .padding(.horizontal, 25)
-                        .background(Color(.systemGray6))
+                        .background(Color.theme.foregroundColor)
                         .cornerRadius(8)
                         .padding(.horizontal, 10)
-                        .foregroundColor(Color.theme.foregroundColor)
+                        .foregroundColor(Color.theme.secondaryForegroundColor)
                         .onTapGesture {
                             withAnimation {
                                 self.isEditing = true
@@ -67,9 +66,17 @@ struct SearchView: View {
                     }
                 }
                 
-                LazyVStack(spacing: 2) {
-                    ForEach(1...100, id: \.self) { value in
-                        PhotoRow()
+                if !isEditing {
+                    LazyVStack(spacing: 2) {
+                        ForEach(1...100, id: \.self) { value in
+                            PhotoRowView()
+                        }
+                    }
+                } else {
+                    LazyVStack(spacing: 2) {
+                        ForEach(1...100, id: \.self) { value in
+                            SearchItemView()
+                        }
                     }
                 }
             }
@@ -83,40 +90,3 @@ struct SearchView_Previews: PreviewProvider {
     }
 }
 
-struct PhotoRow: View {
-    var body: some View {
-        HStack(spacing: 2) {
-            Button {
-                // some action
-            } label: {
-                Image(uiImage: UIImage(named: "clebinho1")!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.screenWidth * 0.33, height: UIScreen.screenWidth * 0.33)
-                    .clipped()
-            }
-            
-            Button {
-                // some action
-            } label: {
-                Image(uiImage: UIImage(named: "clebinho2")!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.screenWidth * 0.33, height: UIScreen.screenWidth * 0.33)
-                    .clipped()
-            }
-            
-            
-            Button {
-                // some actiopn
-            } label: {
-                Image(uiImage: UIImage(named: "charlottinha")!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.screenWidth * 0.33, height: UIScreen.screenWidth * 0.33)
-                    .clipped()
-            }
-            
-        }
-    }
-}

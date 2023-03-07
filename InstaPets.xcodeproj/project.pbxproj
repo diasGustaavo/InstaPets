@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40A006829B7696C00130AA1 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006729B7696C00130AA1 /* SearchItemView.swift */; };
+		B40A006A29B769C800130AA1 /* PhotoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006929B769C800130AA1 /* PhotoRowView.swift */; };
 		B41AD1CE29A5007400CF40EB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */; };
 		B41AD1D329A501FA00CF40EB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1D229A501FA00CF40EB /* UserService.swift */; };
 		B42BA4A729A650260072AEB7 /* ImagePickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B40A006729B7696C00130AA1 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
+		B40A006929B769C800130AA1 /* PhotoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRowView.swift; sourceTree = "<group>"; };
 		B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B41AD1D229A501FA00CF40EB /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerRepresentable.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				B49CF11729B25D2B00EA4AFE /* SearchView.swift */,
+				B40A006729B7696C00130AA1 /* SearchItemView.swift */,
+				B40A006929B769C800130AA1 /* PhotoRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -428,10 +434,12 @@
 				B44DA41829A3FD200003FD44 /* AnimalTypeView.swift in Sources */,
 				B41AD1CE29A5007400CF40EB /* AuthViewModel.swift in Sources */,
 				B4FDB22729A1021E00EEB245 /* If.swift in Sources */,
+				B40A006829B7696C00130AA1 /* SearchItemView.swift in Sources */,
 				B4F61F9029A7F33C007467FB /* Post.swift in Sources */,
 				B44DA41629A3EC820003FD44 /* LoginView.swift in Sources */,
 				B4CFC09E29AA470F009E375F /* PostView.swift in Sources */,
 				B44AD3D029AAB918008342DF /* PhotoPickerRepresentable.swift in Sources */,
+				B40A006A29B769C800130AA1 /* PhotoRowView.swift in Sources */,
 				B4CFC0A029AA5B77009E375F /* UIScreen.swift in Sources */,
 				B45ABFE5299E9AB00099B3DA /* Color.swift in Sources */,
 			);
