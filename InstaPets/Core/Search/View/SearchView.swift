@@ -11,6 +11,8 @@ struct SearchView: View {
     @State private var text: String = ""
     @State private var isEditing = false
     
+    @StateObject private var modelView = SearchModelView()
+    
     var body: some View {
         
         ZStack {
@@ -74,12 +76,17 @@ struct SearchView: View {
                     }
                 } else {
                     LazyVStack(spacing: 2) {
-                        ForEach(1...100, id: \.self) { value in
-                            SearchItemView()
+//                        for user in modelView.users {
+//                            SearchItemView()
+//                        }
+                        
+                        ForEach(modelView.searchedUsers, id: \.self) { user in
+                            SearchItemView(user: user)
                         }
                     }
                 }
             }
+            .onAppear(perform: modelView.fetchMostRecentUsers)
         }
     }
 }

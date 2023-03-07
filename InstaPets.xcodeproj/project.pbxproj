@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B40A006829B7696C00130AA1 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006729B7696C00130AA1 /* SearchItemView.swift */; };
 		B40A006A29B769C800130AA1 /* PhotoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006929B769C800130AA1 /* PhotoRowView.swift */; };
+		B40A006C29B76C5700130AA1 /* SearchModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006B29B76C5700130AA1 /* SearchModelView.swift */; };
 		B41AD1CE29A5007400CF40EB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */; };
 		B41AD1D329A501FA00CF40EB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41AD1D229A501FA00CF40EB /* UserService.swift */; };
 		B42BA4A729A650260072AEB7 /* ImagePickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		B40A006729B7696C00130AA1 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
 		B40A006929B769C800130AA1 /* PhotoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRowView.swift; sourceTree = "<group>"; };
+		B40A006B29B76C5700130AA1 /* SearchModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelView.swift; sourceTree = "<group>"; };
 		B41AD1CD29A5007400CF40EB /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B41AD1D229A501FA00CF40EB /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B42BA4A629A650250072AEB7 /* ImagePickerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerRepresentable.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		B49CF11529B25D0600EA4AFE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B40A006B29B76C5700130AA1 /* SearchModelView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				B4FDB22929A10B1200EEB245 /* MainTabBarView.swift in Sources */,
 				B4CFC09C29AA3F8E009E375F /* PostImage.swift in Sources */,
 				B42BA4A729A650260072AEB7 /* ImagePickerRepresentable.swift in Sources */,
+				B40A006C29B76C5700130AA1 /* SearchModelView.swift in Sources */,
 				B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */,
 				B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */,
 				B4C5263F29A3AA1F00D1772D /* User.swift in Sources */,

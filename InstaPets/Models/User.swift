@@ -19,7 +19,7 @@ enum PetType: String, CaseIterable, Identifiable, Codable {
     var id: Self { self }
 }
 
-struct User: Codable {
+struct User: Codable, Hashable {
     let fullPetName: String
     let username: String
     let email: String
@@ -46,4 +46,8 @@ struct User: Codable {
             return "🐹"
         }
     }
+}
+
+extension User {
+    static let example = User(fullPetName: "clebinho da silva", username: "clebinhoo", email: "clebinho@icloud.com", type: .cat, uid: NSUUID().uuidString)
 }

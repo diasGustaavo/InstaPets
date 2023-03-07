@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SearchItemView: View {
+    let user: User
+    
     var body: some View {
         HStack(alignment: .top) {
             Image(uiImage: UIImage(named: "clebinho1")!)
@@ -19,11 +21,11 @@ struct SearchItemView: View {
                 .padding(.horizontal)
             
             VStack(alignment: .leading) {
-                Text("clebinho")
+                Text(user.username)
                     .padding(.top, 10)
                     .font(.system(size: 16, weight: .semibold))
             
-                Text("clebinho da silva")
+                Text(user.fullPetName)
                     .padding(.bottom)
                     .font(.system(size: 13, weight: .light))
             }
@@ -38,6 +40,6 @@ struct SearchItemView: View {
 
 struct SearchItemView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchItemView()
+        SearchItemView(user: User.example)
     }
 }
