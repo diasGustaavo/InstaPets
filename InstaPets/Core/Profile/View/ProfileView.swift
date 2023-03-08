@@ -130,7 +130,7 @@ struct ProfileView: View {
                     
                     LazyVStack(spacing: 2) {
                         ForEach(1...100, id: \.self) { value in
-                            PhotoRowView()
+                            PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ])
                         }
                     }
                 }
