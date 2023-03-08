@@ -25,6 +25,7 @@ struct User: Codable, Hashable {
     let email: String
     let type: PetType
     let uid: String
+    let bio: String?
     
     var petEmoji: String {
         switch type {
@@ -49,5 +50,5 @@ struct User: Codable, Hashable {
 }
 
 extension User {
-    static let example = User(fullPetName: "clebinho da silva", username: "clebinhoo", email: "clebinho@icloud.com", type: .cat, uid: NSUUID().uuidString)
+    static let example = User(fullPetName: "clebinho da silva", username: "clebinhoo", email: "clebinho@icloud.com", type: .cat, uid: NSUUID().uuidString, bio: "the")
 }

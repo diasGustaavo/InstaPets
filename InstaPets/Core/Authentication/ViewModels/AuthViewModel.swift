@@ -50,7 +50,7 @@ class AuthViewModel: ObservableObject {
             }
             self.userSession = firebaseUser
             
-            let user = User(fullPetName: fullPetName, username: username, email: email, type: type, uid: firebaseUser.uid)
+            let user = User(fullPetName: fullPetName, username: username, email: email, type: type, uid: firebaseUser.uid, bio: "")
             self.currentUser = user
             
             guard let encodedUser = try? Firestore.Encoder().encode(user) else {
