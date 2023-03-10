@@ -31,7 +31,9 @@ class UserService: ObservableObject {
     func follow(followedUID: String) {
         if var currentUser = user {
             if (currentUser.following) != nil  {
-                currentUser.following?.append(followedUID)
+                if !currentUser.following!.contains(followedUID) {
+                    currentUser.following!.append(followedUID)
+                }
             }
             else {
                 currentUser.following = [followedUID]
@@ -50,6 +52,17 @@ class UserService: ObservableObject {
                 }
             }
             
+            let followedUserFirestoreRef = Firestore.firestore().collection("users").document(followedUID)
+            
+            followedUserFirestoreRef.updateData([
+                "followers": currentUser.uid
+            ]) { err in
+                if let e = err {
+                    print("DEBUG: Error saving followers data to firestore (\(e)")
+                } else {
+                    print("DEBUG: Followers sucessfully updated to firestore")
+                }
+            }
         }
     }
     
