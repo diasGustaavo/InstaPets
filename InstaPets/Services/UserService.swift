@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import FirebaseFirestoreSwift
 
 class UserService: ObservableObject {
     static let shared = UserService()
@@ -24,6 +25,31 @@ class UserService: ObservableObject {
             guard let user = try? snapshot.data(as: User.self) else { return }
             
             self.user = user
+        }
+    }
+    
+    func follow(followedUID: String) {
+        if var currentUser = user {
+            if (currentUser.following) != nil  {
+                currentUser.following?.append(followedUID)
+            }
+            else {
+                currentUser.following = [followedUID]
+            }
+            print(currentUser)
+            
+            let userFirestoreRef = Firestore.firestore().collection("users").document(currentUser.uid)
+            
+            userFirestoreRef.updateData([
+                "following": currentUser.following!
+            ]) { err in
+                if let e = err {
+                    print("DEBUG: Error saving following data to firestore (\(e)")
+                } else {
+                    print("DEBUG: Following sucessfully updated to firestore")
+                }
+            }
+            
         }
     }
     

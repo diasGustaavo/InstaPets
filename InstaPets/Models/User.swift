@@ -25,7 +25,8 @@ struct User: Codable, Hashable {
     let email: String
     let type: PetType
     let uid: String
-    let bio: String?
+    var bio: String?
+    var following: [String]?
     
     var petEmoji: String {
         switch type {
