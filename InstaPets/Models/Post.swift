@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Post: Codable {
+struct Post: Codable, Hashable {
     var id = UUID().uuidString
     
     var description: String

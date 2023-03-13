@@ -27,6 +27,16 @@ struct User: Codable, Hashable {
     let uid: String
     var bio: String?
     var following: [String]?
+    var posts: [Post]?
+    
+    var postsUID: [String]? {
+        if let posts = posts {
+            return posts.map { $0.id }
+        }
+        else {
+            return nil
+        }
+    }
     
     var petEmoji: String {
         switch type {
@@ -51,5 +61,5 @@ struct User: Codable, Hashable {
 }
 
 extension User {
-    static let example = User(fullPetName: "clebinho da silva", username: "clebinhoo", email: "clebinho@icloud.com", type: .cat, uid: NSUUID().uuidString, bio: "the")
+    static let example = User(fullPetName: "clebinho da silva", username: "clebinhoo", email: "clebinho@icloud.com", type: .cat, uid: NSUUID().uuidString, bio: "As I've always said: Miau miau miau 🐈")
 }

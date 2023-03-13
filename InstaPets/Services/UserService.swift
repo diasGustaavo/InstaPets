@@ -18,13 +18,43 @@ class UserService: ObservableObject {
     
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-
+        
         Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
             guard let snapshot = snapshot else { return }
-
+            
             guard let user = try? snapshot.data(as: User.self) else { return }
             
             self.user = user
+        }
+    }
+    
+    func addPostToCurrentUser(post: Post) {
+        guard var localUser = user else { return }
+        
+        if localUser.posts != nil {
+            localUser.posts?.append(post)
+        } else {
+            localUser.posts = [Post]()
+            localUser.posts?.append(post)
+        }
+        
+        user = localUser
+        updateCurrentUserPostsFirestore()
+    }
+    
+    func updateCurrentUserPostsFirestore() {
+        if let currentUser = user, let currentUserPosts = user?.postsUID {
+            let userFirestoreRef = Firestore.firestore().collection("users").document(currentUser.uid)
+            
+            userFirestoreRef.updateData([
+                "posts": currentUserPosts
+            ]) { err in
+                if let e = err {
+                    print("DEBUG: Error saving posts data to firestore (\(e)")
+                } else {
+                    print("DEBUG: Posts sucessfully updated to firestore")
+                }
+            }
         }
     }
     
@@ -68,15 +98,15 @@ class UserService: ObservableObject {
     
     // FETCH USER FUNCTION W/O COMBINE
     
-//    static func fetchUser(completion: @escaping(User) -> Void) {
-//        guard let uid = Auth.auth().currentUser?.uid else { return }
-//
-//        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
-//            guard let snapshot = snapshot else { return }
-//
-//            guard let user = try? snapshot.data(as: User.self) else { return }
-//
-//            completion(user)
-//        }
-//    }
+    //    static func fetchUser(completion: @escaping(User) -> Void) {
+    //        guard let uid = Auth.auth().currentUser?.uid else { return }
+    //
+    //        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
+    //            guard let snapshot = snapshot else { return }
+    //
+    //            guard let user = try? snapshot.data(as: User.self) else { return }
+    //
+    //            completion(user)
+    //        }
+    //    }
 }

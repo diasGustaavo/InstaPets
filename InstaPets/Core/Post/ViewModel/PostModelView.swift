@@ -14,6 +14,7 @@ import PhotosUI
     let storage = Storage.storage()
     
     @EnvironmentObject var authViewModel: AuthViewModel
+    private let userService = UserService.shared
     
     @Published var selectedImages = [UIImage]()
     @Published var selectedDescription: String = ""
@@ -86,6 +87,7 @@ import PhotosUI
         
         var post = Post(description: description, postImages: postImagesID, authorUID: userUID, dateEvent: Date())
         post.id = self.id
+        userService.addPostToCurrentUser(post: post)
         
         guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
         Firestore.firestore().collection("posts").document(post.id).setData(encodedPost) { _ in
