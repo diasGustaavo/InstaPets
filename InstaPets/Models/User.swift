@@ -58,7 +58,31 @@ struct User: Codable, Hashable {
             return "🐹"
         }
     }
+    
+    func getPetTypeFromString(petString: String) -> PetType {
+        switch petString {
+        case "cat":
+            return PetType.cat
+        case "wildcat":
+            return PetType.wildcat
+        case "dog":
+            return PetType.dog
+        case "rabbit":
+            return PetType.rabbit
+        case "aligator":
+            return PetType.aligator
+        case "rat":
+            return PetType.rat
+        case "snake":
+            return PetType.snake
+        case "hamster":
+            return PetType.snake
+        default:
+            return PetType.cat
+        }
+    }
 }
+
 
 extension User {
     static let example = User(fullPetName: "clebinho da silva", username: "clebinhoo", email: "clebinho@icloud.com", type: .cat, uid: NSUUID().uuidString, bio: "As I've always said: Miau miau miau 🐈")

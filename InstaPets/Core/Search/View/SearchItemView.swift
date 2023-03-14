@@ -12,36 +12,37 @@ struct SearchItemView: View {
     let user: User
     
     var body: some View {
-        Button {
-            service.follow(followedUID: user.uid)
-        } label: {
-            HStack(alignment: .top) {
-                Image(uiImage: UIImage(named: "clebinho1")!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.screenWidth * 0.14, height: UIScreen.screenWidth * 0.14)
-                    .clipped()
-                    .cornerRadius(999)
-                    .padding(.horizontal)
-                
-                VStack(alignment: .leading) {
-                    Text(user.username)
-                        .padding(.top, 10)
-                        .font(.system(size: 16, weight: .black))
-                
-                    Text(user.fullPetName)
-                        .padding(.bottom)
-                        .font(.system(size: 13, weight: .light))
+        NavigationStack {
+            NavigationLink {
+                ProfileView(uid: "FD8YTUYPsDRMIS70ArPxchm9Grv2")
+            } label: {
+                HStack(alignment: .top) {
+                    Image(uiImage: UIImage(named: "clebinho1")!)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.screenWidth * 0.14, height: UIScreen.screenWidth * 0.14)
+                        .clipped()
+                        .cornerRadius(999)
+                        .padding(.horizontal)
+                    
+                    VStack(alignment: .leading) {
+                        Text(user.username)
+                            .padding(.top, 10)
+                            .font(.system(size: 16, weight: .black))
+                    
+                        Text(user.fullPetName)
+                            .padding(.bottom)
+                            .font(.system(size: 13, weight: .light))
+                    }
+                    .foregroundColor(Color.theme.foregroundColor)
+                    
+                    Spacer()
+                    
+                    
                 }
-                .foregroundColor(Color.theme.foregroundColor)
-                
-                Spacer()
-                
-                
+                .padding(.vertical, 4)
             }
-            .padding(.vertical, 4)
         }
-
     }
 }
 

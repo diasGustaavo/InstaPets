@@ -13,7 +13,6 @@ import PhotosUI
 @MainActor class PostModelView: ObservableObject {
     let storage = Storage.storage()
     
-    @EnvironmentObject var authViewModel: AuthViewModel
     private let userService = UserService.shared
     
     @Published var selectedImages = [UIImage]()
