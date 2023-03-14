@@ -13,33 +13,34 @@ struct HomeView: View {
     @StateObject var postModel = PostModelView()
     
     var body: some View {
-        if authViewModel.userSession == nil {
-            LoginView()
-        } else if let user = authViewModel.currentUser {
-            ZStack {
-                Color(UIColor(Color.theme.backgroundColor))
-                    .ignoresSafeArea(.all)
-
-                VStack {
-                    if viewModel.selectedTab == .post && postModel.postReady {
-                        PostView(viewModel: postModel)
-                            .environmentObject(authViewModel)
-                            .environmentObject(viewModel)
-                    } else if viewModel.selectedTab == .search {
-                        SearchView()
-                    } else {
-                        Spacer()
+//        LoginView()
+            if authViewModel.userSession == nil {
+                LoginView()
+            } else if let user = authViewModel.currentUser {
+                ZStack {
+                    Color(UIColor(Color.theme.backgroundColor))
+                        .ignoresSafeArea(.all)
+    
+                    VStack {
+                        if viewModel.selectedTab == .post && postModel.postReady {
+                            PostView(viewModel: postModel)
+                                .environmentObject(authViewModel)
+                                .environmentObject(viewModel)
+                        } else if viewModel.selectedTab == .search {
+                            SearchView()
+                        } else {
+                            Spacer()
+                        }
+    
+                        MainTabBarView()
+                            .ignoresSafeArea(.keyboard)
                     }
-
-                    MainTabBarView()
-                        .ignoresSafeArea(.keyboard)
-                }
-                
-                if viewModel.selectedTab == .post && !postModel.postReady {
-                    PickMediaView(viewModel: postModel)
+    
+                    if viewModel.selectedTab == .post && !postModel.postReady {
+                        PickMediaView(viewModel: postModel)
+                    }
                 }
             }
-        }
     }
 }
 
