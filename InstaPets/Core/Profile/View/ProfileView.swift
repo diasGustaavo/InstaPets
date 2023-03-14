@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     let uid: String
     @ObservedObject var profileViewModel: ProfileViewModel
+    @Environment(\.dismiss) private var dismiss
     
     init(uid: String) {
         self.uid = uid
@@ -25,7 +26,7 @@ struct ProfileView: View {
                 VStack {
                     HStack {
                         Button {
-                            // some action
+                            dismiss()
                         } label: {
                             Image(systemName: "chevron.backward")
                                 .font(.system(size: 22))
@@ -134,7 +135,7 @@ struct ProfileView: View {
                     
                     LazyVStack(spacing: 2) {
                         ForEach(1...100, id: \.self) { value in
-                            PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ])
+                            PhotoGridView(images: profileViewModel.userPhotos)
                         }
                     }
                 }
