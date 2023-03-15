@@ -148,9 +148,7 @@ struct ProfileView: View {
                         .frame(height: 20)
                     
                     LazyVStack(spacing: 2) {
-                        ForEach(1...100, id: \.self) { value in
-                            PhotoGridView(images: profileViewModel.userPhotos)
-                        }
+                        PhotoGridView(images: profileViewModel.userPhotos)
                     }
                 }
             }

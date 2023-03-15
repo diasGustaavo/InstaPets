@@ -23,9 +23,11 @@ class ProfileViewModel: ObservableObject {
     init(uid: String) {
         self.uid = uid
         storageRef = storage.reference()
-        fetchUser()
-        fetchAllPostsMainImages()
-        toggleFollowButton()
+        userService.fetchUser(withUID: uid, completion: { user in
+            self.user = user
+            self.fetchAllPostsMainImages()
+            self.toggleFollowButton()
+        })
     }
     
     func follow() {
@@ -49,18 +51,15 @@ class ProfileViewModel: ObservableObject {
     }
     
     func toggleFollowButton() {
-        print("toggleFollowButton pressed")
         if let user = user {
             if let userServiceUser = userService.user {
                 if userServiceUser.following.contains(user.uid) {
-                    print("true")
                     isFollowButtonActivated = true
                     return
                 }
             }
         }
         
-        print("false")
         isFollowButtonActivated = false
     }
     
@@ -86,34 +85,34 @@ class ProfileViewModel: ObservableObject {
     
     var followersNum = 69
     
-    func fetchUser() {
-        userService.fetchUser(withUID: uid) { user in
-            self.user = user
-        }
-    }
-    
     func fetchAllPostsMainImages() {
         guard let user = user else { return }
         guard let postsUID = user.postsUID else { return }
         
         for imageFolder in postsUID {
-            let imagesRef = storageRef.child(imageFolder)
+            let storageRef = Storage.storage().reference(withPath: imageFolder)
             
-            imagesRef.listAll { result, e in
-                if let e = e {
-                    print("DEBUG: Error listing images \(e.localizedDescription)")
-                } else {
-                    imagesRef.getData(maxSize: 1 * 1024 * 1024) { data, e in
-                        if let e = e {
-                            print("DEBUG: Error downloading image: \(e.localizedDescription)")
-                        }
-                        else {
-                            if let imageData = data {
-                                let image = UIImage(data: imageData)
-                                guard let image = image else { return }
-                                
-                                self.userPhotos.append(image)
-                            }
+            // List all items in the folder
+            storageRef.listAll { (result, error) in
+                if let error = error {
+                    print("Error listing files: \(error.localizedDescription)")
+                    return
+                }
+                
+                // Unwrap the items array
+                guard let result = result else { return }
+                
+                result.items[0].getData(maxSize: 10000 * 10000) { data, e in
+                    if let e = e {
+                        print("DEBUG: Error downloading image: \(e.localizedDescription)")
+                    }
+                    else {
+                        if let imageData = data {
+                            let image = UIImage(data: imageData)
+                            guard let image = image else { return }
+                            
+                            print("DEBUG: Appended new image in userPhotos")
+                            self.userPhotos.append(image)
                         }
                     }
                 }
