@@ -14,6 +14,7 @@ class ProfileViewModel: ObservableObject {
     let uid: String
     @Published var user: User?
     @Published var userPhotos = [UIImage]()
+    @Published var isFollowButtonActivated = false
     
     private let userService = UserService.shared
     let storage = Storage.storage()
@@ -24,12 +25,43 @@ class ProfileViewModel: ObservableObject {
         storageRef = storage.reference()
         fetchUser()
         fetchAllPostsMainImages()
+        toggleFollowButton()
     }
     
     func follow() {
         if let user = user {
-            userService.follow(followedUID: user.uid)
+            userService.follow(followedUID: user.uid) {
+                self.userService.fetchUserAndDo {
+                    self.toggleFollowButton()
+                }
+            }
         }
+    }
+    
+    func unfollow() {
+        if let user = user {
+            userService.unfollow(unfollowedUID: user.uid) {
+                self.userService.fetchUserAndDo {
+                    self.toggleFollowButton()
+                }
+            }
+        }
+    }
+    
+    func toggleFollowButton() {
+        print("toggleFollowButton pressed")
+        if let user = user {
+            if let userServiceUser = userService.user {
+                if userServiceUser.following.contains(user.uid) {
+                    print("true")
+                    isFollowButtonActivated = true
+                    return
+                }
+            }
+        }
+        
+        print("false")
+        isFollowButtonActivated = false
     }
     
     var username: String {
@@ -55,11 +87,7 @@ class ProfileViewModel: ObservableObject {
     var followersNum = 69
     
     func fetchUser() {
-        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
-            guard let snapshot = snapshot else { return }
-            
-            guard let user = try? snapshot.data(as: User.self) else { return }
-            
+        userService.fetchUser(withUID: uid) { user in
             self.user = user
         }
     }

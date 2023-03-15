@@ -105,16 +105,30 @@ struct ProfileView: View {
                     .padding(.horizontal)
                     
                     HStack {
-                        Button {
-                            profileViewModel.follow()
-                        } label: {
-                            Text("Follow")
-                                .padding()
-                                .font(.system(size: 16, weight: .bold))
-                                .frame(width: UIScreen.screenWidth * 0.46, height: 43)
-                                .background(Color.theme.secondaryForegroundColor)
-                                .foregroundColor(Color.theme.foregroundColor)
-                                .cornerRadius(15)
+                        if profileViewModel.isFollowButtonActivated {
+                            Button {
+                                profileViewModel.unfollow()
+                            } label: {
+                                Text("Unfollow")
+                                    .padding()
+                                    .font(.system(size: 16, weight: .bold))
+                                    .frame(width: UIScreen.screenWidth * 0.46, height: 43)
+                                    .background(Color.theme.secondaryForegroundColor)
+                                    .foregroundColor(.red)
+                                    .cornerRadius(15)
+                            }
+                        } else {
+                            Button {
+                                profileViewModel.follow()
+                            } label: {
+                                Text("Follow")
+                                    .padding()
+                                    .font(.system(size: 16, weight: .bold))
+                                    .frame(width: UIScreen.screenWidth * 0.46, height: 43)
+                                    .background(Color.theme.secondaryForegroundColor)
+                                    .foregroundColor(Color.theme.foregroundColor)
+                                    .cornerRadius(15)
+                            }
                         }
                         
                         Button {
