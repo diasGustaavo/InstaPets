@@ -107,7 +107,7 @@ import PhotosUI
             if let data = data {
                 storageRef.putData(data, metadata: metadata) { (metadata, error) in
                     if let error = error {
-                        print("Error while uploading file: ", error)
+                        print("DEBUG: Error while uploading file: ", error)
                     }
                 }
             }

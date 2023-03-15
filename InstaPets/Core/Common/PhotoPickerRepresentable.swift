@@ -60,7 +60,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
                                 self.parent.images.append(image)
                             }
                         } else {
-                            print("Could not load image", error?.localizedDescription ?? "")
+                            print("DEBUG: Could not load image", error?.localizedDescription ?? "")
                         }
                     }
                 }

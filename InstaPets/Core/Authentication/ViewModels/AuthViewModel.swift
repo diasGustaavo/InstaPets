@@ -45,7 +45,7 @@ class AuthViewModel: ObservableObject {
             }
             
             guard let firebaseUser = result?.user else {
-                print("error getting firebase user")
+                print("DEBUG: error getting firebase user")
                 return
             }
             self.userSession = firebaseUser
@@ -54,7 +54,7 @@ class AuthViewModel: ObservableObject {
             self.currentUser = user
             
             guard let encodedUser = try? Firestore.Encoder().encode(user) else {
-                print("error getting firebase user")
+                print("DEBUG: error getting firebase user")
                 return
             }
             Firestore.firestore().collection("users").document(firebaseUser.uid).setData(encodedUser)
