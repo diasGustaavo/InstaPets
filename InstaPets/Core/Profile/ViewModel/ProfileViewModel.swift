@@ -111,7 +111,6 @@ class ProfileViewModel: ObservableObject {
                             let image = UIImage(data: imageData)
                             guard let image = image else { return }
                             
-                            print("DEBUG: Appended new image in userPhotos")
                             self.userPhotos.append(image)
                         }
                     }

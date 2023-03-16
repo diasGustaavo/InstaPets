@@ -77,8 +77,9 @@ struct SearchView: View {
                     } else {
                         LazyVStack(spacing: 2) {
                             ForEach(modelView.searchedUsers, id: \.self) { user in
-                                NavigationLink(destination: ProfileView(uid: user.uid)
-                                    .navigationBarBackButtonHidden(true)) {
+                                NavigationLink(destination: LazyView {
+                                    ProfileView(uid: user.uid).navigationBarBackButtonHidden(true)
+                                }) {
                                     SearchItemView(user: user)
                                 }
                             }

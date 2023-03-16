@@ -140,19 +140,23 @@ class UserService: ObservableObject {
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts)
                         self.user = user
                         completion(user)
+                        return
                     }
                 } else if !postsUID.isEmpty && following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts)
                         self.user = user
                         completion(user)
+                        return
                     }
                 } else if postsUID.isEmpty && !following.isEmpty {
                     let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following)
                     completion(user)
+                    return
                 } else if postsUID.isEmpty && following.isEmpty {
                     let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio)
                     completion(user)
+                    return
                 } else { return }
             } else {
                 print("DEBUG: Error parsing user data to Swift properties")
@@ -160,19 +164,26 @@ class UserService: ObservableObject {
         }
     }
     
+    func fetchPost(withUID uid: String, completion: @escaping (Post) -> Void) {
+        Firestore.firestore().collection("posts").document(uid).getDocument { snapshot, _ in
+            guard let snapshot = snapshot else { return }
+            
+            guard let post = try? snapshot.data(as: Post.self) else { return }
+            
+            completion(post)
+        }
+    }
+    
     func fetchPosts(withUIDs uids: [String], completion: @escaping ([Post]) -> Void) {
         var posts = [Post]()
         
         for uid in uids {
-            Firestore.firestore().collection("posts").document(uid).getDocument { snapshot, _ in
-                guard let snapshot = snapshot else { return }
-                
-                guard let post = try? snapshot.data(as: Post.self) else { return }
-                
+            fetchPost(withUID: uid) { post in
                 posts.append(post)
-                completion(posts)
             }
         }
+        
+        completion(posts)
     }
     
     func addPostToCurrentUser(post: Post) {
