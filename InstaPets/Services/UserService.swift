@@ -176,14 +176,19 @@ class UserService: ObservableObject {
     
     func fetchPosts(withUIDs uids: [String], completion: @escaping ([Post]) -> Void) {
         var posts = [Post]()
+        let uidsCount = uids.count
         
-        for uid in uids {
-            fetchPost(withUID: uid) { post in
+        for i in 0...(uidsCount - 1) {
+            print(i)
+            fetchPost(withUID: uids[i]) { post in
                 posts.append(post)
+                
+                if i == (uidsCount - 1) {
+                    print("completion: \(posts)")
+                    completion(posts)
+                }
             }
         }
-        
-        completion(posts)
     }
     
     func addPostToCurrentUser(post: Post) {
