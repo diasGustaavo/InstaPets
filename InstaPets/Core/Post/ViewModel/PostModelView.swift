@@ -21,7 +21,7 @@ import PhotosUI
     @Published var description: String = ""
     @Published var images = [UIImage]()
     
-    let id = UUID().uuidString
+    var id = UUID().uuidString
     
     var postImages: [PostImage] {
         get {
@@ -53,16 +53,10 @@ import PhotosUI
         return false
     }
     
-//    func listItem() {
-//        // Create a reference with an initial file path and name
-//        let pathReference = storage.reference(withPath: "images/stars.jpg")
-//
-//
-//    }
-    
     func deletePostLocally() {
         images.removeAll()
         description = ""
+        id = UUID().uuidString
     }
     
     func clearSelectedItems() {

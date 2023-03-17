@@ -178,13 +178,13 @@ class UserService: ObservableObject {
         var posts = [Post]()
         let uidsCount = uids.count
         
+        var counter = 0
         for i in 0...(uidsCount - 1) {
-            print(i)
             fetchPost(withUID: uids[i]) { post in
                 posts.append(post)
+                counter += 1
                 
-                if i == (uidsCount - 1) {
-                    print("completion: \(posts)")
+                if counter == uidsCount {
                     completion(posts)
                 }
             }
