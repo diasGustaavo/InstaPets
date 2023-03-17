@@ -39,6 +39,7 @@
 		B4CFC09E29AA470F009E375F /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CFC09D29AA470F009E375F /* PostView.swift */; };
 		B4CFC0A029AA5B77009E375F /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CFC09F29AA5B77009E375F /* UIScreen.swift */; };
 		B4CFC0A229AA5C69009E375F /* CustomTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CFC0A129AA5C69009E375F /* CustomTextfield.swift */; };
+		B4D3363A29C4A038002CEAA1 /* feedPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3363929C4A038002CEAA1 /* feedPostView.swift */; };
 		B4EDC5A629A6888B008174AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4EDC5A529A6888B008174AF /* GoogleService-Info.plist */; };
 		B4F61F8B29A7F0BA007467FB /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F61F8A29A7F0BA007467FB /* CarouselView.swift */; };
 		B4F61F8E29A7F109007467FB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B4F61F8D29A7F109007467FB /* Kingfisher */; };
@@ -81,6 +82,7 @@
 		B4CFC09D29AA470F009E375F /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		B4CFC09F29AA5B77009E375F /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		B4CFC0A129AA5C69009E375F /* CustomTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextfield.swift; sourceTree = "<group>"; };
+		B4D3363929C4A038002CEAA1 /* feedPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = feedPostView.swift; sourceTree = "<group>"; };
 		B4EDC5A529A6888B008174AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4F61F8A29A7F0BA007467FB /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		B4F61F8F29A7F33C007467FB /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				B4FDB22A29A1108500EEB245 /* Common */,
 				B45ABFE2299E998E0099B3DA /* Home */,
+				B4D3363629C49FDB002CEAA1 /* Feed */,
 				B4C5263B29A3A95E00D1772D /* Authentication */,
 				B45ABFE6299E9E380099B3DA /* MainTabBar */,
 				B45DFD8529A53EC200D1FAB2 /* Post */,
@@ -336,6 +339,30 @@
 				B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B4D3363629C49FDB002CEAA1 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B4D3363729C4A01E002CEAA1 /* ViewModel */,
+				B4D3363829C4A021002CEAA1 /* View */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		B4D3363729C4A01E002CEAA1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B4D3363829C4A021002CEAA1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B4D3363929C4A038002CEAA1 /* feedPostView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B4FDB21F29A0FF5800EEB245 /* View */ = {
@@ -453,6 +480,7 @@
 			files = (
 				B42BA4A929A657A90072AEB7 /* PostModelView.swift in Sources */,
 				B44AD3CE29AA8DFB008342DF /* PlaceholderStyle.swift in Sources */,
+				B4D3363A29C4A038002CEAA1 /* feedPostView.swift in Sources */,
 				B45DFD8B29A5407500D1FAB2 /* PickMediaView.swift in Sources */,
 				B4FDB21E29A0FE0B00EEB245 /* TabBarButtonView.swift in Sources */,
 				B45ABFD6299E98670099B3DA /* HomeView.swift in Sources */,

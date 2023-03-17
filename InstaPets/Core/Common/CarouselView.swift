@@ -13,12 +13,16 @@ struct CarouselView: View {
     let spacing: CGFloat?
     let headspace: CGFloat?
     let cornerRadius: CGFloat?
+    let slideScaling: CGFloat?
+    let width: CGFloat
     
-    init(imgs: [UIImage], spacing: CGFloat? = nil, headspace: CGFloat? = nil, cornerRadius: CGFloat? = nil) {
+    init(imgs: [UIImage], spacing: CGFloat? = nil, headspace: CGFloat? = nil, cornerRadius: CGFloat? = nil, slideScaling: CGFloat? = nil, width: CGFloat? = 0.9) {
         self.imgs = imgs
         self.spacing = spacing
         self.headspace = headspace
         self.cornerRadius = cornerRadius
+        self.slideScaling = slideScaling
+        self.width = width ?? 0.9
     }
     
     var body: some View {
@@ -29,7 +33,7 @@ struct CarouselView: View {
             Image(uiImage: imgs[0])
                 .resizable()
                 .scaledToFill()
-                .frame(width: UIScreen.screenWidth * 0.9, height: 300)
+                .frame(width: UIScreen.screenWidth * width, height: 300)
                 .if((cornerRadius != nil), transform: {
                     $0.cornerRadius(cornerRadius!)
                 })
@@ -37,14 +41,14 @@ struct CarouselView: View {
             ACarousel(imgs,
                       id: \.self,
                       spacing: spacing ?? 0.0,
-                      headspace: 10,
-                      sidesScaling: 0.9,
+                      headspace: headspace ?? 10,
+                      sidesScaling: slideScaling ?? 0.9,
                       isWrap: true
             ) { img in
                 Image(uiImage: img)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: UIScreen.screenWidth * 0.9, height: 300)
+                    .frame(width: UIScreen.screenWidth * width, height: 300)
                     .if((cornerRadius != nil), transform: {
                         $0.cornerRadius(cornerRadius!)
                     })
