@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct feedPostView: View {
-    static let mockImages = [
-        UIImage(named: "clebinho1")!,
-        UIImage(named: "clebinho2")!,
-        UIImage(named: "charlottinha")!
-    ]
+    @ObservedObject var viewModel: feedPostModelView
+    
+    init(post: Post) {
+        self.viewModel = feedPostModelView(post: post)
+    }
     
     var body: some View {
         VStack() {
@@ -31,9 +31,11 @@ struct feedPostView: View {
                 Spacer()
             }
             
-            CarouselView(imgs: feedPostView.mockImages, spacing: 0, headspace: 0, slideScaling: 1.0, width: 1.0)
-                .frame(maxWidth: .infinity)
-                .frame(alignment: .center)
+            if let postImages = viewModel.postImages {
+                CarouselView(imgs: postImages, spacing: 0, headspace: 0, slideScaling: 1.0, width: 1.0)
+                    .frame(maxWidth: .infinity)
+                    .frame(alignment: .center)
+            }
             
             HStack {
                 Group {
@@ -110,6 +112,6 @@ struct feedPostView: View {
 
 struct feedPostView_Previews: PreviewProvider {
     static var previews: some View {
-        feedPostView()
+        feedPostView(post: Post.example)
     }
 }

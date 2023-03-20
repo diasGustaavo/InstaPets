@@ -57,11 +57,13 @@ class UserService: ObservableObject {
                let postsUID = data["posts"] as? [String] {
                 if !postsUID.isEmpty && !following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
+                        guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts)
                         self.user = user
                     }
                 } else if !postsUID.isEmpty && following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
+                        guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts)
                         self.user = user
                     }
@@ -96,12 +98,14 @@ class UserService: ObservableObject {
                let postsUID = data["posts"] as? [String] {
                 if !postsUID.isEmpty && !following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
+                        guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts)
                         self.user = user
                         completion()
                     }
                 } else if !postsUID.isEmpty && following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
+                        guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts)
                         self.user = user
                         completion()
@@ -137,6 +141,7 @@ class UserService: ObservableObject {
                let postsUID = data["posts"] as? [String] {
                 if !postsUID.isEmpty && !following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
+                        guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts)
                         self.user = user
                         completion(user)
@@ -144,6 +149,7 @@ class UserService: ObservableObject {
                     }
                 } else if !postsUID.isEmpty && following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
+                        guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts)
                         self.user = user
                         completion(user)
@@ -174,11 +180,15 @@ class UserService: ObservableObject {
         }
     }
     
-    func fetchPosts(withUIDs uids: [String], completion: @escaping ([Post]) -> Void) {
+    func fetchPosts(withUIDs uids: [String], completion: @escaping ([Post]?) -> Void) {
         var posts = [Post]()
         let uidsCount = uids.count
         
         var counter = 0
+        if uidsCount <= 0 {
+            completion(nil)
+            return
+        }
         for i in 0...(uidsCount - 1) {
             fetchPost(withUID: uids[i]) { post in
                 posts.append(post)

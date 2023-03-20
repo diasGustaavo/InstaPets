@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Post: Codable, Hashable {
+struct Post: Codable, Hashable, Identifiable {
     var id = UUID().uuidString
     
     var description: String
@@ -25,4 +25,6 @@ extension Post {
             "teste3",
         ], authorUID: "12345678", dateEvent: Date()
     )
+    
+    static let postsUIDExample = [UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString, UUID().uuidString]
 }

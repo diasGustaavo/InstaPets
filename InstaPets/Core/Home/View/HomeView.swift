@@ -28,6 +28,8 @@ struct HomeView: View {
                                 .environmentObject(viewModel)
                         } else if viewModel.selectedTab == .search {
                             SearchView()
+                        } else if viewModel.selectedTab == .home {
+                            feedView()
                         } else {
                             Spacer()
                         }
