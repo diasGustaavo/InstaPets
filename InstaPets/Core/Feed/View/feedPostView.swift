@@ -9,6 +9,7 @@ import SwiftUI
 
 struct feedPostView: View {
     @ObservedObject var viewModel: feedPostModelView
+    @State private var animateHeart = false
     
     init(post: Post) {
         self.viewModel = feedPostModelView(post: post)
@@ -32,9 +33,27 @@ struct feedPostView: View {
             }
             
             if let postImages = viewModel.postImages {
-                CarouselView(imgs: postImages, spacing: 0, headspace: 0, slideScaling: 1.0, width: 1.0)
-                    .frame(maxWidth: .infinity)
-                    .frame(alignment: .center)
+                ZStack {
+                    CarouselView(imgs: postImages, spacing: 0, headspace: 0, slideScaling: 1.0, width: 1.0)
+                        .frame(maxWidth: .infinity)
+                        .frame(alignment: .center)
+                        .onTapGesture(count: 2) {
+                            withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)) {
+                                animateHeart.toggle()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                                    animateHeart.toggle()
+                                })
+                            }
+                        }
+                    
+                    
+                    if animateHeart {
+                        Image(systemName: "heart.fill")
+                            .font(.system(size: 100))
+                            .foregroundColor(.red)
+                            .scaleEffect(animateHeart ? 1.0 : 0.5)
+                    }
+                }
             } else {
                 ZStack {
                     Rectangle()
