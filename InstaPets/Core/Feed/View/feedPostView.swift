@@ -35,6 +35,22 @@ struct feedPostView: View {
                 CarouselView(imgs: postImages, spacing: 0, headspace: 0, slideScaling: 1.0, width: 1.0)
                     .frame(maxWidth: .infinity)
                     .frame(alignment: .center)
+            } else {
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(Color.theme.backgroundColor)
+                        .frame(width: UIScreen.screenWidth, height: 300)
+                    
+                    HStack {
+                        Spinner(lineWidth: 8, height: 32, width: 32)
+                        
+                        Spacer()
+                            .frame(width: 20)
+                        
+                        Text("Loading photos 🐈")
+                            .font(.system(size: 20, weight: .semibold))
+                    }
+                }
             }
             
             HStack {
@@ -64,7 +80,7 @@ struct feedPostView: View {
                 .frame(height: 6)
             
             HStack {
-                Text("**diasGustaavo** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt arcu in ante blandit, sit amet placerat neque ornare. Phasellus sed quam commodo, porta nisi id, efficitur tortor. Suspendisse hendrerit magna lectus, at hendrerit justo egestas vel. Curabitur fermentum diam eu urna maximus accumsan. Ut gravida eu lectus sed ullamcorper. Vestibulum vel lobortis sem. Curabitur dapibus aliquam placerat. Morbi ut pellentesque purus. Nullam pharetra tortor vitae sodales laoreet.")
+                Text("**diasgustaavo** \(viewModel.post?.description ?? "")")
                     .font(.system(size: 20, weight: .regular))
                     .lineLimit(3)
                 

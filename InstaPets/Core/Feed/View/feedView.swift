@@ -22,6 +22,22 @@ struct feedView: View {
                         feedPostView(post: post)
                         Spacer()
                             .frame(height: 25)
+                    } else {
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(Color.theme.backgroundColor)
+                                .frame(width: UIScreen.screenWidth, height: 300)
+                            
+                            HStack {
+                                Spinner(lineWidth: 8, height: 32, width: 32)
+                                
+                                Spacer()
+                                    .frame(width: 20)
+                                
+                                Text("Loading post 🐍")
+                                    .font(.system(size: 20, weight: .semibold))
+                            }
+                        }
                     }
                 }
             }
