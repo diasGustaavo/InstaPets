@@ -18,18 +18,61 @@ class feedPostModelView: ObservableObject{
     @Published var post: Post?
     @Published var postImages: [UIImage]?
     @Published var likedByCurrentUser = false
+    @Published var amountOfLikes = 0
+    @Published var ownerUsername = ""
+    @Published var mostRecentComments = [String]()
     
     init(post: Post) {
         self.likedByCurrentUser = userService.wasPostLikedByCurrentUser(post: post)
+        self.amountOfLikes = post.likes.count
+        self.userService.fetchUser(withUID: post.authorUID) { user in
+            guard let user = user else { return }
+            self.ownerUsername = user.username
+        }
         self.post = post
+        fetchMostRecentComments()
         fetchPostImages { postImages in
             self.postImages = postImages
+        }
+    }
+    
+    func fetchMostRecentComments() {
+        if let post = post {
+            if post.comments.isEmpty {
+                return
+            }
+            else if post.comments.count == 1 {
+                mostRecentComments.removeAll()
+                getCommentTreatedString(comment: post.comments[0]) { treatedComment in
+                    self.mostRecentComments.append(treatedComment)
+                }
+            } else if post.comments.count >= 2 {
+                mostRecentComments.removeAll()
+                getCommentTreatedString(comment: post.comments[0]) { treatedComment in
+                    self.mostRecentComments.append(treatedComment)
+                }
+                getCommentTreatedString(comment: post.comments[1]) { treatedComment in
+                    self.mostRecentComments.append(treatedComment)
+                }
+            }
+        }
+    }
+    
+    func getCommentTreatedString(comment: String, completion: @escaping (String) -> Void) {
+        var prefix = String(comment.prefix(28))
+        let suffix = String(comment.suffix(comment.count - 28))
+        
+        self.userService.fetchUser(withUID: prefix) { user in
+            guard let user = user else { return }
+            prefix = "**\(user.username)**"
+            completion(prefix + suffix)
         }
     }
     
     func updatePost() {
         if let post = post {
             userService.fetchPost(withUID: post.id) { post in
+                self.amountOfLikes = post.likes.count
                 self.post = post
             }
         }

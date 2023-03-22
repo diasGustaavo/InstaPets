@@ -26,7 +26,7 @@ struct feedPostView: View {
                     .cornerRadius(999)
                     .padding(.horizontal)
                 
-                Text("diasgustaavo")
+                Text(viewModel.ownerUsername)
                     .font(.system(size: 20, weight: .semibold))
                 
                 Spacer()
@@ -46,7 +46,6 @@ struct feedPostView: View {
                                 })
                             }
                         }
-                    
                     
                     if animateHeart {
                         Image(systemName: "heart.fill")
@@ -95,7 +94,7 @@ struct feedPostView: View {
                 .frame(height: 6)
             
             HStack {
-                Text("474 likes")
+                Text("\(viewModel.amountOfLikes) like\(viewModel.amountOfLikes > 1 ? "s" : "")")
                     .font(.system(size: 20, weight: .semibold))
                 
                 Spacer()
@@ -106,13 +105,24 @@ struct feedPostView: View {
                 .frame(height: 6)
             
             HStack {
-                Text("**diasgustaavo** \(viewModel.post?.description ?? "")")
+                Text("**\(viewModel.ownerUsername)** \(viewModel.post?.description ?? "")")
                     .font(.system(size: 20, weight: .regular))
                     .lineLimit(3)
                 
                 Spacer()
             }
             .padding(.horizontal)
+            
+            ForEach(viewModel.mostRecentComments) { comment in
+                HStack {
+                    Text(try! AttributedString(markdown: comment))
+                        .font(.system(size: 20, weight: .regular))
+                        .lineLimit(1)
+
+                    Spacer()
+                }
+                .padding(.horizontal)
+            }
             
             HStack {
                 Text("View complete post")
@@ -124,30 +134,33 @@ struct feedPostView: View {
             }
             .padding(.horizontal)
             
-            HStack(spacing: 0) {
-                Image(uiImage: UIImage(named: "clebinho1")!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
-                    .clipped()
-                    .cornerRadius(999)
-                    .padding(.horizontal)
+            // Add comment & time info
+            Group {
+                HStack(spacing: 0) {
+                    Image(uiImage: UIImage(named: "clebinho1")!)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)
+                        .clipped()
+                        .cornerRadius(999)
+                        .padding(.horizontal)
+                    
+                    Text("Add a comment...")
+                        .font(.system(size: 18, weight: .regular))
+                        .foregroundColor(.gray.opacity(0.9))
+                    
+                    Spacer()
+                }
                 
-                Text("Add a comment...")
-                    .font(.system(size: 18, weight: .regular))
-                    .foregroundColor(.gray.opacity(0.9))
-                
-                Spacer()
+                HStack {
+                    Text("42 minutes ago")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundColor(.gray.opacity(0.9))
+                    
+                    Spacer()
+                }
+                .padding(.horizontal)
             }
-            
-            HStack {
-                Text("42 minutes ago")
-                    .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(.gray.opacity(0.9))
-                
-                Spacer()
-            }
-            .padding(.horizontal)
         }
     }
 }

@@ -131,6 +131,8 @@ class UserService: ObservableObject {
             
             guard let data = snapshot.data() else { return }
             
+//            print(data)
+            
             if let fullPetName = data["fullPetName"] as? String,
                let username = data["username"] as? String,
                let bio = data["bio"] as? String,
@@ -143,7 +145,6 @@ class UserService: ObservableObject {
                     self.fetchPosts(withUIDs: postsUID) { posts in
                         guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts)
-                        self.user = user
                         completion(user)
                         return
                     }
@@ -151,7 +152,6 @@ class UserService: ObservableObject {
                     self.fetchPosts(withUIDs: postsUID) { posts in
                         guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts)
-                        self.user = user
                         completion(user)
                         return
                     }

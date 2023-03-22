@@ -15,6 +15,7 @@ struct Post: Codable, Hashable, Identifiable {
     var authorUID: String
     var dateEvent: Date
     var likes = [String]()
+    var comments = [String]()
 }
 
 extension Post {
