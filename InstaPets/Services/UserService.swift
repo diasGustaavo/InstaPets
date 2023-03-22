@@ -174,7 +174,10 @@ class UserService: ObservableObject {
         Firestore.firestore().collection("posts").document(uid).getDocument { snapshot, _ in
             guard let snapshot = snapshot else { return }
             
-            guard let post = try? snapshot.data(as: Post.self) else { return }
+            guard let post = try? snapshot.data(as: Post.self) else {
+                print("error transforming firestore post into local post")
+                return
+            }
             
             completion(post)
         }
@@ -297,6 +300,53 @@ class UserService: ObservableObject {
                 } else {
                     print("DEBUG: Removed Followers sucessfully updated to firestore")
                     completion()
+                }
+            }
+        }
+    }
+    
+    func wasPostLikedByCurrentUser(post: Post) -> Bool {
+        guard let currentUser = user else { return false }
+        return post.likes.contains(currentUser.uid) ? true : false
+    }
+    
+    func toggleLike(post: Post) {
+        if let currentUser = user {
+            if post.likes.contains(currentUser.uid) {
+                removePostLike(postUID: post.id)
+            } else {
+                addPostLike(postUID: post.id)
+            }
+        }
+    }
+    
+    func addPostLike(postUID: String) {
+        if let currentUser = user {
+            let postFirestoreRef = Firestore.firestore().collection("posts").document(postUID)
+            
+            postFirestoreRef.updateData([
+                "likes": FieldValue.arrayUnion([currentUser.uid])
+            ]) { err in
+                if let e = err {
+                    print("DEBUG: Error saving post like to firestore (\(e)")
+                } else {
+                    print("DEBUG: Post like sucessfully updated to firestore")
+                }
+            }
+        }
+    }
+    
+    func removePostLike(postUID: String) {
+        if let currentUser = user {
+            let postFirestoreRef = Firestore.firestore().collection("posts").document(postUID)
+            
+            postFirestoreRef.updateData([
+                "likes": FieldValue.arrayRemove([currentUser.uid])
+            ]) { err in
+                if let e = err {
+                    print("DEBUG: Error saving post like to firestore (\(e)")
+                } else {
+                    print("DEBUG: Post like sucessfully updated to firestore")
                 }
             }
         }

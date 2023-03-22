@@ -13,14 +13,33 @@ import UIKit
 class feedPostModelView: ObservableObject{
     let db = Firestore.firestore()
     let storage = Storage.storage()
+    private let userService = UserService.shared
     
     @Published var post: Post?
     @Published var postImages: [UIImage]?
+    @Published var likedByCurrentUser = false
     
     init(post: Post) {
+        self.likedByCurrentUser = userService.wasPostLikedByCurrentUser(post: post)
         self.post = post
         fetchPostImages { postImages in
             self.postImages = postImages
+        }
+    }
+    
+    func updatePost() {
+        if let post = post {
+            userService.fetchPost(withUID: post.id) { post in
+                self.post = post
+            }
+        }
+    }
+    
+    func toggleLike() {
+        likedByCurrentUser.toggle()
+        if let post = post {
+            userService.toggleLike(post: post)
+            updatePost()
         }
     }
     

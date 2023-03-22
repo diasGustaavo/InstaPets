@@ -17,10 +17,10 @@ class feedModelView: ObservableObject{
     @Published var posts: [Post]?
     
     init() {
-        fetchMostRecentPostsUID()
+        fetchMostRecentPosts()
     }
     
-    func fetchMostRecentPostsUID() {
+    func fetchMostRecentPosts() {
         fetchFirstXPostsUID(x: 3) { postsUID in
             UserService.shared.fetchPosts(withUIDs: postsUID) { posts in
                 self.posts = posts

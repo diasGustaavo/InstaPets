@@ -39,6 +39,7 @@ struct feedPostView: View {
                         .frame(alignment: .center)
                         .onTapGesture(count: 2) {
                             withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5)) {
+                                viewModel.toggleLike()
                                 animateHeart.toggle()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                                     animateHeart.toggle()
@@ -74,8 +75,14 @@ struct feedPostView: View {
             
             HStack {
                 Group {
-                    Image(systemName: "heart")
-                        .padding(.trailing, 2)
+                    Button<Image> {
+                        viewModel.toggleLike()
+                    } label: {
+                        Image(systemName: viewModel.likedByCurrentUser ? "heart.fill" : "heart")
+                    }
+                    .foregroundColor(.black)
+                    .padding(.trailing, 2)
+                    
                     Image(systemName: "bubble.left")
                 }
                 .font(.system(size: 28))
