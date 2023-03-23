@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B405504929CC78C800B3B32E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B405504829CC78C800B3B32E /* Comment.swift */; };
+		B405504B29CC883500B3B32E /* PersonalProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B405504A29CC883500B3B32E /* PersonalProfileView.swift */; };
 		B40A006829B7696C00130AA1 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006729B7696C00130AA1 /* SearchItemView.swift */; };
 		B40A006A29B769C800130AA1 /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006929B769C800130AA1 /* PhotoGridView.swift */; };
 		B40A006C29B76C5700130AA1 /* SearchModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006B29B76C5700130AA1 /* SearchModelView.swift */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		B405504829CC78C800B3B32E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		B405504A29CC883500B3B32E /* PersonalProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalProfileView.swift; sourceTree = "<group>"; };
 		B40A006729B7696C00130AA1 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
 		B40A006929B769C800130AA1 /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
 		B40A006B29B76C5700130AA1 /* SearchModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B40A007029B779F100130AA1 /* ProfileView.swift */,
+				B405504A29CC883500B3B32E /* PersonalProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				B4CFC09C29AA3F8E009E375F /* PostImage.swift in Sources */,
 				B4D8113429C9DA3D00AE3A86 /* Spinner.swift in Sources */,
 				B42BA4A729A650260072AEB7 /* ImagePickerRepresentable.swift in Sources */,
+				B405504B29CC883500B3B32E /* PersonalProfileView.swift in Sources */,
 				B40A006C29B76C5700130AA1 /* SearchModelView.swift in Sources */,
 				B40A007129B779F100130AA1 /* ProfileView.swift in Sources */,
 				B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */,

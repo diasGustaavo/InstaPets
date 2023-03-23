@@ -49,10 +49,6 @@ struct TabBarButtonView: View {
             withAnimation {
                 viewModel.formerSelectedTab = viewModel.selectedTab
                 viewModel.selectedTab = type
-                
-                if viewModel.selectedTab == .profile {
-                    authViewModel.signout()
-                }
             }
         } label: {
             Image(systemName: imageName)

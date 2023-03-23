@@ -30,6 +30,8 @@ struct HomeView: View {
                             SearchView()
                         } else if viewModel.selectedTab == .home {
                             feedView()
+                        } else if viewModel.selectedTab == .profile {
+                            PersonalProfileView(uid: user.uid)
                         } else {
                             Spacer()
                         }

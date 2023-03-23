@@ -1,0 +1,150 @@
+//
+//  PersonalProfileView.swift
+//  InstaPets
+//
+//  Created by Gustavo Dias on 23/03/23.
+//
+
+import SwiftUI
+
+struct PersonalProfileView: View {
+    let uid: String
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @ObservedObject var viewModel: ProfileViewModel
+    @Environment(\.dismiss) private var dismiss
+    @State private var showingConfirmation = false
+    
+    init(uid: String) {
+        self.uid = uid
+        self.viewModel = ProfileViewModel(uid: uid)
+    }
+    
+    var body: some View {
+        ZStack {
+            Color(UIColor(Color.theme.backgroundColor))
+                .ignoresSafeArea(.all)
+            
+            ScrollView {
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            showingConfirmation = true
+                        } label: {
+                            Image(systemName: "rectangle.portrait.and.arrow.forward")
+                                .font(.system(size: 22))
+                                .foregroundColor(Color.theme.foregroundColor)
+                        }
+                        .alert("Do you want to signout?", isPresented: $showingConfirmation) {
+                            Button("Cancel", role: .cancel) {
+                                // some action
+                            }
+                            Button("Signout", role: .destructive) {
+                                authViewModel.signout()
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Image(uiImage: UIImage(named: "clebinho1")!)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: UIScreen.screenWidth * 0.28, height: UIScreen.screenWidth * 0.28)
+                            .clipped()
+                            .cornerRadius(999)
+                            .padding(.horizontal)
+                        
+                        Spacer()
+                        
+                        VStack {
+                            Text("\(viewModel.postNum)")
+                                .font(.system(size: 22, weight: .semibold))
+                            Text("Posts")
+                                .font(.system(size: 14, weight: .medium))
+                        }
+                        .padding(.horizontal, 2)
+                        
+                        VStack {
+                            Text("\(viewModel.followersNum)")
+                                .font(.system(size: 22, weight: .semibold))
+                            Text("Followers")
+                                .font(.system(size: 14, weight: .medium))
+                        }
+                        .padding(.horizontal, 2)
+                        
+                        VStack {
+                            Text("\(viewModel.followingNum)")
+                                .font(.system(size: 22, weight: .semibold))
+                            Text("Following")
+                                .font(.system(size: 14, weight: .medium))
+                        }
+                        .padding(.horizontal, 2)
+                        
+                        Spacer()
+                    }
+                    .foregroundColor(Color.theme.foregroundColor)
+                    .padding(.top)
+                    
+                    HStack {
+                        Text(viewModel.fullname)
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(Color.theme.foregroundColor)
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text(viewModel.bio)
+                            .font(.system(size: 18, weight: .regular))
+                            .foregroundColor(Color.theme.foregroundColor)
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Button {
+                            viewModel.follow()
+                        } label: {
+                            Text("Edit profile")
+                                .padding()
+                                .font(.system(size: 16, weight: .bold))
+                                .frame(width: UIScreen.screenWidth * 0.46, height: 43)
+                                .background(Color.theme.secondaryForegroundColor)
+                                .foregroundColor(Color.theme.foregroundColor)
+                                .cornerRadius(15)
+                        }
+                        
+                        Button {
+                            UIPasteboard.general.string = viewModel.username
+                        } label: {
+                            Text("Share profile")
+                                .padding()
+                                .font(.system(size: 16, weight: .bold))
+                                .frame(width: UIScreen.screenWidth * 0.46, height: 43)
+                                .background(Color.theme.secondaryForegroundColor)
+                                .foregroundColor(Color.theme.foregroundColor)
+                                .cornerRadius(15)
+                        }
+                    }
+                    
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    LazyVStack(spacing: 2) {
+                        PhotoGridView(images: viewModel.userPhotos)
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct PersonalProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        PersonalProfileView(uid: "FD8YTUYPsDRMIS70ArPxchm9Grv2")
+    }
+}
