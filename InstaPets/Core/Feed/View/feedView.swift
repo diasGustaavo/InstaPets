@@ -16,26 +16,33 @@ struct feedView: View {
     
     var body: some View {
         if let posts = viewModel.posts {
-            ScrollView {
-                ForEach(posts) { post in
-                    if let post = post {
-                        feedPostView(post: post)
-                        Spacer()
-                            .frame(height: 25)
-                    } else {
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(Color.theme.backgroundColor)
-                                .frame(width: UIScreen.screenWidth, height: 300)
-                            
-                            HStack {
-                                Spinner(lineWidth: 8, height: 32, width: 32)
-                                
+            NavigationView {
+                ZStack {
+                    Color(UIColor(Color.theme.backgroundColor))
+                        .ignoresSafeArea(.all)
+                    
+                    ScrollView {
+                        ForEach(posts) { post in
+                            if let post = post {
+                                feedPostView(post: post)
                                 Spacer()
-                                    .frame(width: 20)
-                                
-                                Text("Loading post 🐍")
-                                    .font(.system(size: 20, weight: .semibold))
+                                    .frame(height: 25)
+                            } else {
+                                ZStack {
+                                    Rectangle()
+                                        .foregroundColor(Color.theme.backgroundColor)
+                                        .frame(width: UIScreen.screenWidth, height: 300)
+                                    
+                                    HStack {
+                                        Spinner(lineWidth: 5, height: 32, width: 32)
+                                        
+                                        Spacer()
+                                            .frame(width: 20)
+                                        
+                                        Text("Loading post 🐍")
+                                            .font(.system(size: 20, weight: .semibold))
+                                    }
+                                }
                             }
                         }
                     }

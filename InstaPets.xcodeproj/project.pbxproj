@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B405504929CC78C800B3B32E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B405504829CC78C800B3B32E /* Comment.swift */; };
 		B40A006829B7696C00130AA1 /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006729B7696C00130AA1 /* SearchItemView.swift */; };
 		B40A006A29B769C800130AA1 /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006929B769C800130AA1 /* PhotoGridView.swift */; };
 		B40A006C29B76C5700130AA1 /* SearchModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A006B29B76C5700130AA1 /* SearchModelView.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B405504829CC78C800B3B32E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B40A006729B7696C00130AA1 /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
 		B40A006929B769C800130AA1 /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
 		B40A006B29B76C5700130AA1 /* SearchModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModelView.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				B4C5263E29A3AA1F00D1772D /* User.swift */,
 				B4CFC09B29AA3F8E009E375F /* PostImage.swift */,
 				B4F61F8F29A7F33C007467FB /* Post.swift */,
+				B405504829CC78C800B3B32E /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				B44DA41629A3EC820003FD44 /* LoginView.swift in Sources */,
 				B49AB1CE29BFA2DD001CC33E /* ProfileViewModel.swift in Sources */,
 				B4CFC09E29AA470F009E375F /* PostView.swift in Sources */,
+				B405504929CC78C800B3B32E /* Comment.swift in Sources */,
 				B44AD3D029AAB918008342DF /* PhotoPickerRepresentable.swift in Sources */,
 				B40A006A29B769C800130AA1 /* PhotoGridView.swift in Sources */,
 				B4CFC0A029AA5B77009E375F /* UIScreen.swift in Sources */,

@@ -21,6 +21,7 @@ class feedPostModelView: ObservableObject{
     @Published var amountOfLikes = 0
     @Published var ownerUsername = ""
     @Published var mostRecentComments = [String]()
+    @Published var allComments = [Comment]()
     
     init(post: Post) {
         self.likedByCurrentUser = userService.wasPostLikedByCurrentUser(post: post)
@@ -31,8 +32,26 @@ class feedPostModelView: ObservableObject{
         }
         self.post = post
         fetchMostRecentComments()
+        fetchAllComments()
         fetchPostImages { postImages in
             self.postImages = postImages
+        }
+    }
+    
+    func fetchAllComments() {
+        if let post = post {
+            if post.comments.isEmpty { return }
+            for comment in post.comments {
+                var prefix = String(comment.prefix(28))
+                let suffix = String(comment.suffix(comment.count - 27))
+                
+                self.userService.fetchUser(withUID: prefix) { user in
+                    guard let user = user else { return }
+                    let username = user.username
+                    
+                    self.allComments.append(Comment(description: suffix, authorID: prefix, authorUsername: username))
+                }
+            }
         }
     }
     

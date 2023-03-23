@@ -61,7 +61,7 @@ struct feedPostView: View {
                         .frame(width: UIScreen.screenWidth, height: 300)
                     
                     HStack {
-                        Spinner(lineWidth: 8, height: 32, width: 32)
+                        Spinner(lineWidth: 5, height: 32, width: 32)
                         
                         Spacer()
                             .frame(width: 20)
@@ -118,21 +118,25 @@ struct feedPostView: View {
                     Text(try! AttributedString(markdown: comment))
                         .font(.system(size: 20, weight: .regular))
                         .lineLimit(1)
-
+                    
                     Spacer()
                 }
                 .padding(.horizontal)
             }
             
-            HStack {
-                Text("View complete post")
-                    .font(.system(size: 20, weight: .regular))
-                    .foregroundColor(.gray.opacity(0.9))
-                    .lineLimit(3)
-                
-                Spacer()
+            NavigationLink(destination: LazyView {
+                PostCommentsView(comments: viewModel.allComments).navigationBarBackButtonHidden(true)
+            }) {
+                HStack {
+                    Text("View complete post")
+                        .font(.system(size: 20, weight: .regular))
+                        .foregroundColor(.gray.opacity(0.9))
+                        .lineLimit(3)
+                    
+                    Spacer()
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
             
             // Add comment & time info
             Group {
