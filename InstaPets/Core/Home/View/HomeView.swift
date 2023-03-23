@@ -23,7 +23,7 @@ struct HomeView: View {
     
                     VStack {
                         if viewModel.selectedTab == .post && postModel.postReady {
-                            PostView(viewModel: postModel)
+                            CreatePostView(viewModel: postModel)
                                 .environmentObject(authViewModel)
                                 .environmentObject(viewModel)
                         } else if viewModel.selectedTab == .search {

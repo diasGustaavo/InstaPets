@@ -15,6 +15,7 @@ class ProfileViewModel: ObservableObject {
     @Published var user: User?
     @Published var userPhotos = [UIImage]()
     @Published var isFollowButtonActivated = false
+    @Published var posts = [Post]()
     
     private let userService = UserService.shared
     let storage = Storage.storage()
@@ -27,7 +28,17 @@ class ProfileViewModel: ObservableObject {
             self.user = user
             self.fetchAllPostsMainImages()
             self.toggleFollowButton()
+            self.fetchAllPosts()
         })
+    }
+    
+    func fetchAllPosts() {
+        if let user = user {
+            userService.fetchPostsFromUser(userUID: user.uid) { posts in
+                guard let posts = posts else { return }
+                self.posts = posts
+            }
+        }
     }
     
     func follow() {

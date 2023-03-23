@@ -9,15 +9,21 @@ import SwiftUI
 
 struct PhotoGridView: View {
     let images: [UIImage]
+    let posts: [Post]
     
     var body: some View {
         LazyVGrid(columns: [.init(.adaptive(minimum: 100, maximum: .infinity), spacing: 3)]) {
-            ForEach(images, id: \.self) { image in
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.screenWidth * 0.33, height: UIScreen.screenWidth * 0.33)
-                    .clipped()
+            ForEach(Array(images.enumerated()), id: \.1) { index, image in
+                NavigationLink {
+                    DedicatedPostView(post: posts[index])
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.screenWidth * 0.33, height: UIScreen.screenWidth * 0.33)
+                        .clipped()
+                }
             }
         }
     }
@@ -26,6 +32,6 @@ struct PhotoGridView: View {
 
 struct PhotoGridView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ])
+        PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ], posts: [Post.example])
     }
 }

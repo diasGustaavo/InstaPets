@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostView: View {
+struct CreatePostView: View {
     @ObservedObject var viewModel: PostModelView
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var homeViewModel: HomeViewModel
@@ -109,9 +109,9 @@ struct PostView: View {
     }
 }
 
-struct PostView_Previews: PreviewProvider {
+struct CreatePostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(viewModel: PostModelView())
+        CreatePostView(viewModel: PostModelView())
             .environmentObject(AuthViewModel())
             .environmentObject(HomeViewModel())
     }

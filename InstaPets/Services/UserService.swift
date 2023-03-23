@@ -204,6 +204,14 @@ class UserService: ObservableObject {
         }
     }
     
+    func fetchPostsFromUser(userUID: String, completion: @escaping ([Post]?) -> Void) {
+        fetchUser(withUID: userUID) { user in
+            if let user = user {
+                completion(user.posts)
+            }
+        }
+    }
+    
     func addPostToCurrentUser(post: Post) {
         guard var localUser = user else { return }
         
