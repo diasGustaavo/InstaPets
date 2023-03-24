@@ -32,6 +32,8 @@ struct HomeView: View {
                             feedView()
                         } else if viewModel.selectedTab == .profile {
                             PersonalProfileView(uid: user.uid)
+                        } else if viewModel.selectedTab == .likes {
+                            NotificationsView(userUid: user.uid)
                         } else {
                             Spacer()
                         }
