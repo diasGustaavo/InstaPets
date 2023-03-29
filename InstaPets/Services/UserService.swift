@@ -277,6 +277,9 @@ class UserService: ObservableObject {
                     completion()
                 }
             }
+            
+            let notification = Notification(actorUID: currentUser.uid, receiverUID: followedUID, postUID: "follow", description: "\(currentUser.username) followed you")
+            self.addNotificationToFirebase(notification: notification)
         }
     }
     
