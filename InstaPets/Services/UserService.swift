@@ -341,6 +341,16 @@ class UserService: ObservableObject {
                     print("DEBUG: Post like sucessfully updated to firestore")
                 }
             }
+            
+            postFirestoreRef.getDocument(as: Post.self) { result in
+                switch result {
+                case .success(let post):
+                    let notification = Notification(actorUID: currentUser.uid, receiverUID: post.authorUID, postUID: post.id, description: "\(currentUser.username) liked your post.")
+                    self.addNotificationToFirebase(notification: notification)
+                case .failure(let error):
+                    print("DEBUG: Error decoding post")
+                }
+            }
         }
     }
     
@@ -356,6 +366,16 @@ class UserService: ObservableObject {
                 } else {
                     print("DEBUG: Post like sucessfully updated to firestore")
                 }
+            }
+        }
+    }
+    
+    func addNotificationToFirebase(notification: Notification) {
+        if let currentUser = user {
+            do {
+                try Firestore.firestore().collection("notifications").document(notification.id).setData(from: notification)
+            } catch {
+                print("DEBUG: Error updating notification to Firestore")
             }
         }
     }

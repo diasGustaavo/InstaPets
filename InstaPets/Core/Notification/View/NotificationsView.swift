@@ -31,13 +31,15 @@ struct NotificationsView: View {
                 ScrollView {
                     ForEach(viewModel.notifications) { notification in
                         HStack() {
-                            Image(uiImage: UIImage(named: "clebinho1")!)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: UIScreen.screenWidth * 0.12, height: UIScreen.screenWidth * 0.12)
-                                .clipped()
-                                .cornerRadius(999)
-                                .padding(.horizontal)
+                            NavigationLink(destination: ProfileView(uid: viewModel.uid).navigationBarBackButtonHidden(true)) {
+                                Image(uiImage: UIImage(named: "clebinho1")!)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: UIScreen.screenWidth * 0.12, height: UIScreen.screenWidth * 0.12)
+                                    .clipped()
+                                    .cornerRadius(999)
+                                    .padding(.horizontal)
+                            }
                             
                             Text("**Clebinho1997** liked your post")
                             

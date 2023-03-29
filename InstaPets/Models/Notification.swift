@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct Notification: Identifiable {
+struct Notification: Identifiable, Codable {
     let id = UUID().uuidString
     
-    let actor: User
-    let post: Post
+    let actorUID: String
+    let receiverUID: String
+    let postUID: String
     let description: String
 }
 
 extension Notification {
-    static let example = Notification(actor: User.example, post: Post.example, description: "liked your post.")
+    static let example = Notification(actorUID: User.example.uid, receiverUID: User.example.uid, postUID: Post.example.id, description: "liked your post.")
 }
