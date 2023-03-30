@@ -39,6 +39,39 @@ class UserService: ObservableObject {
         }
     }
     
+    func fetchUserNotifications(completion: @escaping ([Notification]) -> Void) {
+        guard let user = user else { return }
+        print(user)
+        let notificationsUID = user.notifications
+        var notifications = [Notification]()
+        
+        var counter = 0
+        for notificationUID in notificationsUID {
+            let docRef = Firestore.firestore().collection("notifications").document(notificationUID)
+            
+            docRef.getDocument { document, e in
+                if (e as NSError?) != nil {
+                    print("DEBUG: Error fetching notification")
+                } else {
+                    if let document = document {
+                        do {
+                            let notification = try document.data(as: Notification.self)
+                            notifications.append(notification)
+                            counter += 1
+                        }
+                        catch {
+                            print("DEBUG: Error turning firestore notification into local notification")
+                        }
+                    }
+                }
+                
+                if counter >= notificationsUID.count {
+                    completion(notifications)
+                }
+            }
+        }
+    }
+    
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
@@ -54,25 +87,30 @@ class UserService: ObservableObject {
                let type = data["type"] as? String,
                let uid = data["uid"] as? String,
                let following = data["following"] as? [String],
+               let notifications = data["notifications"] as? [String],
                let postsUID = data["posts"] as? [String] {
                 if !postsUID.isEmpty && !following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
                         guard let posts = posts else { return }
-                        let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts)
+                        let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts, notifications: notifications)
                         self.user = user
+                        print("DEBUG: Logged as \(String(describing: user.username))")
                     }
                 } else if !postsUID.isEmpty && following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
                         guard let posts = posts else { return }
-                        let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts)
+                        let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts, notifications: notifications)
                         self.user = user
+                        print("DEBUG: Logged as \(String(describing: user.username))")
                     }
                 } else if postsUID.isEmpty && !following.isEmpty {
-                    let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following)
+                    let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, notifications: notifications)
                     self.user = user
+                    print("DEBUG: Logged as \(String(describing: user.username))")
                 } else if postsUID.isEmpty && following.isEmpty {
-                    let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio)
+                    let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, notifications: notifications)
                     self.user = user
+                    print("DEBUG: Logged as \(String(describing: user.username))")
                 } else { return }
             } else {
                 print("DEBUG: Error parsing user data to Swift properties")
@@ -265,10 +303,14 @@ class UserService: ObservableObject {
                 }
             }
             
+            let notification = Notification(actorUID: currentUser.uid, receiverUID: followedUID, postUID: "follow", description: "\(currentUser.username) followed you")
+            self.addNotificationToFirebase(notification: notification)
+            
             let followedUserFirestoreRef = Firestore.firestore().collection("users").document(followedUID)
             
             followedUserFirestoreRef.updateData([
-                "followers": FieldValue.arrayUnion([currentUser.uid])
+                "followers": FieldValue.arrayUnion([currentUser.uid]),
+                "notifications": FieldValue.arrayUnion([notification.id])
             ]) { err in
                 if let e = err {
                     print("DEBUG: Error saving followers data to firestore (\(e)")
@@ -277,9 +319,6 @@ class UserService: ObservableObject {
                     completion()
                 }
             }
-            
-            let notification = Notification(actorUID: currentUser.uid, receiverUID: followedUID, postUID: "follow", description: "\(currentUser.username) followed you")
-            self.addNotificationToFirebase(notification: notification)
         }
     }
     
@@ -345,13 +384,28 @@ class UserService: ObservableObject {
                 }
             }
             
-            postFirestoreRef.getDocument(as: Post.self) { result in
-                switch result {
-                case .success(let post):
-                    let notification = Notification(actorUID: currentUser.uid, receiverUID: post.authorUID, postUID: post.id, description: "\(currentUser.username) liked your post.")
-                    self.addNotificationToFirebase(notification: notification)
-                case .failure(let error):
-                    print("DEBUG: Error decoding post")
+            fetchPost(withUID: postUID) { post in
+                postFirestoreRef.getDocument(as: Post.self) { result in
+                    switch result {
+                    case .success(let post):
+                        let notification = Notification(actorUID: currentUser.uid, receiverUID: post.authorUID, postUID: post.id, description: "\(currentUser.username) liked your post.")
+                        
+                        self.addNotificationToFirebase(notification: notification)
+                        
+                        let userFirestoreRef = Firestore.firestore().collection("users").document(post.authorUID)
+                        
+                        userFirestoreRef.updateData([
+                            "notifications": FieldValue.arrayUnion([notification.id])
+                        ]) { err in
+                            if let e = err {
+                                print("DEBUG: Error saving notifications data to firestore (\(e)")
+                            } else {
+                                print("DEBUG: Sucessfully saved notifications data to firestore")
+                            }
+                        }
+                    case .failure(let error):
+                        print("DEBUG: Error decoding post \(error)")
+                    }
                 }
             }
         }

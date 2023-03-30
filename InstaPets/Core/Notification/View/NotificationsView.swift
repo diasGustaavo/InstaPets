@@ -11,7 +11,7 @@ struct NotificationsView: View {
     @ObservedObject var viewModel: NotificationsModelView
     
     init(userUid: String) {
-        self.viewModel = NotificationsModelView(uid: userUid)
+        self.viewModel = NotificationsModelView()
     }
     
     var body: some View {
@@ -29,9 +29,9 @@ struct NotificationsView: View {
                 Divider()
                 
                 ScrollView {
-                    ForEach(viewModel.notifications) { notification in
+                    ForEach(Array(viewModel.notifications.enumerated()), id: \.element) { index, notification in
                         HStack() {
-                            NavigationLink(destination: ProfileView(uid: viewModel.uid).navigationBarBackButtonHidden(true)) {
+                            NavigationLink(destination: ProfileView(uid: notification.actorUID).navigationBarBackButtonHidden(true)) {
                                 Image(uiImage: UIImage(named: "clebinho1")!)
                                     .resizable()
                                     .scaledToFill()
@@ -41,16 +41,24 @@ struct NotificationsView: View {
                                     .padding(.horizontal)
                             }
                             
-                            Text("**Clebinho1997** liked your post")
+                            Text(notification.description)
                             
                             Spacer()
                             
-                            Image(uiImage: UIImage(named: "clebinho2")!)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: UIScreen.screenWidth * 0.12, height: UIScreen.screenWidth * 0.12)
-                                .clipped()
-                                .padding(.horizontal)
+                            if viewModel.areNotificationsThumbsLoaded {
+                                Image(uiImage: viewModel.notificationsThumbs[index])
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: UIScreen.screenWidth * 0.12, height: UIScreen.screenWidth * 0.12)
+                                    .clipped()
+                                    .padding(.horizontal)
+                            } else {
+                                Rectangle()
+                                    .fill(Color.theme.foregroundColor)
+                                    .cornerRadius(7)
+                                    .frame(width: UIScreen.screenWidth * 0.12, height: UIScreen.screenWidth * 0.12)
+                                    .padding(.horizontal)
+                            }
                         }
                         .padding(.vertical, 6)
                     }

@@ -28,6 +28,7 @@ struct User: Codable, Hashable {
     var bio: String?
     var following = [String]()
     var posts = [Post]()
+    var notifications = [String]()
     
     var postsUID: [String]? {
         return posts.map { $0.id }

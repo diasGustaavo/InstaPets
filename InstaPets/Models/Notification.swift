@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Notification: Identifiable, Codable {
+struct Notification: Identifiable, Codable, Equatable, Hashable {
     let id = UUID().uuidString
     
     let actorUID: String
