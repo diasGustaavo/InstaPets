@@ -49,6 +49,10 @@ struct feedView: View {
                 }
             }
         }
+        else {
+            Color(UIColor(Color.theme.backgroundColor))
+                .ignoresSafeArea(.all)
+        }
     }
 }
 

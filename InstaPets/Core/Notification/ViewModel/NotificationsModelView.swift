@@ -17,7 +17,6 @@ class NotificationsModelView: ObservableObject {
     
     init() {
         userService.fetchUserNotifications(completion: { notifications in
-            print("DEBUG: Notifications received \(notifications)")
             self.notifications = notifications
             self.fetchAllPostsMainImages()
         })
@@ -51,6 +50,7 @@ class NotificationsModelView: ObservableObject {
                             guard let image = image else { return }
                             
                             self.notificationsThumbs.append(image)
+                            imageFolderCounter += 1
                             if imageFolderCounter >= postsAmount {
                                 self.areNotificationsThumbsLoaded = true
                             }

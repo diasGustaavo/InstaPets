@@ -42,7 +42,7 @@ class feedPostModelView: ObservableObject{
         if let post = post {
             if post.comments.isEmpty { return }
             for comment in post.comments {
-                var prefix = String(comment.prefix(28))
+                let prefix = String(comment.prefix(28))
                 let suffix = String(comment.suffix(comment.count - 27))
                 
                 self.userService.fetchUser(withUID: prefix) { user in
@@ -112,7 +112,7 @@ class feedPostModelView: ObservableObject{
             // List all items in the folder
             storageRef.listAll { (result, error) in
                 if let error = error {
-                    print("Error listing files: \(error.localizedDescription)")
+                    print("DEBUG: Error listing files: \(error.localizedDescription)")
                     return
                 }
                 

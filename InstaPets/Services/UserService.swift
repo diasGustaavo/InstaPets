@@ -41,7 +41,6 @@ class UserService: ObservableObject {
     
     func fetchUserNotifications(completion: @escaping ([Notification]) -> Void) {
         guard let user = user else { return }
-        print(user)
         let notificationsUID = user.notifications
         var notifications = [Notification]()
         
