@@ -69,10 +69,13 @@ struct SearchView: View {
                     }
                     
                     if !isEditing {
+//                        LazyVStack(spacing: 2) {
+//                            ForEach(1...100, id: \.self) { value in
+//                                PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ], posts: [Post.example])
+//                            }
+//                        }
                         LazyVStack(spacing: 2) {
-                            ForEach(1...100, id: \.self) { value in
-                                PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ], posts: [Post.example])
-                            }
+                            PhotoGridView(images: modelView.postsPhotos, posts: modelView.posts)
                         }
                     } else {
                         LazyVStack(spacing: 2) {
