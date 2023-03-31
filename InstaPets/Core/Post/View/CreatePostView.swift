@@ -1,5 +1,5 @@
 //
-//  PostView.swift
+//  CreatePostView.swift
 //  InstaPets
 //
 //  Created by Gustavo Dias on 25/02/23.

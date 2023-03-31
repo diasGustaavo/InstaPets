@@ -34,16 +34,18 @@ struct HomeView: View {
                             PersonalProfileView(uid: user.uid)
                         } else if viewModel.selectedTab == .likes {
                             NotificationsView(userUid: user.uid)
-                        } else {
+                        } else if viewModel.selectedTab == .post && !postModel.postReady {
+                            ZStack {
+                                MockedCreatePostView()
+                                PickMediaView(viewModel: postModel)
+                            }
+                        }
+                        else {
                             Spacer()
                         }
     
                         MainTabBarView()
                             .ignoresSafeArea(.keyboard)
-                    }
-    
-                    if viewModel.selectedTab == .post && !postModel.postReady {
-                        PickMediaView(viewModel: postModel)
                     }
                 }
             }

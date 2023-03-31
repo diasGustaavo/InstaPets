@@ -65,7 +65,7 @@ struct PickMediaView: View {
             }
             
             Spacer()
-                .frame(height: 50)
+                .frame(height: 30)
         }
         .transition(.move(edge: .bottom))
     }
