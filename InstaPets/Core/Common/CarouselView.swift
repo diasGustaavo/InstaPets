@@ -27,7 +27,7 @@ struct CarouselView: View {
     
     var body: some View {
         if imgs.count <= 0 {
-            Image(uiImage: UIImage(named: "clebinho1")!)
+            Image(uiImage: UIImage(named: "minismalistCat")!)
                 .resizable()
                 .scaledToFill()
                 .frame(width: UIScreen.screenWidth * width, height: 300)
@@ -38,8 +38,9 @@ struct CarouselView: View {
         else if imgs.count == 1 {
             Image(uiImage: imgs[0])
                 .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: UIScreen.screenWidth * width, height: 300)
-                .scaledToFill()
+                .clipped()
                 .if((cornerRadius != nil), transform: {
                     $0.cornerRadius(cornerRadius!)
                 })
