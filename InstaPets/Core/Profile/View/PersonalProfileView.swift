@@ -10,13 +10,14 @@ import SwiftUI
 struct PersonalProfileView: View {
     let uid: String
     @EnvironmentObject var authViewModel: AuthViewModel
-    @ObservedObject var viewModel: ProfileViewModel
+    @ObservedObject var viewModel: PersonalProfileViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var showingConfirmation = false
+    @State private var showPhotos = false
     
     init(uid: String) {
         self.uid = uid
-        self.viewModel = ProfileViewModel(uid: uid)
+        self.viewModel = PersonalProfileViewModel(uid: uid)
     }
     
     var body: some View {
@@ -27,6 +28,14 @@ struct PersonalProfileView: View {
             ScrollView {
                 VStack {
                     HStack {
+                        Spacer()
+                            .frame(width: 20)
+                        
+                        Spacer()
+                        
+                        Text("\(viewModel.username)")
+                            .font(.system(size: 20, weight: .bold))
+                        
                         Spacer()
                         
                         Button {
@@ -107,15 +116,21 @@ struct PersonalProfileView: View {
                     
                     HStack {
                         Button {
-                            viewModel.follow()
+                            showPhotos.toggle()
                         } label: {
-                            Text("Edit profile")
+                            Text("Edit photo")
                                 .padding()
                                 .font(.system(size: 16, weight: .bold))
                                 .frame(width: UIScreen.screenWidth * 0.46, height: 43)
                                 .background(Color.theme.secondaryForegroundColor)
                                 .foregroundColor(Color.theme.foregroundColor)
                                 .cornerRadius(15)
+                        }
+                        // PHOTOS VIEW
+                        .sheet(isPresented: $showPhotos, onDismiss: {
+                            viewModel.processPhotoSelection()
+                        }) {
+                            PhotoPicker(images: $viewModel.selectedImages, selectionLimit: 1)
                         }
                         
                         Button {
