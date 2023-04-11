@@ -13,11 +13,12 @@ struct PhotoPicker: UIViewControllerRepresentable {
     typealias UIViewControllerType = PHPickerViewController
     
     @Binding var images: [UIImage]
+    let selectionLimit: Int
     var itemProviders: [NSItemProvider] = []
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 10
+        configuration.selectionLimit = selectionLimit
         configuration.filter = .images
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = context.coordinator

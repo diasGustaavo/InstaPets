@@ -61,7 +61,7 @@ struct PickMediaView: View {
             .sheet(isPresented: $showPhotos, onDismiss: {
                 processPhotoDismiss()
             }) {
-                PhotoPicker(images: $viewModel.selectedImages)
+                PhotoPicker(images: $viewModel.selectedImages, selectionLimit: 10)
             }
             
             Spacer()
