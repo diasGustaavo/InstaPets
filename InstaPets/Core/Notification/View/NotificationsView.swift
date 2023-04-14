@@ -14,6 +14,8 @@ struct NotificationsView: View {
         self.viewModel = NotificationsModelView()
     }
     
+    let stockImage = UIImage(named: "minismalistCat")!
+    
     var body: some View {
         ZStack {
             Color(UIColor(Color.theme.backgroundColor))
@@ -45,8 +47,8 @@ struct NotificationsView: View {
                             
                             Spacer()
                             
-                            if viewModel.areNotificationsThumbsLoaded {
-                                Image(uiImage: viewModel.notificationsThumbs[index])
+                            if !viewModel.notificationsThumbs.isEmpty {
+                                Image(uiImage: viewModel.notificationsThumbs[index] ?? stockImage)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: UIScreen.screenWidth * 0.12, height: UIScreen.screenWidth * 0.12)
