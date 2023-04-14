@@ -17,6 +17,7 @@ class PersonalProfileViewModel: ObservableObject {
     @Published var isFollowButtonActivated = false
     @Published var posts = [Post]()
     @Published var selectedImages = [UIImage]()
+    @Published var ownerImage = UIImage(named: "minismalistCat")!
     
     private let userService = UserService.shared
     let storage = Storage.storage()
@@ -27,10 +28,33 @@ class PersonalProfileViewModel: ObservableObject {
         storageRef = storage.reference()
         userService.fetchUser(withUID: uid, completion: { user in
             self.user = user
+            self.fetchOwnerImage()
             self.fetchAllPostsMainImages()
             self.toggleFollowButton()
             self.fetchAllPosts()
         })
+    }
+    
+    func fetchOwnerImage() {
+        if let user = user {
+            let imageRef = storage.reference().child("profilePhotos/\(user.uid).jpg")
+            
+            imageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+                if error != nil {
+                    // Handle error
+                    print("DEBUG: User \(user.uid) does not have a profile photo.")
+                } else {
+                    // Data for image is returned, you can now create a UIImage with it
+                    if let data = data, let image = UIImage(data: data) {
+                        // Use the image as needed
+                        // e.g. display it in an image view
+                        self.ownerImage = image
+                    } else {
+                        print("Error converting data to image")
+                    }
+                }
+            }
+        }
     }
     
     func processPhotoSelection() {

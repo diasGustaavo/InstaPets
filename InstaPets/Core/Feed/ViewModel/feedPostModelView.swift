@@ -22,6 +22,7 @@ class feedPostModelView: ObservableObject{
     @Published var ownerUsername = ""
     @Published var mostRecentComments = [String]()
     @Published var allComments = [Comment]()
+    @Published var ownerImage = UIImage(named: "minismalistCat")!
     
     init(post: Post) {
         self.likedByCurrentUser = userService.wasPostLikedByCurrentUser(post: post)
@@ -31,10 +32,33 @@ class feedPostModelView: ObservableObject{
             self.ownerUsername = user.username
         }
         self.post = post
+        fetchOwnerImage()
         fetchMostRecentComments()
         fetchAllComments()
         fetchPostImages { postImages in
             self.postImages = postImages
+        }
+    }
+    
+    func fetchOwnerImage() {
+        if let post = post {
+            let imageRef = storage.reference().child("profilePhotos/\(post.authorUID).jpg")
+            
+            imageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+                if error != nil {
+                    // Handle error
+                    print("DEBUG: User \(post.authorUID) does not have a profile photo.")
+                } else {
+                    // Data for image is returned, you can now create a UIImage with it
+                    if let data = data, let image = UIImage(data: data) {
+                        // Use the image as needed
+                        // e.g. display it in an image view
+                        self.ownerImage = image
+                    } else {
+                        print("Error converting data to image")
+                    }
+                }
+            }
         }
     }
     

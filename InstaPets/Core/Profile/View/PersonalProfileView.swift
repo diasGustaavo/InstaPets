@@ -57,7 +57,7 @@ struct PersonalProfileView: View {
                     .padding(.horizontal)
                     
                     HStack {
-                        Image(uiImage: UIImage(named: "clebinho1")!)
+                        Image(uiImage: viewModel.ownerImage)
                             .resizable()
                             .scaledToFill()
                             .frame(width: UIScreen.screenWidth * 0.28, height: UIScreen.screenWidth * 0.28)

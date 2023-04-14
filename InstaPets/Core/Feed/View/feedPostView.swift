@@ -18,7 +18,7 @@ struct feedPostView: View {
     var body: some View {
         VStack() {
             HStack(spacing: 0) {
-                Image(uiImage: UIImage(named: "clebinho1")!)
+                Image(uiImage: viewModel.ownerImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: UIScreen.screenWidth * 0.10, height: UIScreen.screenWidth * 0.10)
@@ -128,7 +128,7 @@ struct feedPostView: View {
                 PostCommentsView(comments: viewModel.allComments).navigationBarBackButtonHidden(true)
             }) {
                 HStack {
-                    Text("View complete post")
+                    Text("View comments")
                         .font(.system(size: 20, weight: .regular))
                         .foregroundColor(.gray.opacity(0.9))
                         .lineLimit(3)
