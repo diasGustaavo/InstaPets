@@ -28,6 +28,7 @@ class NotificationsModelView: ObservableObject {
         
         var imageFolderCounter = 0
         for imageFolder in postsUID {
+            print("imageFolder = \(imageFolder)")
             let storageRef = Storage.storage().reference(withPath: imageFolder)
             
             // List all items in the folder
@@ -39,22 +40,31 @@ class NotificationsModelView: ObservableObject {
                 
                 // Unwrap the items array
                 guard let result = result else { return }
+                print("DEBUG: Results = \(result.items)")
                 
-                result.items[0].getData(maxSize: 10000 * 10000) { data, e in
-                    if let e = e {
-                        print("DEBUG: Error downloading image: \(e.localizedDescription)")
-                    }
-                    else {
-                        if let imageData = data {
-                            let image = UIImage(data: imageData)
-                            guard let image = image else { return }
-                            
-                            self.notificationsThumbs.append(image)
-                            imageFolderCounter += 1
-                            if imageFolderCounter >= postsAmount {
-                                self.areNotificationsThumbsLoaded = true
+                if !result.items.isEmpty {
+                    result.items[0].getData(maxSize: 10000 * 10000) { data, e in
+                        if let e = e {
+                            print("DEBUG: Error downloading image: \(e.localizedDescription)")
+                        }
+                        else {
+                            if let imageData = data {
+                                let image = UIImage(data: imageData)
+                                guard let image = image else { return }
+                                
+                                self.notificationsThumbs.append(image)
+                                imageFolderCounter += 1
+                                if imageFolderCounter >= postsAmount {
+                                    self.areNotificationsThumbsLoaded = true
+                                }
                             }
                         }
+                    }
+                } else {
+                    self.notificationsThumbs.append(self.userService.userPhoto)
+                    imageFolderCounter += 1
+                    if imageFolderCounter >= postsAmount {
+                        self.areNotificationsThumbsLoaded = true
                     }
                 }
             }
