@@ -41,6 +41,7 @@
 		B49AB1CE29BFA2DD001CC33E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AB1CD29BFA2DD001CC33E /* ProfileViewModel.swift */; };
 		B49CF11829B25D2B00EA4AFE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CF11729B25D2B00EA4AFE /* SearchView.swift */; };
 		B4B04D7929C4D0F9008628B5 /* feedModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B04D7829C4D0F9008628B5 /* feedModelView.swift */; };
+		B4C1D53329ED6F0900D5FF50 /* SearchItemModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C1D53229ED6F0900D5FF50 /* SearchItemModelView.swift */; };
 		B4C5263F29A3AA1F00D1772D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5263E29A3AA1F00D1772D /* User.swift */; };
 		B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5264429A3AAC200D1772D /* RegistrationView.swift */; };
 		B4C5264829A3AEB400D1772D /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */; };
@@ -97,6 +98,7 @@
 		B49AB1CD29BFA2DD001CC33E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B49CF11729B25D2B00EA4AFE /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		B4B04D7829C4D0F9008628B5 /* feedModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = feedModelView.swift; sourceTree = "<group>"; };
+		B4C1D53229ED6F0900D5FF50 /* SearchItemModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemModelView.swift; sourceTree = "<group>"; };
 		B4C5263E29A3AA1F00D1772D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B4C5264429A3AAC200D1772D /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		B4C5264729A3AE8A00D1772D /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				B40A006B29B76C5700130AA1 /* SearchModelView.swift */,
+				B4C1D53229ED6F0900D5FF50 /* SearchItemModelView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				B4C5264529A3AAC200D1772D /* RegistrationView.swift in Sources */,
 				B4B04D7929C4D0F9008628B5 /* feedModelView.swift in Sources */,
 				B44801D029C8A0780093588E /* feedPostModelView.swift in Sources */,
+				B4C1D53329ED6F0900D5FF50 /* SearchItemModelView.swift in Sources */,
 				B4E5613F29C4D836007D26D5 /* feedView.swift in Sources */,
 				B45ABFD4299E98670099B3DA /* InstaPetsApp.swift in Sources */,
 				B4C5263F29A3AA1F00D1772D /* User.swift in Sources */,

@@ -19,6 +19,26 @@ class UserService: ObservableObject {
         fetchUser()
     }
     
+    func fetchUserImage(user: User, completion: @escaping (UIImage) -> Void) {
+        let imageRef = Storage.storage().reference().child("profilePhotos/\(user.uid).jpg")
+        
+        imageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
+            if error != nil {
+                // Handle error
+                print("DEBUG: User \(user.uid) does not have a profile photo.")
+            } else {
+                // Data for image is returned, you can now create a UIImage with it
+                if let data = data, let image = UIImage(data: data) {
+                    // Use the image as needed
+                    // e.g. display it in an image view
+                    completion(image)
+                } else {
+                    print("Error converting data to image")
+                }
+            }
+        }
+    }
+    
     func fetchOwnerImage() {
         if let user = user {
             let imageRef = Storage.storage().reference().child("profilePhotos/\(user.uid).jpg")
