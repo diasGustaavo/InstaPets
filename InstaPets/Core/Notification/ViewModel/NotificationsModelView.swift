@@ -27,7 +27,6 @@ class NotificationsModelView: ObservableObject {
         notificationsThumbs = [UIImage?](repeating: nil, count: postsUID.count)
         
         for (index, imageFolder) in postsUID.enumerated() {
-            print("imageFolder = \(imageFolder)")
             let storageRef = Storage.storage().reference(withPath: imageFolder)
             
             storageRef.listAll { (result, error) in

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  InstaPets
 //
 //  Created by Gustavo Dias on 16/02/23.
@@ -11,6 +11,7 @@ struct HomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: HomeViewModel
     @StateObject var postModel = PostModelView()
+    @StateObject var feedModel = feedModelView()
     
     var body: some View {
 //        LoginView()
@@ -29,7 +30,7 @@ struct HomeView: View {
                         } else if viewModel.selectedTab == .search {
                             SearchView()
                         } else if viewModel.selectedTab == .home {
-                            feedView()
+                            feedView(viewModel: feedModel)
                         } else if viewModel.selectedTab == .profile {
                             PersonalProfileView(uid: user.uid)
                         } else if viewModel.selectedTab == .likes {

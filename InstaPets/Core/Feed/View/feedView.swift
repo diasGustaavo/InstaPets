@@ -10,10 +10,6 @@ import SwiftUI
 struct feedView: View {
     @ObservedObject var viewModel: feedModelView
     
-    init() {
-        self.viewModel = feedModelView()
-    }
-    
     var body: some View {
         if let posts = viewModel.posts {
             NavigationView {
@@ -58,6 +54,6 @@ struct feedView: View {
 
 struct feedView_Previews: PreviewProvider {
     static var previews: some View {
-        feedView()
+        feedView(viewModel: feedModelView())
     }
 }

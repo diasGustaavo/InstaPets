@@ -17,6 +17,7 @@ class feedModelView: ObservableObject{
     @Published var posts: [Post]?
     
     init() {
+        print("DEBUG: Init feedModelView")
         fetchMostRecentPosts()
     }
     
