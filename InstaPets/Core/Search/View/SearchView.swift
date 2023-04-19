@@ -11,7 +11,11 @@ struct SearchView: View {
     @State private var text: String = ""
     @State private var isEditing = false
     
-    @StateObject private var modelView = SearchModelView()
+    @ObservedObject private var modelView: SearchModelView
+    
+    init(modelView: SearchModelView) {
+        self.modelView = modelView
+    }
     
     var body: some View {
         NavigationView {
@@ -97,7 +101,7 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(modelView: SearchModelView())
     }
 }
 

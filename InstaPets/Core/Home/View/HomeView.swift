@@ -12,6 +12,7 @@ struct HomeView: View {
     @EnvironmentObject var viewModel: HomeViewModel
     @StateObject var postModel = PostModelView()
     @StateObject var feedModel = feedModelView()
+    @StateObject var searchModelView = SearchModelView()
     
     var body: some View {
 //        LoginView()
@@ -28,7 +29,7 @@ struct HomeView: View {
                                 .environmentObject(authViewModel)
                                 .environmentObject(viewModel)
                         } else if viewModel.selectedTab == .search {
-                            SearchView()
+                            SearchView(modelView: searchModelView)
                         } else if viewModel.selectedTab == .home {
                             feedView(viewModel: feedModel)
                         } else if viewModel.selectedTab == .profile {
