@@ -11,8 +11,8 @@ struct feedPostView: View {
     @ObservedObject var viewModel: feedPostModelView
     @State private var animateHeart = false
     
-    init(post: Post) {
-        self.viewModel = feedPostModelView(post: post)
+    init(feedPostModelView: feedPostModelView) {
+        self.viewModel = feedPostModelView
     }
     
     var body: some View {
@@ -171,6 +171,6 @@ struct feedPostView: View {
 
 struct feedPostView_Previews: PreviewProvider {
     static var previews: some View {
-        feedPostView(post: Post.example)
+        feedPostView(feedPostModelView: feedPostModelView(post: Post.example))
     }
 }

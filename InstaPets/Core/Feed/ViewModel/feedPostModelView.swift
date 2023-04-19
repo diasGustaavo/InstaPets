@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import UIKit
 
-class feedPostModelView: ObservableObject{
+class feedPostModelView: ObservableObject, Identifiable {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     private let userService = UserService.shared

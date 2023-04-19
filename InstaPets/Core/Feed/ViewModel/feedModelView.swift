@@ -1,5 +1,5 @@
 //
-//  feedPostModelView.swift
+//  feedModelView.swift
 //  InstaPets
 //
 //  Created by Gustavo Dias on 17/03/23.
@@ -10,21 +10,35 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 import UIKit
 
-class feedModelView: ObservableObject{
+class feedModelView: ObservableObject {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
     @Published var posts: [Post]?
+    @Published var feedPostModelViews = [feedPostModelView]()
+    
     
     init() {
-        print("DEBUG: Init feedModelView")
-        fetchMostRecentPosts()
+        fetchMostRecentPosts(completion: {
+            self.fetchFeedPostModelViews()
+        })
     }
     
-    func fetchMostRecentPosts() {
+    func fetchFeedPostModelViews() {
+        if let posts = posts {
+            feedPostModelViews.removeAll()
+            for post in posts {
+                let newPost = feedPostModelView(post: post)
+                feedPostModelViews.append(newPost)
+            }
+        }
+    }
+    
+    func fetchMostRecentPosts(completion: @escaping () -> Void) {
         fetchFirstXPostsUID(x: 3) { postsUID in
             UserService.shared.fetchPosts(withUIDs: postsUID) { posts in
                 self.posts = posts
+                completion()
             }
         }
     }
