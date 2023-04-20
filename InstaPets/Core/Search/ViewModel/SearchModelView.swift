@@ -19,6 +19,7 @@ class SearchModelView: ObservableObject {
     private let userService = UserService.shared
     
     init() {
+        print("INITING!!!")
         fetchAllPosts {
             self.fetchAllPostsMainImages()
         }

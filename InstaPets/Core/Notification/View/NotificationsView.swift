@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct NotificationsView: View {
-    @ObservedObject var viewModel: NotificationsModelView
+    @ObservedObject private var viewModel: NotificationsModelView
     
-    init(userUid: String) {
-        self.viewModel = NotificationsModelView()
+    init(modelView: NotificationsModelView) {
+        self.viewModel = modelView
     }
     
     let stockImage = UIImage(named: "minismalistCat")!
@@ -72,6 +72,6 @@ struct NotificationsView: View {
 
 struct NotificationsView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationsView(userUid: "FD8YTUYPsDRMIS70ArPxchm9Grv2")
+        NotificationsView(modelView: NotificationsModelView())
     }
 }

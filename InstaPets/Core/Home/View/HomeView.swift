@@ -13,6 +13,7 @@ struct HomeView: View {
     @StateObject var postModel = PostModelView()
     @StateObject var feedModel = feedModelView()
     @StateObject var searchModelView = SearchModelView()
+    @StateObject var notificationsModelView = NotificationsModelView()
     
     var body: some View {
 //        LoginView()
@@ -35,7 +36,10 @@ struct HomeView: View {
                         } else if viewModel.selectedTab == .profile {
                             PersonalProfileView(uid: user.uid)
                         } else if viewModel.selectedTab == .likes {
-                            NotificationsView(userUid: user.uid)
+                            NotificationsView(modelView: notificationsModelView)
+                                .onAppear {
+                                    notificationsModelView.start()
+                                }
                         } else if viewModel.selectedTab == .post && !postModel.postReady {
                             ZStack {
                                 MockedCreatePostView()

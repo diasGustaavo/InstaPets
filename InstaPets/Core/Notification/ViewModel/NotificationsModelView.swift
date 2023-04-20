@@ -14,11 +14,13 @@ class NotificationsModelView: ObservableObject {
     
     private let userService = UserService.shared
     
-    init() {
-        userService.fetchUserNotifications(completion: { notifications in
-            self.notifications = notifications
-            self.fetchAllPostsMainImages()
-        })
+    func start() {
+        if notifications.isEmpty {
+            userService.fetchUserNotifications(completion: { notifications in
+                self.notifications = notifications
+                self.fetchAllPostsMainImages()
+            })
+        }
     }
     
     func fetchAllPostsMainImages() {
@@ -37,7 +39,6 @@ class NotificationsModelView: ObservableObject {
                 
                 // Unwrap the items array
                 guard let result = result else { return }
-                print("DEBUG: Results = \(result.items)")
                 
                 // List all items in the folder
                 if !result.items.isEmpty {
