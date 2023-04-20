@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct PersonalProfileView: View {
-    let uid: String
     @EnvironmentObject var authViewModel: AuthViewModel
     @ObservedObject var viewModel: PersonalProfileViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var showingConfirmation = false
     @State private var showPhotos = false
     
-    init(uid: String) {
-        self.uid = uid
-        self.viewModel = PersonalProfileViewModel(uid: uid)
+    init(personalProfileViewModel: PersonalProfileViewModel) {
+        self.viewModel = personalProfileViewModel
     }
     
     var body: some View {
@@ -160,6 +158,6 @@ struct PersonalProfileView: View {
 
 struct PersonalProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonalProfileView(uid: "FD8YTUYPsDRMIS70ArPxchm9Grv2")
+        PersonalProfileView(personalProfileViewModel: PersonalProfileViewModel())
     }
 }

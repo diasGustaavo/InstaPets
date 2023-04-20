@@ -14,6 +14,7 @@ struct HomeView: View {
     @StateObject var feedModel = feedModelView()
     @StateObject var searchModelView = SearchModelView()
     @StateObject var notificationsModelView = NotificationsModelView()
+    @StateObject var personalModelView = PersonalProfileViewModel()
     
     var body: some View {
 //        LoginView()
@@ -34,12 +35,9 @@ struct HomeView: View {
                         } else if viewModel.selectedTab == .home {
                             feedView(viewModel: feedModel)
                         } else if viewModel.selectedTab == .profile {
-                            PersonalProfileView(uid: user.uid)
+                            PersonalProfileView(personalProfileViewModel: personalModelView)
                         } else if viewModel.selectedTab == .likes {
                             NotificationsView(modelView: notificationsModelView)
-                                .onAppear {
-                                    notificationsModelView.start()
-                                }
                         } else if viewModel.selectedTab == .post && !postModel.postReady {
                             ZStack {
                                 MockedCreatePostView()
@@ -52,6 +50,10 @@ struct HomeView: View {
     
                         MainTabBarView()
                             .ignoresSafeArea(.keyboard)
+                    }
+                    .onAppear {
+                        personalModelView.start(uid: user.uid)
+                        notificationsModelView.start()
                     }
                 }
             }

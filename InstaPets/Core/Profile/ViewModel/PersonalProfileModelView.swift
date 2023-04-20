@@ -11,7 +11,7 @@ import FirebaseStorage
 import UIKit
 
 class PersonalProfileViewModel: ObservableObject {
-    let uid: String
+    var uid: String = ""
     @Published var user: User?
     @Published var userPhotos = [UIImage]()
     @Published var isFollowButtonActivated = false
@@ -21,18 +21,18 @@ class PersonalProfileViewModel: ObservableObject {
     
     private let userService = UserService.shared
     let storage = Storage.storage()
-    let storageRef: AnyObject
     
-    init(uid: String) {
+    func start(uid: String) {
         self.uid = uid
-        storageRef = storage.reference()
-        userService.fetchUser(withUID: uid, completion: { user in
-            self.user = user
-            self.fetchOwnerImage()
-            self.fetchAllPostsMainImages()
-            self.toggleFollowButton()
-            self.fetchAllPosts()
-        })
+        if user == nil {
+            userService.fetchUser(withUID: uid, completion: { user in
+                self.user = user
+                self.fetchOwnerImage()
+                self.fetchAllPostsMainImages()
+                self.toggleFollowButton()
+                self.fetchAllPosts()
+            })
+        }
     }
     
     func fetchOwnerImage() {
