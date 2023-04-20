@@ -141,7 +141,7 @@ struct feedPostView: View {
             // Add comment & time info
             Group {
                 HStack(spacing: 0) {
-                    Image(uiImage: UIImage(named: "clebinho1")!)
+                    Image(uiImage: viewModel.userService.userPhoto)
                         .resizable()
                         .scaledToFill()
                         .frame(width: UIScreen.screenWidth * 0.08, height: UIScreen.screenWidth * 0.08)

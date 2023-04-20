@@ -13,7 +13,7 @@ import UIKit
 class feedPostModelView: ObservableObject, Identifiable {
     let db = Firestore.firestore()
     let storage = Storage.storage()
-    private let userService = UserService.shared
+    public let userService = UserService.shared
     
     @Published var post: Post?
     @Published var postImages: [UIImage]?

@@ -138,6 +138,7 @@ class UserService: ObservableObject {
                         guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts, notifications: notifications)
                         self.user = user
+                        self.fetchOwnerImage()
                         print("DEBUG: Logged as \(String(describing: user.username))")
                     }
                 } else if !postsUID.isEmpty && following.isEmpty {
@@ -145,15 +146,18 @@ class UserService: ObservableObject {
                         guard let posts = posts else { return }
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts, notifications: notifications)
                         self.user = user
+                        self.fetchOwnerImage()
                         print("DEBUG: Logged as \(String(describing: user.username))")
                     }
                 } else if postsUID.isEmpty && !following.isEmpty {
                     let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, notifications: notifications)
                     self.user = user
+                    self.fetchOwnerImage()
                     print("DEBUG: Logged as \(String(describing: user.username))")
                 } else if postsUID.isEmpty && following.isEmpty {
                     let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, notifications: notifications)
                     self.user = user
+                    self.fetchOwnerImage()
                     print("DEBUG: Logged as \(String(describing: user.username))")
                 } else { return }
             } else {

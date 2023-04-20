@@ -11,8 +11,4 @@ class HomeViewModel: ObservableObject {
     @Published var selectedTab: TabBarButtonType = .home
     @Published var formerSelectedTab: TabBarButtonType = .home
     private let userService = UserService.shared
-    
-    init() {
-        userService.fetchOwnerImage()
-    }
 }

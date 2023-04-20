@@ -69,6 +69,8 @@ class PersonalProfileViewModel: ObservableObject {
                     storageRef.putData(data, metadata: metadata) { (metadata, error) in
                         if let error = error {
                             print("DEBUG: Error while uploading file: ", error)
+                        } else {
+                            self.fetchOwnerImage()
                         }
                     }
                 }
