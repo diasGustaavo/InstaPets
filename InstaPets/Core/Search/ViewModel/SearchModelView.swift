@@ -19,7 +19,6 @@ class SearchModelView: ObservableObject {
     private let userService = UserService.shared
     
     init() {
-        print("INITING!!!")
         fetchAllPosts {
             self.fetchAllPostsMainImages()
         }
@@ -71,7 +70,7 @@ class SearchModelView: ObservableObject {
             // List all items in the folder
             storageRef.listAll { (result, error) in
                 if let error = error {
-                    print("Error listing files: \(error.localizedDescription)")
+                    print("DEBUG: Error listing files: \(error.localizedDescription)")
                     return
                 }
 

@@ -46,8 +46,7 @@ class feedPostModelView: ObservableObject, Identifiable {
             
             imageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
                 if error != nil {
-                    // Handle error
-                    print("DEBUG: User \(post.authorUID) does not have a profile photo.")
+                    return
                 } else {
                     // Data for image is returned, you can now create a UIImage with it
                     if let data = data, let image = UIImage(data: data) {
@@ -55,7 +54,7 @@ class feedPostModelView: ObservableObject, Identifiable {
                         // e.g. display it in an image view
                         self.ownerImage = image
                     } else {
-                        print("Error converting data to image")
+                        print("DEBUG: Error converting data to image")
                     }
                 }
             }

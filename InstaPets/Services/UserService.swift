@@ -24,8 +24,7 @@ class UserService: ObservableObject {
         
         imageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
             if error != nil {
-                // Handle error
-                print("DEBUG: User \(user.uid) does not have a profile photo.")
+                return
             } else {
                 // Data for image is returned, you can now create a UIImage with it
                 if let data = data, let image = UIImage(data: data) {
@@ -33,7 +32,7 @@ class UserService: ObservableObject {
                     // e.g. display it in an image view
                     completion(image)
                 } else {
-                    print("Error converting data to image")
+                    print("DEBUG: Error converting data to image")
                 }
             }
         }
@@ -45,8 +44,7 @@ class UserService: ObservableObject {
             
             imageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
                 if error != nil {
-                    // Handle error
-                    print("DEBUG: User \(user.uid) does not have a profile photo.")
+                    return
                 } else {
                     // Data for image is returned, you can now create a UIImage with it
                     if let data = data, let image = UIImage(data: data) {
@@ -54,7 +52,7 @@ class UserService: ObservableObject {
                         // e.g. display it in an image view
                         self.userPhoto = image
                     } else {
-                        print("Error converting data to image")
+                        print("DEBUG: Error converting data to image")
                     }
                 }
             }
@@ -139,7 +137,6 @@ class UserService: ObservableObject {
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, posts: posts, notifications: notifications)
                         self.user = user
                         self.fetchOwnerImage()
-                        print("DEBUG: Logged as \(String(describing: user.username))")
                     }
                 } else if !postsUID.isEmpty && following.isEmpty {
                     self.fetchPosts(withUIDs: postsUID) { posts in
@@ -147,18 +144,15 @@ class UserService: ObservableObject {
                         let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, posts: posts, notifications: notifications)
                         self.user = user
                         self.fetchOwnerImage()
-                        print("DEBUG: Logged as \(String(describing: user.username))")
                     }
                 } else if postsUID.isEmpty && !following.isEmpty {
                     let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, following: following, notifications: notifications)
                     self.user = user
                     self.fetchOwnerImage()
-                    print("DEBUG: Logged as \(String(describing: user.username))")
                 } else if postsUID.isEmpty && following.isEmpty {
                     let user = User(fullPetName: fullPetName, username: username, email: email, type: self.getPetTypeFromString(petString: type), uid: uid, bio: bio, notifications: notifications)
                     self.user = user
                     self.fetchOwnerImage()
-                    print("DEBUG: Logged as \(String(describing: user.username))")
                 } else { return }
             } else {
                 print("DEBUG: Error parsing user data to Swift properties")
@@ -261,7 +255,7 @@ class UserService: ObservableObject {
             guard let snapshot = snapshot else { return }
             
             guard let post = try? snapshot.data(as: Post.self) else {
-                print("error transforming firestore post into local post")
+                print("DEBUG: Error transforming firestore post into local post")
                 return
             }
             
@@ -301,12 +295,8 @@ class UserService: ObservableObject {
     func addPostToCurrentUser(post: Post) {
         guard var localUser = user else { return }
         
-        if localUser.posts != nil {
-            localUser.posts.append(post)
-        } else {
-            localUser.posts = [Post]()
-            localUser.posts.append(post)
-        }
+        localUser.posts = [Post]()
+        localUser.posts.append(post)
         
         user = localUser
         updateCurrentUserPostsFirestore()
@@ -321,8 +311,6 @@ class UserService: ObservableObject {
             ]) { err in
                 if let e = err {
                     print("DEBUG: Error saving posts data to firestore (\(e)")
-                } else {
-                    print("DEBUG: Posts sucessfully updated to firestore")
                 }
             }
         }
@@ -330,7 +318,7 @@ class UserService: ObservableObject {
     
     func follow(followedUID: String, completion: @escaping () -> Void) {
         if var currentUser = user {
-            if (currentUser.following) != nil  {
+            if (!currentUser.following.isEmpty)  {
                 if !currentUser.following.contains(followedUID) {
                     currentUser.following.append(followedUID)
                 }
@@ -346,8 +334,6 @@ class UserService: ObservableObject {
             ]) { err in
                 if let e = err {
                     print("DEBUG: Error saving following data to firestore (\(e)")
-                } else {
-                    print("DEBUG: Following sucessfully updated to firestore")
                 }
             }
             
@@ -363,7 +349,6 @@ class UserService: ObservableObject {
                 if let e = err {
                     print("DEBUG: Error saving followers data to firestore (\(e)")
                 } else {
-                    print("DEBUG: Followers sucessfully updated to firestore")
                     completion()
                 }
             }
@@ -383,8 +368,6 @@ class UserService: ObservableObject {
             ]) { err in
                 if let e = err {
                     print("DEBUG: Error saving Removed following data to firestore (\(e)")
-                } else {
-                    print("DEBUG: Removed Following sucessfully updated to firestore")
                 }
             }
             
@@ -427,8 +410,6 @@ class UserService: ObservableObject {
             ]) { err in
                 if let e = err {
                     print("DEBUG: Error saving post like to firestore (\(e)")
-                } else {
-                    print("DEBUG: Post like sucessfully updated to firestore")
                 }
             }
             
@@ -447,8 +428,6 @@ class UserService: ObservableObject {
                         ]) { err in
                             if let e = err {
                                 print("DEBUG: Error saving notifications data to firestore (\(e)")
-                            } else {
-                                print("DEBUG: Sucessfully saved notifications data to firestore")
                             }
                         }
                     case .failure(let error):
@@ -468,15 +447,13 @@ class UserService: ObservableObject {
             ]) { err in
                 if let e = err {
                     print("DEBUG: Error saving post like to firestore (\(e)")
-                } else {
-                    print("DEBUG: Post like sucessfully updated to firestore")
                 }
             }
         }
     }
     
     func addNotificationToFirebase(notification: Notification) {
-        if let currentUser = user {
+        if user != nil {
             do {
                 try Firestore.firestore().collection("notifications").document(notification.id).setData(from: notification)
             } catch {

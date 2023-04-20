@@ -9,7 +9,7 @@ extension String {
     do {
       return try AttributedString(markdown: self)
     } catch {
-      print("Error parsing Markdown for string \(self): \(error)")
+      print("DEBUG: Error parsing Markdown for string \(self): \(error)")
       return AttributedString(self)
     }
   }

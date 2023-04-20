@@ -49,8 +49,7 @@ class ProfileViewModel: ObservableObject {
             
             imageRef.getData(maxSize: 10 * 1024 * 1024) { data, error in
                 if error != nil {
-                    // Handle error
-                    print("DEBUG: User \(user.uid) does not have a profile photo.")
+                    return
                 } else {
                     // Data for image is returned, you can now create a UIImage with it
                     if let data = data, let image = UIImage(data: data) {
@@ -58,7 +57,7 @@ class ProfileViewModel: ObservableObject {
                         // e.g. display it in an image view
                         self.ownerImage = image
                     } else {
-                        print("Error converting data to image")
+                        print("DEBUG: Error converting data to image")
                     }
                 }
             }
@@ -130,7 +129,7 @@ class ProfileViewModel: ObservableObject {
             // List all items in the folder
             storageRef.listAll { (result, error) in
                 if let error = error {
-                    print("Error listing files: \(error.localizedDescription)")
+                    print("DEBUG: Error listing files: \(error.localizedDescription)")
                     return
                 }
                 

@@ -25,7 +25,6 @@ class NotificationsModelView: ObservableObject {
     
     func fetchAllPostsMainImages() {
         let postsUID = notifications.map { $0.postUID }
-        let postsAmount = postsUID.count
         notificationsThumbs = [UIImage?](repeating: nil, count: postsUID.count)
         
         for (index, imageFolder) in postsUID.enumerated() {
@@ -33,7 +32,7 @@ class NotificationsModelView: ObservableObject {
             
             storageRef.listAll { (result, error) in
                 if let error = error {
-                    print("Error listing files: \(error.localizedDescription)")
+                    print("DEBUG: Error listing files: \(error.localizedDescription)")
                     return
                 }
                 
