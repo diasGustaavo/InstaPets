@@ -12,7 +12,7 @@ struct PhotoGridView: View {
     let posts: [Post]
     
     var body: some View {
-        LazyVGrid(columns: [.init(.adaptive(minimum: 100, maximum: .infinity), spacing: 3)]) {
+        LazyVGrid(columns: [.init(.adaptive(minimum: 100, maximum: .infinity), spacing: 3)], spacing: 3) {
             ForEach(Array(images.enumerated()), id: \.1) { index, image in
                 NavigationLink {
                     DedicatedPostView(post: posts[index])
