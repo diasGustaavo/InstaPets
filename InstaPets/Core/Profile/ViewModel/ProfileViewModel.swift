@@ -69,6 +69,7 @@ class ProfileViewModel: ObservableObject {
             userService.follow(followedUID: user.uid) {
                 self.userService.fetchUserAndDo {
                     self.toggleFollowButton()
+                    
                 }
             }
         }

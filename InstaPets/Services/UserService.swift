@@ -295,7 +295,6 @@ class UserService: ObservableObject {
     func addPostToCurrentUser(post: Post) {
         guard var localUser = user else { return }
         
-        localUser.posts = [Post]()
         localUser.posts.append(post)
         
         user = localUser
