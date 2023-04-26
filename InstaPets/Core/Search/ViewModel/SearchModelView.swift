@@ -64,7 +64,9 @@ class SearchModelView: ObservableObject {
     }
     
     func fetchAllPostsMainImages() {
-        for imageFolder in postsUID {
+        var tempPostsPhotos = Array(repeating: UIImage(named: "minismalistCat")!, count: postsUID.count)
+        var count = 0
+        for (index, imageFolder) in postsUID.enumerated() {
             let storageRef = Storage.storage().reference(withPath: imageFolder)
 
             // List all items in the folder
@@ -86,7 +88,12 @@ class SearchModelView: ObservableObject {
                             let image = UIImage(data: imageData)
                             guard let image = image else { return }
 
-                            self.postsPhotos.append(image)
+                            tempPostsPhotos[index] = image
+                            count += 1
+                            
+                            if count >= self.postsUID.count {
+                                self.postsPhotos = tempPostsPhotos
+                            }
                         }
                     }
                 }

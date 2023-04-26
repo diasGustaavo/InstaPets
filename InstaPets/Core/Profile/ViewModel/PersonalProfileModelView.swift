@@ -145,19 +145,21 @@ class PersonalProfileViewModel: ObservableObject {
         guard let user = user else { return }
         guard let postsUID = user.postsUID else { return }
         
-        for imageFolder in postsUID {
+        var tempPostsPhotos = Array(repeating: UIImage(named: "minismalistCat")!, count: postsUID.count)
+        var count = 0
+        for (index, imageFolder) in postsUID.enumerated() {
             let storageRef = Storage.storage().reference(withPath: imageFolder)
-            
+
             // List all items in the folder
             storageRef.listAll { (result, error) in
                 if let error = error {
                     print("DEBUG: Error listing files: \(error.localizedDescription)")
                     return
                 }
-                
+
                 // Unwrap the items array
                 guard let result = result else { return }
-                
+
                 result.items[0].getData(maxSize: 10000 * 10000) { data, e in
                     if let e = e {
                         print("DEBUG: Error downloading image: \(e.localizedDescription)")
@@ -166,8 +168,13 @@ class PersonalProfileViewModel: ObservableObject {
                         if let imageData = data {
                             let image = UIImage(data: imageData)
                             guard let image = image else { return }
+
+                            tempPostsPhotos[index] = image
+                            count += 1
                             
-                            self.userPhotos.append(image)
+                            if count >= postsUID.count {
+                                self.userPhotos = tempPostsPhotos
+                            }
                         }
                     }
                 }
