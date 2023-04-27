@@ -9,7 +9,7 @@ A pet centered social media based on the famous Instagram app.
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-04-27 at 11 59 49](https://user-images.githubusercontent.com/60455369/234904266-66185078-ad61-46f1-9079-f6f4eff097a1.png)
 
 
-## ⚙️ Frameworks & Tools Used
+## ⚙️ Frameworks & Dependencies Used
 
 - [SwiftUI](https://developer.apple.com/documentation/swiftui/)
 - [UIKit](https://developer.apple.com/documentation/uikit)
