@@ -17,14 +17,16 @@ struct HomeView: View {
     @StateObject var personalModelView = PersonalProfileViewModel()
     
     var body: some View {
-//        LoginView()
-            if authViewModel.userSession == nil {
-                LoginView()
-            } else if let user = authViewModel.currentUser {
+        //        LoginView()
+        if authViewModel.userSession == nil {
+            LoginView()
+        } else if let user = authViewModel.currentUser {
+            NavigationStack {
                 ZStack {
                     Color(UIColor(Color.theme.backgroundColor))
                         .ignoresSafeArea(.all)
-    
+                    
+                    
                     VStack {
                         if viewModel.selectedTab == .post && postModel.postReady {
                             CreatePostView(viewModel: postModel)
@@ -47,7 +49,7 @@ struct HomeView: View {
                         else {
                             Spacer()
                         }
-    
+                        
                         MainTabBarView()
                             .ignoresSafeArea(.keyboard)
                     }
@@ -57,6 +59,7 @@ struct HomeView: View {
                     }
                 }
             }
+        }
     }
 }
 
