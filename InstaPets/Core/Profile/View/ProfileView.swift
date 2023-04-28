@@ -148,7 +148,7 @@ struct ProfileView: View {
                         .frame(height: 20)
                     
                     LazyVStack(spacing: 2) {
-                        PhotoGridView(images: profileViewModel.userPhotos, posts: profileViewModel.posts)
+                        PhotoGridView(images: profileViewModel.userPhotos, posts: profileViewModel.posts, isLoading: $profileViewModel.arePostsPhotosLoading)
                     }
                 }
             }

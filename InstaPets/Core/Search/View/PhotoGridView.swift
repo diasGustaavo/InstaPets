@@ -10,9 +10,10 @@ import SwiftUI
 struct PhotoGridView: View {
     let images: [UIImage]
     let posts: [Post]
+    @Binding var isLoading: Bool
     
     var body: some View {
-        if images.isEmpty {
+        if isLoading {
             VStack {
                 Spacer()
                     .frame(height: 20)
@@ -49,6 +50,6 @@ struct PhotoGridView: View {
 
 struct PhotoGridView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ], posts: [Post.example])
+        PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ], posts: [Post.example], isLoading: .constant(false))
     }
 }

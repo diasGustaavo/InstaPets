@@ -18,15 +18,20 @@ class PersonalProfileViewModel: ObservableObject {
     @Published var posts = [Post]()
     @Published var selectedImages = [UIImage]()
     @Published var ownerImage = UIImage(named: "minismalistCat")!
+    @Published var arePostsPhotosLoading = false
     
     private let userService = UserService.shared
     let storage = Storage.storage()
     
     func start() {
+        self.arePostsPhotosLoading = true
+        self.userPhotos = [UIImage]()
         if let user = userService.user {
             self.user = user
             self.fetchOwnerImage()
-            self.fetchAllPostsMainImages()
+            self.fetchAllPostsMainImages {
+                self.arePostsPhotosLoading = false
+            }
             self.toggleFollowButton()
             self.fetchAllPosts()
         }
@@ -138,12 +143,18 @@ class PersonalProfileViewModel: ObservableObject {
     
     var followersNum = 69
     
-    func fetchAllPostsMainImages() {
+    func fetchAllPostsMainImages(completion: @escaping () -> Void) {
         guard let user = user else { return }
         guard let postsUID = user.postsUID else { return }
         
         var tempPostsPhotos = Array(repeating: UIImage(named: "minismalistCat")!, count: postsUID.count)
         var count = 0
+        
+        if postsUID.isEmpty {
+            completion()
+            return
+        }
+        
         for (index, imageFolder) in postsUID.enumerated() {
             let storageRef = Storage.storage().reference(withPath: imageFolder)
 
@@ -171,6 +182,7 @@ class PersonalProfileViewModel: ObservableObject {
                             
                             if count >= postsUID.count {
                                 self.userPhotos = tempPostsPhotos
+                                completion()
                             }
                         }
                     }

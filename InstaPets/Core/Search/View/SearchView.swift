@@ -79,7 +79,7 @@ struct SearchView: View {
 //                            }
 //                        }
                         LazyVStack(spacing: 2) {
-                            PhotoGridView(images: modelView.postsPhotos, posts: modelView.posts)
+                            PhotoGridView(images: modelView.postsPhotos, posts: modelView.posts, isLoading: $modelView.arePostsPhotosLoading)
                         }
                     } else {
                         LazyVStack(spacing: 2) {

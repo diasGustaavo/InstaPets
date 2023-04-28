@@ -14,13 +14,16 @@ class SearchModelView: ObservableObject {
     @Published var postsUID = [String]()
     @Published var posts = [Post]()
     @Published var postsPhotos = [UIImage]()
+    @Published var arePostsPhotosLoading = true
     
     let storage = Storage.storage()
     private let userService = UserService.shared
     
     init() {
         fetchAllPosts {
-            self.fetchAllPostsMainImages()
+            self.fetchAllPostsMainImages{
+                self.arePostsPhotosLoading = false
+            }
         }
     }
     
@@ -63,7 +66,7 @@ class SearchModelView: ObservableObject {
         }
     }
     
-    func fetchAllPostsMainImages() {
+    func fetchAllPostsMainImages(completion: @escaping () -> Void) {
         var tempPostsPhotos = Array(repeating: UIImage(named: "minismalistCat")!, count: postsUID.count)
         var count = 0
         for (index, imageFolder) in postsUID.enumerated() {
@@ -93,6 +96,7 @@ class SearchModelView: ObservableObject {
                             
                             if count >= self.postsUID.count {
                                 self.postsPhotos = tempPostsPhotos
+                                completion()
                             }
                         }
                     }
