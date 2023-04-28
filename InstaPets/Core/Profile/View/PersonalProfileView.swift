@@ -147,8 +147,25 @@ struct PersonalProfileView: View {
                     Spacer()
                         .frame(height: 20)
                     
-                    LazyVStack(spacing: 2) {
-                        PhotoGridView(images: viewModel.userPhotos, posts: viewModel.posts, isLoading: $viewModel.arePostsPhotosLoading)
+                    if viewModel.arePostsPhotosLoading {
+                        VStack {
+                            Spacer()
+                                .frame(height: 20)
+                            
+                            HStack {
+                                Spinner(lineWidth: 5, height: 32, width: 32)
+                                
+                                Spacer()
+                                    .frame(width: 20)
+                                
+                                Text("Loading photos 🐈")
+                                    .font(.system(size: 20, weight: .semibold))
+                            }
+                        }
+                    } else {
+                        LazyVStack(spacing: 2) {
+                            PhotoGridView(images: viewModel.userPhotos, posts: viewModel.posts)
+                        }
                     }
                 }
             }

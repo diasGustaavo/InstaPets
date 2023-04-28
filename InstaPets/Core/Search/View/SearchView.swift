@@ -78,8 +78,25 @@ struct SearchView: View {
 //                                PhotoGridView(images: [UIImage(named: "charlottinha")!, UIImage(named: "clebinho2")!, UIImage(named: "clebinho1")! ], posts: [Post.example])
 //                            }
 //                        }
-                        LazyVStack(spacing: 2) {
-                            PhotoGridView(images: modelView.postsPhotos, posts: modelView.posts, isLoading: $modelView.arePostsPhotosLoading)
+                        if modelView.arePostsPhotosLoading {
+                            VStack {
+                                Spacer()
+                                    .frame(height: 20)
+                                
+                                HStack {
+                                    Spinner(lineWidth: 5, height: 32, width: 32)
+                                    
+                                    Spacer()
+                                        .frame(width: 20)
+                                    
+                                    Text("Loading photos 🐈")
+                                        .font(.system(size: 20, weight: .semibold))
+                                }
+                            }
+                        } else {
+                            LazyVStack(spacing: 2) {
+                                PhotoGridView(images: modelView.postsPhotos, posts: modelView.posts)
+                            }
                         }
                     } else {
                         LazyVStack(spacing: 2) {

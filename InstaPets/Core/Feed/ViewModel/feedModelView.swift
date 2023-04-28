@@ -35,7 +35,7 @@ class feedModelView: ObservableObject {
     }
     
     func fetchMostRecentPosts(completion: @escaping () -> Void) {
-        fetchFirstXPostsUID(x: 3) { postsUID in
+        fetchFirstXPostsUID(x: 100) { postsUID in
             UserService.shared.fetchPosts(withUIDs: postsUID) { posts in
                 self.posts = posts
                 completion()
