@@ -15,12 +15,10 @@ class NotificationsModelView: ObservableObject {
     private let userService = UserService.shared
     
     func start() {
-        if notifications.isEmpty {
-            userService.fetchUserNotifications(completion: { notifications in
-                self.notifications = notifications
-                self.fetchAllPostsMainImages()
-            })
-        }
+        userService.fetchUserNotifications(completion: { notifications in
+            self.notifications = notifications
+            self.fetchAllPostsMainImages()
+        })
     }
     
     func fetchAllPostsMainImages() {

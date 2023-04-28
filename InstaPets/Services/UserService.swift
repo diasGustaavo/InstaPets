@@ -211,8 +211,6 @@ class UserService: ObservableObject {
             
             guard let data = snapshot.data() else { return }
             
-//            print(data)
-            
             if let fullPetName = data["fullPetName"] as? String,
                let username = data["username"] as? String,
                let bio = data["bio"] as? String,

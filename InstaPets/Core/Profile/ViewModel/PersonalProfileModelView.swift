@@ -22,16 +22,13 @@ class PersonalProfileViewModel: ObservableObject {
     private let userService = UserService.shared
     let storage = Storage.storage()
     
-    func start(uid: String) {
-        self.uid = uid
-        if user == nil {
-            userService.fetchUser(withUID: uid, completion: { user in
-                self.user = user
-                self.fetchOwnerImage()
-                self.fetchAllPostsMainImages()
-                self.toggleFollowButton()
-                self.fetchAllPosts()
-            })
+    func start() {
+        if let user = userService.user {
+            self.user = user
+            self.fetchOwnerImage()
+            self.fetchAllPostsMainImages()
+            self.toggleFollowButton()
+            self.fetchAllPosts()
         }
     }
     

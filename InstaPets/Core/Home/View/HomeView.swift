@@ -18,14 +18,13 @@ struct HomeView: View {
     
     var body: some View {
         //        LoginView()
-        if authViewModel.userSession == nil {
+        if !authViewModel.isLoggedIn {
             LoginView()
-        } else if let user = authViewModel.currentUser {
+        } else if authViewModel.currentUser != nil {
             NavigationStack {
                 ZStack {
                     Color(UIColor(Color.theme.backgroundColor))
                         .ignoresSafeArea(.all)
-                    
                     
                     VStack {
                         if viewModel.selectedTab == .post && postModel.postReady {
@@ -54,7 +53,7 @@ struct HomeView: View {
                             .ignoresSafeArea(.keyboard)
                     }
                     .onAppear {
-                        personalModelView.start(uid: user.uid)
+                        personalModelView.start()
                         notificationsModelView.start()
                     }
                 }

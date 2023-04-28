@@ -13,6 +13,9 @@ import Combine
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var isLoggedIn: Bool = false
+
+    private var handle: AuthStateDidChangeListenerHandle?
     
     public var currentUserUID: String? {
         return currentUser?.uid
@@ -24,6 +27,15 @@ class AuthViewModel: ObservableObject {
     init() {
         userSession = Auth.auth().currentUser
         fetchUser()
+        handle = Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            self?.isLoggedIn = user != nil
+        }
+    }
+    
+    deinit {
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
     }
     
     func signIn(withEmail email: String, password: String) {
@@ -33,7 +45,9 @@ class AuthViewModel: ObservableObject {
                 return
             }
             self.userSession = result?.user
-            self.fetchUser()
+            UserService.shared.fetchUserAndDo {
+                self.fetchUser()
+            }
         }
     }
     
@@ -49,6 +63,9 @@ class AuthViewModel: ObservableObject {
                 return
             }
             self.userSession = firebaseUser
+            UserService.shared.fetchUserAndDo {
+                self.fetchUser()
+            }
             
             let user = User(fullPetName: fullPetName, username: username, email: email, type: type, uid: firebaseUser.uid, bio: "")
             self.currentUser = user
@@ -65,6 +82,8 @@ class AuthViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
             self.userSession = nil
+            self.currentUser = nil
+            UserService.shared.user = nil
         } catch {
             print("DEBUG: Failed to sign out with error: \(error.localizedDescription)")
         }
